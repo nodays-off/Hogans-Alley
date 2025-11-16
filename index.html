@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hogan's Alley - Bold Rainwear for Grey Cities</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="nav-header" id="mainNav">
+        <div class="container">
+            <nav class="nav-bar">
+                <div class="logo">
+                    <a href="index.html">HOGAN'S ALLEY</a>
+                </div>
+                <ul class="nav-links desktop-nav">
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="story.html">Story</a></li>
+                    <li><a href="kids.html">Kids</a></li>
+                    <li><a href="lookbook.html">Lookbook</a></li>
+                    <li><a href="care.html">Care</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <button class="icon-btn search-btn" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="8" cy="8" r="6"/>
+                            <path d="M13 13l5 5"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn account-btn" aria-label="Account">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="10" cy="6" r="4"/>
+                            <path d="M2 19c0-4 3.5-7 8-7s8 3 8 7"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn cart-btn" aria-label="Cart">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 1h3l2 13h11l3-9H6"/>
+                            <circle cx="8" cy="18" r="1" fill="currentColor"/>
+                            <circle cx="16" cy="18" r="1" fill="currentColor"/>
+                        </svg>
+                        <span class="cart-count">0</span>
+                    </button>
+                    <button class="hamburger mobile-only" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <ul class="mobile-nav-links">
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="story.html">Story</a></li>
+                <li><a href="kids.html">Kids</a></li>
+                <li><a href="lookbook.html">Lookbook</a></li>
+                <li><a href="care.html">Care</a></li>
+            </ul>
+            <div class="mobile-nav-footer">
+                <a href="#" class="mobile-nav-link">Account</a>
+                <a href="#" class="mobile-nav-link">Help</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Colour for grey days.</h1>
+                    <p class="hero-subheadline">Art-driven rain jackets for rainy-season cities. Made for Vancouver, Seattle, the UK, and anywhere the sky forgets how to be blue.</p>
+                    <div class="hero-buttons">
+                        <a href="shop.html" class="btn btn-primary">Shop the Collection</a>
+                        <a href="story.html" class="btn btn-secondary">Learn the Story</a>
+                    </div>
+                    <p class="hero-small">Built for real rain. Designed to be seen.</p>
+                </div>
+                <div class="hero-image">
+                    <div class="image-placeholder hero-img">
+                        <span>Hero Image: Person wearing vibrant Libation jacket at rainy bus stop, overcast city background, jacket is warmest element in cool-toned scene</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why We Exist -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-label">WHY WE EXIST</div>
+            <div class="two-col">
+                <div class="section-content">
+                    <h2>Why is everyone dressed like the sky?</h2>
+                    <p>Most rain jackets are designed to disappear. Black, navy, grey, maybe one safe yellow. That works for hiking gear.</p>
+                    <p>City life is different. We ride buses, skate in drizzle, walk under leaky bus shelters, and still want to feel like ourselves.</p>
+                    <p>Hogan's Alley started as a protest against boring rainwear. Jackets that actually keep you dry, covered in patterns and colour that look like our music, our streets, and our cultures.</p>
+                    <ul class="feature-list">
+                        <li><strong>Built for real rain</strong> - Waterproof shells, taped seams, details that matter.</li>
+                        <li><strong>Made to be seen</strong> - High-contrast art, not just logos.</li>
+                        <li><strong>For grey cities</strong> - Designed in places where it rains more days than not.</li>
+                    </ul>
+                </div>
+                <div class="section-image">
+                    <div class="image-placeholder">
+                        <span>Campus trio: 3 diverse young people wearing different jackets (Libation, Market Circuit, Stormwave) on rainy campus, wet pavement reflections visible</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Preview -->
+    <section class="section">
+        <div class="container">
+            <div class="section-label">THE JACKETS</div>
+            <h2>Wearable art, serious weather.</h2>
+            <p class="section-intro">Each jacket starts as a painting, then gets turned into a shell that can handle sideways rain and sprinting for the bus.</p>
+            
+            <div class="product-grid-home">
+                <!-- Product 1: Libation -->
+                <div class="product-card">
+                    <a href="product-libation.html" class="product-link">
+                        <div class="product-image">
+                            <div class="image-placeholder">
+                                <span>Libation jacket - front view, clean product shot against Wet Concrete background</span>
+                            </div>
+                            <span class="product-badge new">New Drop</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Libation</h3>
+                            <p class="product-price">$185 CAD</p>
+                            <p class="product-sizes">XS - XXL</p>
+                        </div>
+                    </a>
+                    <a href="product-libation.html" class="btn btn-secondary btn-small">View Details</a>
+                </div>
+
+                <!-- Product 2: Market Circuit -->
+                <div class="product-card">
+                    <a href="product-market-circuit.html" class="product-link">
+                        <div class="product-image">
+                            <div class="image-placeholder">
+                                <span>Market Circuit jacket - electric blue/green with coin motifs, front view product shot</span>
+                            </div>
+                            <span class="product-badge limited">Limited Run</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Market Circuit</h3>
+                            <p class="product-price">$185 CAD</p>
+                            <p class="product-sizes">XS - XXL</p>
+                        </div>
+                    </a>
+                    <a href="product-market-circuit.html" class="btn btn-secondary btn-small">View Details</a>
+                </div>
+
+                <!-- Product 3: Stormwave -->
+                <div class="product-card">
+                    <a href="product-stormwave.html" class="product-link">
+                        <div class="product-image">
+                            <div class="image-placeholder">
+                                <span>Stormwave jacket - kinetic reds/blues/greens wave pattern, front view product shot</span>
+                            </div>
+                            <span class="product-badge new">New Drop</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Stormwave</h3>
+                            <p class="product-price">$185 CAD</p>
+                            <p class="product-sizes">XS - XXL</p>
+                        </div>
+                    </a>
+                    <a href="product-stormwave.html" class="btn btn-secondary btn-small">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Built for This -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-label">BUILT FOR THIS</div>
+            <div class="two-col reverse">
+                <div class="section-image">
+                    <div class="image-placeholder">
+                        <span>Skatepark drizzle: Person in jacket skating in light rain, hood up, motion implied, urban skatepark setting</span>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <h2>Designed in the rain, for the rain.</h2>
+                    <p>Our jackets are built for real life in wet cities.</p>
+                    <p>We test fits over hoodies. We yank the hood in high wind. We check pockets with cold fingers at bus stops. Then we cover everything in pattern so you don't disappear into the weather.</p>
+                    
+                    <div class="feature-blocks">
+                        <div class="feature-block">
+                            <h4>Waterproof shell</h4>
+                            <p>Taped seams, storm flap, fully adjustable hood. No "fashion only" rain jackets here.</p>
+                        </div>
+                        <div class="feature-block">
+                            <h4>Streetwear fit</h4>
+                            <p>Unisex cut, made to throw over a hoodie or crewneck, not just a thin base layer.</p>
+                        </div>
+                        <div class="feature-block">
+                            <h4>Night bright</h4>
+                            <p>High-contrast colour that stands out in low light, without looking like construction gear.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kids Teaser -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-label">COMING SOON</div>
+            <div class="two-col">
+                <div class="section-image">
+                    <div class="image-placeholder">
+                        <span>Kids in puddles: Child (6-8 years) jumping in puddle with joy, wearing bright patterned jacket, residential street, post-rain atmosphere</span>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <h2>For the puddle jumpers.</h2>
+                    <p>The same bold patterns, remixed for kids who never want to come inside. High-visibility colour for safety, tough fabrics for everyday chaos, and little stories hidden on the inside labels.</p>
+                    
+                    <form class="newsletter-form kids-form">
+                        <input type="email" placeholder="your@email.com" class="form-input">
+                        <button type="submit" class="btn btn-primary">Get Kids Line Updates</button>
+                    </form>
+                    <p class="form-helper">No spam. Just early access and launch info.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Story Short -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="story-block">
+                <div class="story-content">
+                    <h2>Born from long, wet winters.</h2>
+                    <p>Hogan's Alley started in a city where it can rain for weeks without the sky changing. On the street, everyone blended into black and grey shells. At home, our walls and sketchbooks were full of colour, symbols, and stories.</p>
+                    <p>We decided to put that energy on the outside. Each jacket print starts as an original painting. Every drop you see on the fabric was once a brushstroke.</p>
+                    <a href="story.html" class="btn btn-secondary">Read the Full Story</a>
+                </div>
+                <div class="story-image">
+                    <div class="image-placeholder">
+                        <span>Studio shot: Artwork table with paints, brushes, pattern sketches, in-progress painting visible</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community UGC -->
+    <section class="section community-section">
+        <div class="container">
+            <h2>Seen in the drizzle.</h2>
+            <p class="section-intro">From 8am lectures to midnight food runs, Hogan's Alley lives where real rain happens.</p>
+            <p class="hashtag-cta">Tag <strong>#HogansAlley</strong> for a chance to be in the next drop.</p>
+            
+            <div class="ugc-grid">
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 1: Skateboarding in rain</span>
+                    </div>
+                </div>
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 2: Selfie at bus stop</span>
+                    </div>
+                </div>
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 3: Walking with coffee</span>
+                    </div>
+                </div>
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 4: Concert in rain</span>
+                    </div>
+                </div>
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 5: Campus shot</span>
+                    </div>
+                </div>
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 6: Night street</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section newsletter-section">
+        <div class="container">
+            <div class="newsletter-box">
+                <h3>Join the rainy season list</h3>
+                <p>Be first in line for new drops, early access, and behind the scenes from Hogan's Alley.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="your@email.com" class="form-input">
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">HOGAN'S ALLEY</div>
+                    <p class="footer-tagline">Bold rainwear for grey cities.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="shop.html">All Jackets</a></li>
+                        <li><a href="shop.html#new">New Drops</a></li>
+                        <li><a href="kids.html">Kids (Coming Soon)</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="story.html">Our Story</a></li>
+                        <li><a href="story.html#patterns">Pattern Stories</a></li>
+                        <li><a href="care.html">Care Guide</a></li>
+                        <li><a href="lookbook.html">Lookbook</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">TikTok</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Hogan's Alley. Bold rainwear for grey cities.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

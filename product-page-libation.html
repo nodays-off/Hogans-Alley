@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libation Rain Jacket - [BRAND NAME]</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --night-rain: #070A0F;
+            --wet-concrete: #191F26;
+            --cloud-light: #F5F5F7;
+            --heat-yellow: #FFC735;
+            --pulse-red: #E63B3B;
+            --deep-rain-green: #0B7A4C;
+            --ink-black: #000000;
+            
+            --font-heading: "Poppins", system-ui, sans-serif;
+            --font-body: "Inter", system-ui, sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background-color: var(--night-rain);
+            color: var(--cloud-light);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, .heading {
+            font-family: var(--font-heading);
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+        
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--night-rain);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--wet-concrete);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: 0.1em;
+            color: var(--cloud-light);
+            text-transform: uppercase;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--cloud-light);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--heat-yellow);
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 24px 0;
+            font-size: 14px;
+            color: rgba(245, 245, 247, 0.6);
+        }
+        
+        .breadcrumb a {
+            color: var(--deep-rain-green);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Product Hero */
+        .product-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            padding: 40px 0;
+        }
+        
+        /* Image Gallery */
+        .image-gallery {
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        
+        .main-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background-color: var(--wet-concrete);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(245, 245, 247, 0.3);
+            font-size: 14px;
+            overflow: hidden;
+        }
+        
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .thumbnail-strip {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+        }
+        
+        .thumbnail {
+            aspect-ratio: 1;
+            background-color: var(--wet-concrete);
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(245, 245, 247, 0.2);
+            font-size: 10px;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .thumbnail:hover {
+            border-color: var(--deep-rain-green);
+        }
+        
+        .thumbnail.active {
+            border-color: var(--heat-yellow);
+        }
+        
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Product Info */
+        .product-info {
+            padding-top: 20px;
+        }
+        
+        .eyebrow {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--heat-yellow);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        
+        .price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--heat-yellow);
+            margin-bottom: 24px;
+        }
+        
+        .hero-description {
+            font-size: 18px;
+            color: rgba(245, 245, 247, 0.85);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        
+        /* Pattern Story */
+        .pattern-story {
+            background-color: var(--wet-concrete);
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 32px;
+        }
+        
+        .pattern-story h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .pattern-story-content {
+            font-size: 16px;
+            line-height: 1.7;
+            color: rgba(245, 245, 247, 0.9);
+        }
+        
+        .pattern-story-content p {
+            margin-bottom: 16px;
+        }
+        
+        /* Size Selector */
+        .size-selector {
+            margin-bottom: 32px;
+        }
+        
+        .size-selector label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .size-helper {
+            font-size: 14px;
+            color: rgba(245, 245, 247, 0.7);
+            margin-bottom: 12px;
+        }
+        
+        .size-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        
+        .size-btn {
+            padding: 12px 24px;
+            border: 1.5px solid var(--deep-rain-green);
+            background-color: transparent;
+            color: var(--cloud-light);
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .size-btn:hover {
+            background-color: rgba(11, 122, 76, 0.15);
+        }
+        
+        .size-btn.active {
+            background-color: var(--deep-rain-green);
+            color: white;
+        }
+        
+        .size-guide-link {
+            color: var(--deep-rain-green);
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .size-guide-link:hover {
+            text-decoration: underline;
+        }
+        
+        .model-info {
+            font-size: 14px;
+            color: rgba(245, 245, 247, 0.7);
+            margin-top: 12px;
+        }
+        
+        /* Quantity */
+        .quantity-selector {
+            margin-bottom: 32px;
+        }
+        
+        .quantity-selector label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .qty-btn {
+            width: 40px;
+            height: 40px;
+            border: 1.5px solid var(--deep-rain-green);
+            background-color: transparent;
+            color: var(--cloud-light);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+        
+        .qty-btn:hover {
+            background-color: rgba(11, 122, 76, 0.15);
+        }
+        
+        .qty-display {
+            width: 60px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background-color: var(--heat-yellow);
+            color: var(--ink-black);
+            border: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            letter-spacing: 0.05em;
+        }
+        
+        .btn-primary:hover {
+            background-color: #E0AF20;
+            transform: translateY(-2px);
+        }
+        
+        .wishlist-link {
+            display: inline-block;
+            margin-top: 16px;
+            color: var(--deep-rain-green);
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .wishlist-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Features List */
+        .features {
+            margin-top: 48px;
+        }
+        
+        .features h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .features ul {
+            list-style: none;
+        }
+        
+        .features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(245, 245, 247, 0.1);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .features li:before {
+            content: "✓ ";
+            color: var(--deep-rain-green);
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        
+        /* Expandable Sections */
+        .expandable {
+            background-color: var(--wet-concrete);
+            padding: 20px 24px;
+            border-radius: 12px;
+            margin-top: 16px;
+            cursor: pointer;
+        }
+        
+        .expandable h3 {
+            font-size: 16px;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .expandable-content {
+            margin-top: 16px;
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(245, 245, 247, 0.9);
+        }
+        
+        .expandable-content p {
+            margin-bottom: 12px;
+        }
+        
+        .expandable-content strong {
+            color: var(--cloud-light);
+            font-weight: 600;
+        }
+        
+        /* Below the Fold Sections */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-alt {
+            background-color: var(--wet-concrete);
+        }
+        
+        .section-light {
+            background-color: var(--cloud-light);
+            color: var(--ink-black);
+        }
+        
+        .section-light h2,
+        .section-light h3 {
+            color: var(--ink-black);
+        }
+        
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .section-content {
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        .section-content p {
+            margin-bottom: 20px;
+        }
+        
+        .section-image {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background-color: var(--wet-concrete);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(245, 245, 247, 0.3);
+            overflow: hidden;
+        }
+        
+        .section-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Detail Grid */
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 48px;
+        }
+        
+        .detail-item {
+            text-align: center;
+        }
+        
+        .detail-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background-color: var(--wet-concrete);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(245, 245, 247, 0.3);
+            font-size: 12px;
+            overflow: hidden;
+        }
+        
+        .detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .detail-caption h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .detail-caption p {
+            font-size: 14px;
+            color: rgba(245, 245, 247, 0.8);
+            line-height: 1.6;
+        }
+        
+        /* Styling Grid */
+        .styling-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+        
+        .style-item {
+            text-align: center;
+        }
+        
+        .style-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background-color: var(--wet-concrete);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(245, 245, 247, 0.3);
+            font-size: 12px;
+            overflow: hidden;
+        }
+        
+        .style-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .style-caption h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .style-caption p {
+            font-size: 14px;
+            color: rgba(245, 245, 247, 0.8);
+        }
+        
+        /* Reviews */
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+        
+        .review-card {
+            background-color: var(--wet-concrete);
+            padding: 32px;
+            border-radius: 12px;
+        }
+        
+        .stars {
+            color: var(--heat-yellow);
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+        
+        .review-text {
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(245, 245, 247, 0.9);
+            margin-bottom: 16px;
+        }
+        
+        .reviewer {
+            font-size: 14px;
+            color: rgba(245, 245, 247, 0.7);
+            font-style: italic;
+        }
+        
+        /* Product Cards */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+        
+        .product-card {
+            background-color: var(--wet-concrete);
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .product-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background-color: var(--night-rain);
+            border-radius: 8px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(245, 245, 247, 0.3);
+            font-size: 12px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--cloud-light);
+        }
+        
+        .product-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--heat-yellow);
+            margin-bottom: 16px;
+        }
+        
+        .btn-secondary {
+            background-color: var(--deep-rain-green);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #075A38;
+        }
+        
+        /* Community Section */
+        .community {
+            text-align: center;
+        }
+        
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 48px;
+        }
+        
+        .instagram-item {
+            aspect-ratio: 1;
+            background-color: var(--wet-concrete);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(245, 245, 247, 0.3);
+            font-size: 12px;
+            overflow: hidden;
+        }
+        
+        .instagram-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--wet-concrete);
+            padding: 60px 0 40px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-section a {
+            color: rgba(245, 245, 247, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .footer-section a:hover {
+            color: var(--heat-yellow);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(245, 245, 247, 0.1);
+            color: rgba(245, 245, 247, 0.6);
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .product-hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .image-gallery {
+                position: static;
+            }
+            
+            .two-col,
+            .detail-grid,
+            .styling-grid,
+            .reviews,
+            .product-grid,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .instagram-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">[BRAND NAME]</div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop Jackets</a></li>
+                    <li><a href="#">Story</a></li>
+                    <li><a href="#">Kids (Coming Soon)</a></li>
+                    <li><a href="#">Care & Quality</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="#">Home</a> / <a href="#">Shop Jackets</a> / Libation
+        </div>
+    </div>
+
+    <!-- Product Hero -->
+    <div class="container">
+        <div class="product-hero">
+            <!-- Image Gallery -->
+            <div class="image-gallery">
+                <div class="main-image">
+                    <span>Lifestyle Front View<br>Main Product Image</span>
+                </div>
+                <div class="thumbnail-strip">
+                    <div class="thumbnail active">
+                        <span>Front</span>
+                    </div>
+                    <div class="thumbnail">
+                        <span>Product</span>
+                    </div>
+                    <div class="thumbnail">
+                        <span>Back</span>
+                    </div>
+                    <div class="thumbnail">
+                        <span>Hood</span>
+                    </div>
+                    <div class="thumbnail">
+                        <span>Pocket</span>
+                    </div>
+                    <div class="thumbnail">
+                        <span>Action</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info">
+                <div class="eyebrow">NEW DROP | LIMITED RUN</div>
+                <h1>Libation</h1>
+                <div class="price">$185 CAD</div>
+                <div class="hero-description">
+                    A celebration print inspired by shared drinks, rhythm, and late-night stories, splashed across a fully waterproof shell.
+                </div>
+
+                <!-- Pattern Story -->
+                <div class="pattern-story">
+                    <h3>About this pattern <span>▼</span></h3>
+                    <div class="pattern-story-content">
+                        <p>This print started as a sketch during a late-night gathering — the kind where drinks are shared, music gets louder, and stories turn into folklore. The pattern layers geometric shapes inspired by traditional drinking vessels, celebration motifs, and the rhythm of people moving together.</p>
+                        <p>The warm yellows and deep reds reference firelight and spice, while the green anchors everything back to earth. It's designed to feel like energy in motion: loud, warm, and unapologetically alive.</p>
+                        <p>Every jacket tells a story. This one celebrates connection.</p>
+                    </div>
+                </div>
+
+                <!-- Size Selector -->
+                <div class="size-selector">
+                    <label>Size</label>
+                    <div class="size-helper">Unisex fit – pick your usual hoodie size.</div>
+                    <div class="size-buttons">
+                        <button class="size-btn">XS</button>
+                        <button class="size-btn">S</button>
+                        <button class="size-btn active">M</button>
+                        <button class="size-btn">L</button>
+                        <button class="size-btn">XL</button>
+                        <button class="size-btn">XXL</button>
+                    </div>
+                    <a href="#" class="size-guide-link">See size guide →</a>
+                    <div class="model-info">Model is 5'10" and wearing size M.</div>
+                </div>
+
+                <!-- Quantity -->
+                <div class="quantity-selector">
+                    <label>Quantity</label>
+                    <div class="quantity-controls">
+                        <button class="qty-btn">−</button>
+                        <div class="qty-display">1</div>
+                        <button class="qty-btn">+</button>
+                    </div>
+                </div>
+
+                <!-- Add to Bag -->
+                <button class="btn-primary">Add to Bag</button>
+                <a href="#" class="wishlist-link">Add to wishlist ♡</a>
+
+                <!-- Features -->
+                <div class="features">
+                    <h3>Built for real rain</h3>
+                    <ul>
+                        <li>10K waterproof breathable shell with fully taped seams</li>
+                        <li>Adjustable hood with drawcord lock system</li>
+                        <li>YKK front zipper plus snap storm flap</li>
+                        <li>Two zippered hand pockets (fits phone + wallet)</li>
+                        <li>Elastic cuffs with snap adjusters</li>
+                        <li>Interior comfort lining, soft against skin</li>
+                        <li>Drawcord hem to seal out wind</li>
+                    </ul>
+                </div>
+
+                <!-- Materials & Care -->
+                <div class="expandable">
+                    <h3>Materials & care <span>+</span></h3>
+                    <div class="expandable-content" style="display:none;">
+                        <p><strong>Fabric:</strong><br>
+                        100% polyester shell with waterproof PU coating<br>
+                        Breathable membrane keeps you dry without overheating<br>
+                        Durable water repellent (DWR) finish</p>
+                        
+                        <p><strong>Lining:</strong><br>
+                        Soft mesh lining for comfort over hoodies and tees</p>
+                        
+                        <p><strong>Care:</strong><br>
+                        Machine wash cold, inside out<br>
+                        Hang to dry – no tumble dryer<br>
+                        No bleach, no iron on print<br>
+                        <a href="#" style="color: var(--deep-rain-green);">See full care guide →</a></p>
+                    </div>
+                </div>
+
+                <!-- Shipping & Returns -->
+                <div class="expandable">
+                    <h3>Shipping & returns <span>+</span></h3>
+                    <div class="expandable-content" style="display:none;">
+                        <p><strong>Shipping:</strong><br>
+                        Standard (3-7 business days): $8 or free over $100<br>
+                        Express (1-3 business days): $15</p>
+                        
+                        <p><strong>Returns:</strong><br>
+                        30 days to try it in the rain. If it's not your vibe, return it unworn with tags for a full refund.</p>
+                        
+                        <p><a href="#" style="color: var(--deep-rain-green);">Full return policy →</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section: Why This Jacket -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2>Made for grey cities</h2>
+            <div class="two-col">
+                <div class="section-content">
+                    <p>Every [BRAND NAME] jacket starts the same way: with a question.</p>
+                    <p>What if rainwear didn't have to be boring? What if the thing that kept you dry could also wake up the street? What if you could feel like art while waiting for a bus in the cold?</p>
+                    <p>This jacket answers all three.</p>
+                    <p>The Libation is built for real city rain – the kind that sneaks under hoods, soaks through cheap zippers, and makes you rethink your whole outfit. We obsess over details: hoods that actually stay up when the wind hits, pockets deep enough for cold hands and phones, and fabrics that breathe so you don't overheat on the sprint to class.</p>
+                    <p>Then we cover it in a print that refuses to blend in.</p>
+                    <p>Wear it on grey mornings when you need the reminder that colour still exists. Wear it on nights out when the drizzle starts and everyone else is hiding. Wear it because boring rainwear had its chance, and this is what's next.</p>
+                </div>
+                <div class="section-image">
+                    <span>Atmospheric lifestyle shot:<br>Person in rain under overpass</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: The Details -->
+    <section class="section">
+        <div class="container">
+            <h2>Built different</h2>
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <div class="detail-image">
+                        <span>Hood Detail<br>Macro Shot</span>
+                    </div>
+                    <div class="detail-caption">
+                        <h4>Adjustable hood</h4>
+                        <p>Drawcord lock keeps your hood exactly where you need it, even when the wind picks up.</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-image">
+                        <span>Storm Flap<br>Detail Shot</span>
+                    </div>
+                    <div class="detail-caption">
+                        <h4>Double seal</h4>
+                        <p>YKK zipper plus snap storm flap. Rain doesn't stand a chance.</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-image">
+                        <span>Pocket Detail<br>Hand + Phone</span>
+                    </div>
+                    <div class="detail-caption">
+                        <h4>Deep pockets</h4>
+                        <p>Sized for your phone, keys, wallet, and hands. Zippers keep everything secure.</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-image">
+                        <span>Water Beading<br>Macro Shot</span>
+                    </div>
+                    <div class="detail-caption">
+                        <h4>Actually waterproof</h4>
+                        <p>10K rated shell with taped seams. Built for hours in real rain, not just light drizzle.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Styled With -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2>How to wear it</h2>
+            <p style="font-size: 17px; margin-bottom: 24px; color: rgba(245,245,247,0.85);">Our jackets are built to layer over your everyday. Here's how the [BRAND NAME] crew styles this one.</p>
+            <div class="styling-grid">
+                <div class="style-item">
+                    <div class="style-image">
+                        <span>Campus Look<br>Over Hoodie</span>
+                    </div>
+                    <div class="style-caption">
+                        <h4>Over a hoodie</h4>
+                        <p>Your go-to for campus, transit, and everything between classes.</p>
+                    </div>
+                </div>
+                <div class="style-item">
+                    <div class="style-image">
+                        <span>Night Out<br>Streetwear Flex</span>
+                    </div>
+                    <div class="style-caption">
+                        <h4>Streetwear flex</h4>
+                        <p>Layer over a fitted crewneck for nights when the weather tries to ruin your fit.</p>
+                    </div>
+                </div>
+                <div class="style-item">
+                    <div class="style-image">
+                        <span>Active Look<br>Skate/Bike</span>
+                    </div>
+                    <div class="style-caption">
+                        <h4>Move in it</h4>
+                        <p>Loose enough to move, fitted enough to look clean. Built for bikes, boards, and sprints to catch the bus.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Reviews -->
+    <section class="section">
+        <div class="container">
+            <h2>Seen in the rain</h2>
+            <div class="reviews">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-text">
+                        "Finally a rain jacket that doesn't make me look like I'm going hiking. Wore this through two weeks of Vancouver rain and stayed completely dry. The pockets are deep and the hood actually stays put."
+                    </div>
+                    <div class="reviewer">— Maya, Vancouver</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-text">
+                        "The pattern is even better in person. I've gotten so many compliments at the bus stop. It's my new favorite piece."
+                    </div>
+                    <div class="reviewer">— Jordan, Seattle</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-text">
+                        "I bought this mostly for the look but it's actually really well made. Wore it skating in the rain and it held up perfectly. Super happy with it."
+                    </div>
+                    <div class="reviewer">— Alex, London</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: You Might Also Like -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2>More from the collection</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <span>Market Circuit<br>Product Image</span>
+                    </div>
+                    <div class="product-name">Market Circuit</div>
+                    <div class="product-price">$185 CAD</div>
+                    <a href="#" class="btn-secondary">View details</a>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <span>Stormwave<br>Product Image</span>
+                    </div>
+                    <div class="product-name">Stormwave</div>
+                    <div class="product-price">$185 CAD</div>
+                    <a href="#" class="btn-secondary">View details</a>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <span>Urban Rain<br>Product Image</span>
+                    </div>
+                    <div class="product-name">Urban Rain</div>
+                    <div class="product-price">$185 CAD</div>
+                    <a href="#" class="btn-secondary">View details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Community -->
+    <section class="section" style="background-color: var(--night-rain);">
+        <div class="container community">
+            <h2>Tag us in your fit</h2>
+            <p style="font-size: 17px; margin-bottom: 24px; color: rgba(245,245,247,0.85);">We love seeing [BRAND NAME] jackets out in the wild – on buses, at shows, skating in the rain, and everywhere grey days happen.</p>
+            <p style="font-size: 17px; margin-bottom: 40px; color: rgba(245,245,247,0.85);">Tag <strong>#YOURHASHTAG</strong> and show us how you wear it.</p>
+            <a href="#" class="btn-primary" style="max-width: 300px; margin: 0 auto;">Follow us on Instagram →</a>
+            <div class="instagram-grid">
+                <div class="instagram-item"><span>UGC 1</span></div>
+                <div class="instagram-item"><span>UGC 2</span></div>
+                <div class="instagram-item"><span>UGC 3</span></div>
+                <div class="instagram-item"><span>UGC 4</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="#">All Jackets</a></li>
+                        <li><a href="#">New Drops</a></li>
+                        <li><a href="#">Kids (Coming Soon)</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Pattern Stories</a></li>
+                        <li><a href="#">Care Guide</a></li>
+                        <li><a href="#">Lookbook</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">TikTok</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2025 [BRAND NAME]. Bold rainwear for grey cities.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple interactivity
+        document.querySelectorAll('.expandable').forEach(section => {
+            section.addEventListener('click', function() {
+                const content = this.querySelector('.expandable-content');
+                const icon = this.querySelector('span');
+                if (content.style.display === 'none') {
+                    content.style.display = 'block';
+                    icon.textContent = '−';
+                } else {
+                    content.style.display = 'none';
+                    icon.textContent = '+';
+                }
+            });
+        });
+
+        // Size selector
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Quantity controls
+        let quantity = 1;
+        document.querySelectorAll('.qty-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const display = document.querySelector('.qty-display');
+                if (this.textContent === '+' && quantity < 5) {
+                    quantity++;
+                } else if (this.textContent === '−' && quantity > 1) {
+                    quantity--;
+                }
+                display.textContent = quantity;
+            });
+        });
+
+        // Add to bag
+        document.querySelector('.btn-primary').addEventListener('click', function() {
+            const originalText = this.textContent;
+            this.textContent = 'Added to bag ✓';
+            this.style.backgroundColor = '#0B7A4C';
+            this.style.color = 'white';
+            setTimeout(() => {
+                this.textContent = originalText;
+                this.style.backgroundColor = '';
+                this.style.color = '';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

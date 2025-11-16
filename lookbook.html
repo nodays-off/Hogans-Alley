@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lookbook - Hogan's Alley</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="nav-header" id="mainNav">
+        <div class="container">
+            <nav class="nav-bar">
+                <div class="logo">
+                    <a href="index.html">HOGAN'S ALLEY</a>
+                </div>
+                <ul class="nav-links desktop-nav">
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="story.html">Story</a></li>
+                    <li><a href="kids.html">Kids</a></li>
+                    <li><a href="lookbook.html">Lookbook</a></li>
+                    <li><a href="care.html">Care</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <button class="icon-btn search-btn" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="8" cy="8" r="6"/>
+                            <path d="M13 13l5 5"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn account-btn" aria-label="Account">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="10" cy="6" r="4"/>
+                            <path d="M2 19c0-4 3.5-7 8-7s8 3 8 7"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn cart-btn" aria-label="Cart">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 1h3l2 13h11l3-9H6"/>
+                            <circle cx="8" cy="18" r="1" fill="currentColor"/>
+                            <circle cx="16" cy="18" r="1" fill="currentColor"/>
+                        </svg>
+                        <span class="cart-count">0</span>
+                    </button>
+                    <button class="hamburger mobile-only" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <ul class="mobile-nav-links">
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="story.html">Story</a></li>
+                <li><a href="kids.html">Kids</a></li>
+                <li><a href="lookbook.html">Lookbook</a></li>
+                <li><a href="care.html">Care</a></li>
+            </ul>
+            <div class="mobile-nav-footer">
+                <a href="#" class="mobile-nav-link">Account</a>
+                <a href="#" class="mobile-nav-link">Help</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lookbook Hero -->
+    <section class="lookbook-hero">
+        <div class="lookbook-hero-bg">
+            <div class="image-placeholder" style="border-radius: 0;">
+                <span>Full-bleed atmospheric shot: Person in vibrant jacket standing in heavy rain, city lights blurred in background, dramatic moody lighting</span>
+            </div>
+        </div>
+        <div class="lookbook-hero-content">
+            <h1>Rainy Season Lookbook</h1>
+            <p class="hero-subheadline">Campaigns from Vancouver, Seattle, London, and beyond. Built for drizzle, downpour, and everything in between.</p>
+        </div>
+    </section>
+
+    <!-- Category Grid -->
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center mb-48">Campaigns</h2>
+            <div class="lookbook-grid">
+                
+                <!-- Grey City Mornings -->
+                <div class="lookbook-category">
+                    <div class="image-placeholder" style="border-radius: 12px;">
+                        <span>Grey City Mornings: Person in jacket walking to work/class, coffee in hand, early morning fog, bus in background, overcast cityscape</span>
+                    </div>
+                    <div class="lookbook-category-overlay">
+                        <h3>Grey City Mornings</h3>
+                    </div>
+                </div>
+
+                <!-- Campus Days -->
+                <div class="lookbook-category">
+                    <div class="image-placeholder" style="border-radius: 12px;">
+                        <span>Campus Days: Group of students in different jackets on university campus, backpacks, rain between classes, modern campus architecture</span>
+                    </div>
+                    <div class="lookbook-category-overlay">
+                        <h3>Campus Days</h3>
+                    </div>
+                </div>
+
+                <!-- Nights in the Rain -->
+                <div class="lookbook-category">
+                    <div class="image-placeholder" style="border-radius: 12px;">
+                        <span>Nights in the Rain: Person in jacket at night, neon signs reflected in wet streets, urban nightlife, hood up, atmospheric street photography</span>
+                    </div>
+                    <div class="lookbook-category-overlay">
+                        <h3>Nights in the Rain</h3>
+                    </div>
+                </div>
+
+                <!-- Kids in Puddles -->
+                <div class="lookbook-category">
+                    <div class="image-placeholder" style="border-radius: 12px;">
+                        <span>Kids in Puddles: Children jumping and playing in rain, bright jackets, residential street, pure joy and energy, lighter mood than adult shots</span>
+                    </div>
+                    <div class="lookbook-category-overlay">
+                        <h3>Kids in Puddles</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Campaign: Vancouver -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-label">VANCOUVER</div>
+            <h2>Born for Vancouver Rain</h2>
+            <p class="section-intro">Shot on location during a typical October downpour. Our city, our weather, our jackets.</p>
+
+            <div class="ugc-grid" style="grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px;">
+                <div class="ugc-item" style="aspect-ratio: 3/4;">
+                    <div class="image-placeholder">
+                        <span>Vancouver 1: Person at Granville Island in rain, colourful jacket contrasting with grey sky and water</span>
+                    </div>
+                </div>
+                <div class="ugc-item" style="aspect-ratio: 3/4;">
+                    <div class="image-placeholder">
+                        <span>Vancouver 2: Skater in jacket at Vancouver skatepark, wet ramps, hood up, mid-trick or rolling</span>
+                    </div>
+                </div>
+                <div class="ugc-item" style="aspect-ratio: 3/4;">
+                    <div class="image-placeholder">
+                        <span>Vancouver 3: Person waiting for bus on rainy Granville Street, bright jacket stands out in crowd of grey</span>
+                    </div>
+                </div>
+                <div class="ugc-item" style="aspect-ratio: 3/4;">
+                    <div class="image-placeholder">
+                        <span>Vancouver 4: Close-up portrait in rain, water droplets on jacket, Stanley Park trees blurred behind</span>
+                    </div>
+                </div>
+                <div class="ugc-item" style="aspect-ratio: 3/4;">
+                    <div class="image-placeholder">
+                        <span>Vancouver 5: Group shot at Commercial Drive in rain, diverse people in different jackets, cafe behind them</span>
+                    </div>
+                </div>
+                <div class="ugc-item" style="aspect-ratio: 3/4;">
+                    <div class="image-placeholder">
+                        <span>Vancouver 6: Night shot on Robson Street, neon signs, umbrella broken, person laughing in bright jacket</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Campaign: Seattle -->
+    <section class="section">
+        <div class="container">
+            <div class="section-label">SEATTLE</div>
+            <h2>For Seattle Drizzle</h2>
+            <p class="section-intro">Seattle gets it. Months of mist and drizzle that never quite stops but never quite pours. Built for this.</p>
+
+            <div class="ugc-grid" style="grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px;">
+                <div class="ugc-item" style="aspect-ratio: 3/4;">
+                    <div class="image-placeholder">
+                        <span>Seattle 1: Pike Place Market, person in jacket with coffee, iconic market sign visible through rain</span>
+                    </div>
+                </div>
+                <div class="ugc-item" style="aspect-ratio: 3/4;">
+                    <div class="image-placeholder">
+                        <span>Seattle 2: Capitol Hill street scene, music venue in background, person in jacket walking</span>
+                    </div>
+                </div>
+                <div class="ugc-item" style="aspect-ratio: 3/4;">
+                    <div class="image-placeholder">
+                        <span>Seattle 3: University of Washington campus, students in jackets between classes, cherry blossoms and rain</span>
+                    </div>
+                </div>
+                <div class="ugc-item" style="aspect-ratio: 3/4;">
+                    <div class="image-placeholder">
+                        <span>Seattle 4: Waterfront pier, Space Needle barely visible through mist, person in bright jacket at railing</span>
+                    </div>
+                </div>
+                <div class="ugc-item" style="aspect-ratio: 3/4;">
+                    <div class="image-placeholder">
+                        <span>Seattle 5: Fremont neighborhood, quirky art in background, person on bike in jacket</span>
+                    </div>
+                </div>
+                <div class="ugc-item" style="aspect-ratio: 3/4;">
+                    <div class="image-placeholder">
+                        <span>Seattle 6: Light rail station, commuters, one person in vibrant jacket standing out</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Behind the Scenes -->
+    <section class="section section-dark" style="background-color: var(--wet-concrete);">
+        <div class="container">
+            <h2 class="text-center">Behind the Shoots</h2>
+            <p class="section-intro text-center">Real rain, real cities, real people. No studio setups.</p>
+
+            <div class="lookbook-grid mt-48">
+                <div class="lookbook-category">
+                    <div class="image-placeholder" style="border-radius: 12px;">
+                        <span>BTS 1: Photography crew setting up shot in actual rain, models laughing, equipment getting wet</span>
+                    </div>
+                    <div class="lookbook-category-overlay">
+                        <h3>Shooting in Real Weather</h3>
+                    </div>
+                </div>
+                <div class="lookbook-category">
+                    <div class="image-placeholder" style="border-radius: 12px;">
+                        <span>BTS 2: Models reviewing shots on camera screen, jackets looking vibrant even on overcast day</span>
+                    </div>
+                    <div class="lookbook-category-overlay">
+                        <h3>The Team</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Gallery -->
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center">Seen in the Wild</h2>
+            <p class="section-intro text-center">Real customers, real fits, real rain. Tag <strong style="color: var(--heat-yellow);">#HogansAlley</strong> to be featured.</p>
+
+            <div class="ugc-grid">
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 1: Customer photo skateboarding</span>
+                    </div>
+                </div>
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 2: Customer selfie at bus stop</span>
+                    </div>
+                </div>
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 3: Customer at concert</span>
+                    </div>
+                </div>
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 4: Customer walking dog</span>
+                    </div>
+                </div>
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 5: Customer on campus</span>
+                    </div>
+                </div>
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 6: Customer night street</span>
+                    </div>
+                </div>
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 7: Customer with friends</span>
+                    </div>
+                </div>
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 8: Customer at food truck</span>
+                    </div>
+                </div>
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 9: Customer biking</span>
+                    </div>
+                </div>
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 10: Customer jumping puddle</span>
+                    </div>
+                </div>
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 11: Customer at train station</span>
+                    </div>
+                </div>
+                <div class="ugc-item">
+                    <div class="image-placeholder">
+                        <span>UGC 12: Customer under umbrella</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section-alt text-center">
+        <div class="container">
+            <h2>Find your jacket</h2>
+            <p class="section-intro">All jackets available now. Worldwide shipping.</p>
+            <a href="shop.html" class="btn btn-primary">Shop the Collection</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">HOGAN'S ALLEY</div>
+                    <p class="footer-tagline">Bold rainwear for grey cities.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="shop.html">All Jackets</a></li>
+                        <li><a href="shop.html#new">New Drops</a></li>
+                        <li><a href="kids.html">Kids (Coming Soon)</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="story.html">Our Story</a></li>
+                        <li><a href="story.html#patterns">Pattern Stories</a></li>
+                        <li><a href="care.html">Care Guide</a></li>
+                        <li><a href="lookbook.html">Lookbook</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">TikTok</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Hogan's Alley. Bold rainwear for grey cities.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop All Jackets - Hogan's Alley</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="nav-header" id="mainNav">
+        <div class="container">
+            <nav class="nav-bar">
+                <div class="logo">
+                    <a href="index.html">HOGAN'S ALLEY</a>
+                </div>
+                <ul class="nav-links desktop-nav">
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="story.html">Story</a></li>
+                    <li><a href="kids.html">Kids</a></li>
+                    <li><a href="lookbook.html">Lookbook</a></li>
+                    <li><a href="care.html">Care</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <button class="icon-btn search-btn" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="8" cy="8" r="6"/>
+                            <path d="M13 13l5 5"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn account-btn" aria-label="Account">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="10" cy="6" r="4"/>
+                            <path d="M2 19c0-4 3.5-7 8-7s8 3 8 7"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn cart-btn" aria-label="Cart">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 1h3l2 13h11l3-9H6"/>
+                            <circle cx="8" cy="18" r="1" fill="currentColor"/>
+                            <circle cx="16" cy="18" r="1" fill="currentColor"/>
+                        </svg>
+                        <span class="cart-count">0</span>
+                    </button>
+                    <button class="hamburger mobile-only" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <ul class="mobile-nav-links">
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="story.html">Story</a></li>
+                <li><a href="kids.html">Kids</a></li>
+                <li><a href="lookbook.html">Lookbook</a></li>
+                <li><a href="care.html">Care</a></li>
+            </ul>
+            <div class="mobile-nav-footer">
+                <a href="#" class="mobile-nav-link">Account</a>
+                <a href="#" class="mobile-nav-link">Help</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shop Header -->
+    <section class="shop-header">
+        <div class="container">
+            <h1>All Jackets</h1>
+            <p class="shop-subline">Art-driven shells for real rain. Unisex fit, built for layering.</p>
+        </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <div class="container">
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <span class="filter-label">Size:</span>
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="xs">XS</button>
+                    <button class="filter-btn" data-filter="s">S</button>
+                    <button class="filter-btn" data-filter="m">M</button>
+                    <button class="filter-btn" data-filter="l">L</button>
+                    <button class="filter-btn" data-filter="xl">XL</button>
+                    <button class="filter-btn" data-filter="xxl">XXL</button>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">Sort:</span>
+                    <button class="filter-btn active" data-filter="newest">Newest</button>
+                    <button class="filter-btn" data-filter="price-low">Price: Low to High</button>
+                    <button class="filter-btn" data-filter="price-high">Price: High to Low</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <section class="section">
+        <div class="container">
+            <div class="product-grid-shop">
+                
+                <!-- Product 1: Libation -->
+                <div class="product-card" data-product="libation">
+                    <a href="product-libation.html" class="product-link">
+                        <div class="product-image">
+                            <div class="image-placeholder">
+                                <span>Libation - Warm yellows, deep reds, forest greens in celebration-inspired geometric pattern</span>
+                            </div>
+                            <span class="product-badge new">New Drop</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Libation</h3>
+                            <p class="product-price">$185 CAD</p>
+                            <p class="product-sizes">In stock: XS - XXL</p>
+                            <p style="font-size: 14px; color: rgba(245,245,247,0.7); margin-top: 8px;">A celebration print inspired by shared drinks, rhythm, and late-night stories.</p>
+                        </div>
+                    </a>
+                    <a href="product-libation.html" class="btn btn-secondary btn-small" style="width: 100%; margin-top: 12px;">View Details</a>
+                </div>
+
+                <!-- Product 2: Market Circuit -->
+                <div class="product-card" data-product="market-circuit">
+                    <a href="product-market-circuit.html" class="product-link">
+                        <div class="product-image">
+                            <div class="image-placeholder">
+                                <span>Market Circuit - Electric blue, bright green, coin and cowrie motifs with sharp geometric lines</span>
+                            </div>
+                            <span class="product-badge limited">Limited Run</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Market Circuit</h3>
+                            <p class="product-price">$185 CAD</p>
+                            <p class="product-sizes">In stock: XS - XXL</p>
+                            <p style="font-size: 14px; color: rgba(245,245,247,0.7); margin-top: 8px;">Electric blue and green, coin and cowrie motifs that feel like a night market in neon.</p>
+                        </div>
+                    </a>
+                    <a href="product-market-circuit.html" class="btn btn-secondary btn-small" style="width: 100%; margin-top: 12px;">View Details</a>
+                </div>
+
+                <!-- Product 3: Stormwave -->
+                <div class="product-card" data-product="stormwave">
+                    <a href="product-stormwave.html" class="product-link">
+                        <div class="product-image">
+                            <div class="image-placeholder">
+                                <span>Stormwave - Kinetic wave of reds, blues, greens inspired by street murals and real storms</span>
+                            </div>
+                            <span class="product-badge new">New Drop</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Stormwave</h3>
+                            <p class="product-price">$185 CAD</p>
+                            <p class="product-sizes">In stock: S - XL</p>
+                            <p style="font-size: 14px; color: rgba(245,245,247,0.7); margin-top: 8px;">A kinetic wave of reds, blues, and greens, inspired by street murals and the mess of a real storm.</p>
+                        </div>
+                    </a>
+                    <a href="product-stormwave.html" class="btn btn-secondary btn-small" style="width: 100%; margin-top: 12px;">View Details</a>
+                </div>
+
+                <!-- Product 4: Transport -->
+                <div class="product-card" data-product="transport">
+                    <a href="#" class="product-link">
+                        <div class="product-image">
+                            <div class="image-placeholder">
+                                <span>Transport - Vintage automobile designs with bold reds, yellows, and blues in retro style</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Transport</h3>
+                            <p class="product-price">$185 CAD</p>
+                            <p class="product-sizes">In stock: XS - XXL</p>
+                            <p style="font-size: 14px; color: rgba(245,245,247,0.7); margin-top: 8px;">Vintage automobile motifs celebrating city transit and motion.</p>
+                        </div>
+                    </a>
+                    <a href="#" class="btn btn-secondary btn-small" style="width: 100%; margin-top: 12px;">View Details</a>
+                </div>
+
+                <!-- Product 5: Sanitation -->
+                <div class="product-card" data-product="sanitation">
+                    <a href="#" class="product-link">
+                        <div class="product-image">
+                            <div class="image-placeholder">
+                                <span>Sanitation - Clean geometric blocks in fresh blues, whites, and greys for minimalist aesthetic</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Sanitation</h3>
+                            <p class="product-price">$185 CAD</p>
+                            <p class="product-sizes">In stock: XS - XXL</p>
+                            <p style="font-size: 14px; color: rgba(245,245,247,0.7); margin-top: 8px;">Clean geometric blocks for those who want bold but minimal.</p>
+                        </div>
+                    </a>
+                    <a href="#" class="btn btn-secondary btn-small" style="width: 100%; margin-top: 12px;">View Details</a>
+                </div>
+
+                <!-- Product 6: Urban Rain (Example placeholder) -->
+                <div class="product-card" data-product="urban-rain">
+                    <a href="#" class="product-link">
+                        <div class="product-image">
+                            <div class="image-placeholder">
+                                <span>Urban Rain - Mixed pattern with city-inspired motifs in cool greys, blues, and pops of yellow</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Urban Rain</h3>
+                            <p class="product-price">$185 CAD</p>
+                            <p class="product-sizes">Few left: M, L, XL</p>
+                            <p style="font-size: 14px; color: rgba(245,245,247,0.7); margin-top: 8px;">City-inspired patterns for everyday wet weather.</p>
+                        </div>
+                    </a>
+                    <a href="#" class="btn btn-secondary btn-small" style="width: 100%; margin-top: 12px;">View Details</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Buy Section -->
+    <section class="section section-alt">
+        <div class="container text-center">
+            <h2>Why Hogan's Alley?</h2>
+            <div class="feature-blocks" style="max-width: 900px; margin: 0 auto;">
+                <div class="feature-block">
+                    <h4>Actually Waterproof</h4>
+                    <p>10K rated shells with taped seams. These aren't "fashion rain jackets." They're built for hours in real sideways rain.</p>
+                </div>
+                <div class="feature-block">
+                    <h4>Art, Not Logos</h4>
+                    <p>Every print starts as an original painting. You're wearing a piece of artwork, not another brand billboard.</p>
+                </div>
+                <div class="feature-block">
+                    <h4>Streetwear Fit</h4>
+                    <p>Designed to layer over hoodies and crewnecks. Unisex sizing that actually works for everyone.</p>
+                </div>
+                <div class="feature-block">
+                    <h4>Made for Grey Cities</h4>
+                    <p>Tested in Vancouver, Seattle, London—places where rain isn't an event, it's a season.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section newsletter-section">
+        <div class="container">
+            <div class="newsletter-box">
+                <h3>Get early access to new drops</h3>
+                <p>Sign up for launch notifications, behind-the-scenes content, and rain-season exclusives.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="your@email.com" class="form-input">
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">HOGAN'S ALLEY</div>
+                    <p class="footer-tagline">Bold rainwear for grey cities.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="shop.html">All Jackets</a></li>
+                        <li><a href="shop.html#new">New Drops</a></li>
+                        <li><a href="kids.html">Kids (Coming Soon)</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="story.html">Our Story</a></li>
+                        <li><a href="story.html#patterns">Pattern Stories</a></li>
+                        <li><a href="care.html">Care Guide</a></li>
+                        <li><a href="lookbook.html">Lookbook</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">TikTok</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Hogan's Alley. Bold rainwear for grey cities.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
