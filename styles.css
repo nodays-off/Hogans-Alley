@@ -593,7 +593,7 @@ a {
 
 .ugc-item {
     position: relative;
-    aspect-ratio: 4/5;
+    aspect-ratio: 3/4;
     overflow: hidden;
     border-radius: 12px;
     cursor: pointer;
