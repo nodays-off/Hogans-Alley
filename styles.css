@@ -4,23 +4,25 @@
 
 /* CSS Variables */
 :root {
-    /* Brand Colors */
-    --night-rain: #070A0F;
-    --wet-concrete: #191F26;
-    --cloud-light: #F5F5F7;
+    /* Brand Colors - Minimal White Theme */
+    --night-rain: #FFFFFF;
+    --wet-concrete: #FAFAFA;
+    --cloud-light: #1A1A1A;
     --heat-yellow: #FFC735;
     --pulse-red: #E63B3B;
     --deep-rain-green: #0B7A4C;
-    --ink-black: #000000;
-    
+    --ink-black: #1A1A1A;
+    --border-subtle: #E5E5E5;
+    --text-muted: #6B6B6B;
+
     /* Typography */
     --font-heading: "Poppins", system-ui, sans-serif;
     --font-body: "Inter", system-ui, sans-serif;
-    
-    /* Spacing */
-    --section-padding: 80px;
-    --container-padding: 24px;
-    
+
+    /* Spacing - Increased for white space */
+    --section-padding: 120px;
+    --container-padding: 32px;
+
     /* Transitions */
     --transition-base: 0.3s ease;
 }
@@ -97,16 +99,18 @@ a {
     top: 0;
     left: 0;
     right: 0;
-    background-color: var(--night-rain);
-    border-bottom: 1px solid rgba(245, 245, 247, 0.1);
+    background-color: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid var(--border-subtle);
     z-index: 1000;
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
 .nav-header.scrolled {
-    background-color: rgba(7, 10, 15, 0.95);
+    background-color: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
     padding: 8px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .nav-bar {
@@ -208,7 +212,7 @@ a {
     right: -100%;
     width: 100%;
     height: 100vh;
-    background-color: var(--night-rain);
+    background-color: #FFFFFF;
     z-index: 999;
     transition: right 0.3s ease;
     padding-top: 80px;
@@ -227,7 +231,7 @@ a {
 }
 
 .mobile-nav-links li {
-    border-bottom: 1px solid rgba(245, 245, 247, 0.1);
+    border-bottom: 1px solid var(--border-subtle);
 }
 
 .mobile-nav-links a {
@@ -236,19 +240,20 @@ a {
     font-size: 24px;
     font-weight: 600;
     font-family: var(--font-heading);
+    color: var(--ink-black);
 }
 
 .mobile-nav-footer {
     margin-top: 40px;
     padding-top: 40px;
-    border-top: 1px solid rgba(245, 245, 247, 0.1);
+    border-top: 1px solid var(--border-subtle);
 }
 
 .mobile-nav-link {
     display: block;
     padding: 12px 0;
     font-size: 16px;
-    color: rgba(245, 245, 247, 0.7);
+    color: var(--text-muted);
 }
 
 /* Buttons */
@@ -305,7 +310,7 @@ a {
 .hero-grid {
     display: grid;
     grid-template-columns: 5fr 7fr;
-    gap: 60px;
+    gap: 100px;
     align-items: center;
 }
 
@@ -317,7 +322,7 @@ a {
 .hero-subheadline {
     font-size: clamp(16px, 2vw, 20px);
     line-height: 1.6;
-    color: rgba(245, 245, 247, 0.85);
+    color: var(--text-muted);
     margin-bottom: 32px;
 }
 
@@ -330,7 +335,7 @@ a {
 
 .hero-small {
     font-size: 14px;
-    color: rgba(245, 245, 247, 0.6);
+    color: var(--text-muted);
 }
 
 .hero-image {
@@ -358,7 +363,7 @@ a {
 }
 
 .section-light {
-    background-color: var(--cloud-light);
+    background-color: var(--wet-concrete);
     color: var(--ink-black);
 }
 
@@ -383,20 +388,21 @@ a {
 
 .section-intro {
     font-size: 18px;
-    color: rgba(245, 245, 247, 0.85);
+    color: var(--text-muted);
     margin-bottom: 48px;
     max-width: 800px;
+    line-height: 1.8;
 }
 
 .section-light .section-intro {
-    color: rgba(0, 0, 0, 0.7);
+    color: var(--text-muted);
 }
 
 /* Two Column Layouts */
 .two-col {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    gap: 120px;
     align-items: center;
 }
 
@@ -425,7 +431,7 @@ a {
 
 .feature-list li {
     padding: 16px 0;
-    border-bottom: 1px solid rgba(245, 245, 247, 0.1);
+    border-bottom: 1px solid var(--border-subtle);
     font-size: 16px;
 }
 
@@ -439,7 +445,7 @@ a {
 
 .feature-block {
     padding: 24px 0;
-    border-bottom: 1px solid rgba(245, 245, 247, 0.1);
+    border-bottom: 1px solid var(--border-subtle);
 }
 
 .feature-block:last-child {
@@ -462,7 +468,7 @@ a {
     justify-content: center;
     padding: 20px;
     text-align: center;
-    color: rgba(245, 245, 247, 0.3);
+    color: #CCCCCC;
     font-size: 14px;
     line-height: 1.4;
 }
@@ -488,20 +494,22 @@ a {
 /* Product Grids */
 .product-grid-home {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-    margin-top: 48px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 80px 60px;
+    margin-top: 80px;
 }
 
 .product-card {
-    background-color: var(--wet-concrete);
-    border-radius: 12px;
-    padding: 20px;
-    transition: transform 0.3s ease;
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    transition: all 0.4s ease;
+    border: 1px solid transparent;
 }
 
 .product-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-8px);
+    border-color: var(--border-subtle);
 }
 
 .product-link {
@@ -512,13 +520,21 @@ a {
     position: relative;
     width: 100%;
     aspect-ratio: 3/4;
-    margin-bottom: 16px;
-    border-radius: 8px;
+    margin-bottom: 24px;
+    border-radius: 0;
     overflow: hidden;
 }
 
 .product-image .image-placeholder {
-    border-radius: 8px;
+    border-radius: 0;
+}
+
+.product-image img {
+    transition: transform 0.6s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
 }
 
 .product-badge {
@@ -544,26 +560,28 @@ a {
 }
 
 .product-info {
-    margin-bottom: 16px;
+    margin-bottom: 20px;
+    padding: 0 4px;
 }
 
 .product-name {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 500;
     margin-bottom: 8px;
-    color: var(--cloud-light);
+    color: var(--ink-black);
+    letter-spacing: -0.01em;
 }
 
 .product-price {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--heat-yellow);
-    margin-bottom: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink-black);
+    margin-bottom: 6px;
 }
 
 .product-sizes {
-    font-size: 14px;
-    color: rgba(245, 245, 247, 0.6);
+    font-size: 13px;
+    color: var(--text-muted);
 }
 
 /* Story Block */
@@ -586,9 +604,9 @@ a {
 /* UGC Grid */
 .ugc-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 48px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+    margin-top: 80px;
 }
 
 .ugc-item {
@@ -651,7 +669,7 @@ a {
 
 .newsletter-box p {
     font-size: 17px;
-    color: rgba(245, 245, 247, 0.85);
+    color: var(--text-muted);
     margin-bottom: 32px;
 }
 
@@ -665,9 +683,9 @@ a {
     flex: 1;
     padding: 14px 20px;
     border-radius: 8px;
-    border: 1.5px solid rgba(245, 245, 247, 0.2);
-    background-color: rgba(0, 0, 0, 0.3);
-    color: var(--cloud-light);
+    border: 1.5px solid var(--border-subtle);
+    background-color: #FFFFFF;
+    color: var(--ink-black);
     font-family: var(--font-body);
     font-size: 15px;
     transition: var(--transition-base);
@@ -676,16 +694,16 @@ a {
 .form-input:focus {
     outline: none;
     border-color: var(--deep-rain-green);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #FFFFFF;
 }
 
 .form-input::placeholder {
-    color: rgba(245, 245, 247, 0.4);
+    color: var(--text-muted);
 }
 
 .form-helper {
     font-size: 13px;
-    color: rgba(245, 245, 247, 0.6);
+    color: var(--text-muted);
     text-align: center;
 }
 
@@ -722,7 +740,7 @@ a {
 
 .footer-tagline {
     font-size: 14px;
-    color: rgba(245, 245, 247, 0.7);
+    color: var(--text-muted);
 }
 
 .footer-section h4 {
@@ -730,7 +748,7 @@ a {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: 16px;
-    color: var(--cloud-light);
+    color: var(--ink-black);
 }
 
 .footer-section ul {
@@ -743,7 +761,7 @@ a {
 
 .footer-section a {
     font-size: 14px;
-    color: rgba(245, 245, 247, 0.7);
+    color: var(--text-muted);
 }
 
 .footer-section a:hover {
@@ -753,12 +771,12 @@ a {
 .footer-bottom {
     text-align: center;
     padding-top: 40px;
-    border-top: 1px solid rgba(245, 245, 247, 0.1);
+    border-top: 1px solid var(--border-subtle);
 }
 
 .footer-bottom p {
     font-size: 14px;
-    color: rgba(245, 245, 247, 0.5);
+    color: var(--text-muted);
     margin: 0;
 }
 
@@ -793,13 +811,15 @@ a {
         direction: ltr;
     }
     
-    .product-grid-home {
+    .product-grid-home,
+    .product-grid-shop {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 60px;
     }
     
     .ugc-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr;
+        gap: 40px;
     }
     
     .newsletter-form {
@@ -817,13 +837,13 @@ a {
         flex-direction: column;
         width: 100%;
     }
-    
+
     .btn {
         width: 100%;
     }
-    
+
     .ugc-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 }
 
@@ -839,7 +859,7 @@ a {
 
 .shop-subline {
     font-size: 18px;
-    color: rgba(245, 245, 247, 0.8);
+    color: var(--text-muted);
 }
 
 .filter-bar {
@@ -867,14 +887,14 @@ a {
 .filter-label {
     font-size: 14px;
     font-weight: 600;
-    color: rgba(245, 245, 247, 0.7);
+    color: var(--text-muted);
 }
 
 .filter-btn {
     padding: 8px 16px;
-    border: 1px solid rgba(245, 245, 247, 0.2);
+    border: 1px solid var(--border-subtle);
     background-color: transparent;
-    color: var(--cloud-light);
+    color: var(--ink-black);
     border-radius: 6px;
     font-size: 14px;
     cursor: pointer;
@@ -885,12 +905,13 @@ a {
 .filter-btn.active {
     background-color: var(--deep-rain-green);
     border-color: var(--deep-rain-green);
+    color: #FFFFFF;
 }
 
 .product-grid-shop {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 80px 60px;
 }
 
 /* Story Page Specific */
@@ -1043,7 +1064,35 @@ a {
     text-align: center;
     font-size: 18px;
     font-style: italic;
-    color: rgba(245, 245, 247, 0.8);
+    color: var(--text-muted);
+}
+
+/* Scroll Animations */
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-up.delay-1 {
+    transition-delay: 0.1s;
+}
+
+.fade-up.delay-2 {
+    transition-delay: 0.2s;
+}
+
+.fade-up.delay-3 {
+    transition-delay: 0.3s;
+}
+
+.fade-up.delay-4 {
+    transition-delay: 0.4s;
 }
 
 /* Utility Classes */
