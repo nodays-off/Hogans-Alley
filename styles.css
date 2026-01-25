@@ -993,6 +993,16 @@ a {
     z-index: 2;
 }
 
+.lookbook-hero-content h1 {
+    color: white;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+}
+
+.lookbook-hero-content .hero-subheadline {
+    color: white;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
 .lookbook-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
