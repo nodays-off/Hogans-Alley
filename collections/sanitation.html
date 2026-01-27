@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://cdn.statically.io">
 
   <!-- Preload hero image for faster LCP -->
-  <link rel="preload" as="image" href="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-S1%20Industrial%20SoDo%20District%20-%201.png" fetchpriority="high">
+  <link rel="preload" as="image" href="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-S1%20Industrial%20SoDo%20District%20-%201.png?w=1400" fetchpriority="high">
 
   <!-- E-commerce Component Styles -->
   <link rel="stylesheet" href="/css/cart-drawer.css">
@@ -50,7 +50,16 @@
     .nav-links a { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: var(--color-text-secondary); transition: color 0.2s ease; }
     .nav-links a:hover { color: var(--color-black); }
     .nav-actions { display: flex; align-items: center; gap: var(--space-md); }
-    @media (max-width: 768px) { .nav { padding: 1rem var(--space-sm); } .nav-links { gap: var(--space-sm); } .nav-links a { font-size: 0.625rem; } .nav-actions { gap: var(--space-sm); } }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .hamburger svg { width: 24px; height: 24px; stroke: var(--color-black); }
+    @media (max-width: 768px) {
+      .nav { padding: 1rem var(--space-sm); }
+      .nav-actions { gap: var(--space-sm); }
+      .hamburger { display: block; }
+      .nav-links { position: fixed; top: 60px; left: 0; right: 0; background: var(--color-white); flex-direction: column; padding: var(--space-md); gap: var(--space-sm); border-bottom: 1px solid var(--color-border); transform: translateY(-100%); opacity: 0; pointer-events: none; transition: transform 0.3s ease, opacity 0.3s ease; }
+      .nav-links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+      .nav-links a { font-size: 1rem; padding: var(--space-xs) 0; }
+    }
     
     @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
@@ -68,7 +77,12 @@
     .hero-content .subhead { color: var(--color-accent); margin-bottom: var(--space-xs); }
     .hero-content h1 { margin-bottom: var(--space-sm); }
     .hero-content p { max-width: 550px; font-size: 1.0625rem; color: rgba(255,255,255,0.85); line-height: 1.7; }
-    @media (max-width: 768px) { .hero-content { padding: var(--space-lg) var(--space-sm); } }
+    @media (max-width: 768px) {
+      .hero { aspect-ratio: 4/5; }
+      .hero-content { padding: var(--space-md) var(--space-sm); }
+      .hero-content h1 { font-size: clamp(2rem, 10vw, 3rem); }
+      .hero-content p { font-size: 0.9rem; line-height: 1.6; }
+    }
     
     .intro { max-width: 800px; margin: 0 auto; padding: var(--space-xl) var(--space-lg); text-align: center; }
     .intro .subhead { margin-bottom: var(--space-sm); } .intro h2 { margin-bottom: var(--space-md); }
@@ -149,7 +163,8 @@
     .collection-card:hover img { transform: scale(1.03); }
     .collection-card h3 { margin-bottom: var(--space-xs); }
     .collection-card p { font-size: 0.875rem; color: var(--color-text-muted); }
-    @media (max-width: 900px) { .other-collections { padding: var(--space-lg) var(--space-sm); } .collections-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) { .other-collections { padding: var(--space-lg) var(--space-sm); } .collections-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-sm); } }
+    @media (max-width: 500px) { .collections-grid { grid-template-columns: 1fr; } }
     
     .footer { padding: var(--space-xl) var(--space-lg) var(--space-lg); background: var(--color-black); color: var(--color-white); }
     .footer-inner { max-width: 1400px; margin: 0 auto; }
@@ -170,6 +185,13 @@
   <nav class="nav">
     <a href="../index.html" class="nav-logo">Hogan's Alley</a>
     <div class="nav-actions">
+      <button class="hamburger" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
       <ul class="nav-links">
         <li><a href="../shop.html">Shop</a></li>
         <li><a href="../story.html">Story</a></li>
@@ -188,7 +210,7 @@
   </nav>
 
   <section class="hero">
-    <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-S1%20Industrial%20SoDo%20District%20-%201.png" alt="Model in Seattle SoDo industrial district wearing Sanitation collection jacket" fetchpriority="high">
+    <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-S1%20Industrial%20SoDo%20District%20-%201.png?w=1400" alt="Model in Seattle SoDo industrial district wearing Sanitation collection jacket" fetchpriority="high">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="subhead animate-fade-up">The Sanitation Collection</p>
@@ -207,7 +229,7 @@
 
   <section class="editorial fade-in">
     <div class="editorial-image">
-      <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-L1%20Early%20Morning%20Street%20Sweep%20-%201.png" alt="Model on early morning London street wearing Sanitation jacket" loading="lazy" decoding="async">
+      <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-L1%20Early%20Morning%20Street%20Sweep%20-%201.png?w=800" alt="Model on early morning London street wearing Sanitation jacket" loading="lazy" decoding="async">
     </div>
     <div class="editorial-text">
       <p class="subhead">The Pattern</p>
@@ -218,12 +240,12 @@
   </section>
 
   <div class="full-image fade-in">
-    <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-V1%20Shipyard%20District%20Morning.png" alt="Model at Vancouver North shipyards wearing Sanitation jacket" loading="lazy" decoding="async">
+    <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-V1%20Shipyard%20District%20Morning.png?w=1200" alt="Model at Vancouver North shipyards wearing Sanitation jacket" loading="lazy" decoding="async">
   </div>
 
   <section class="editorial reverse dark fade-in">
     <div class="editorial-image">
-      <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-V2%20Olympic%20Village%20Seawall%20-%201.png" alt="Model at Vancouver Olympic Village wearing Sanitation jacket" loading="lazy" decoding="async">
+      <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-V2%20Olympic%20Village%20Seawall%20-%201.png?w=800" alt="Model at Vancouver Olympic Village wearing Sanitation jacket" loading="lazy" decoding="async">
     </div>
     <div class="editorial-text">
       <p class="subhead">Urban Poetry</p>
@@ -243,32 +265,32 @@
     </div>
     <div class="details-grid">
       <div class="detail-card">
-        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Sanitation.png" alt="Sanitation fabric detail" loading="lazy" decoding="async">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Sanitation.png?w=400" alt="Sanitation fabric detail" loading="lazy" decoding="async">
         <h3>The Fabric</h3>
         <p>Recycled polyester shell with DWR finish</p>
       </div>
       <div class="detail-card">
-        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-2%20Hood%20with%20Drawcord%20System%20-%20Sanitation.png" alt="Sanitation hood detail" loading="lazy" decoding="async">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-2%20Hood%20with%20Drawcord%20System%20-%20Sanitation.png?w=400" alt="Sanitation hood detail" loading="lazy" decoding="async">
         <h3>The Hood</h3>
         <p>Adjustable drawcord with matte hardware</p>
       </div>
       <div class="detail-card">
-        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-3%20Zipper%20and%20Storm%20Flap%20-%20Sanitation.png" alt="Sanitation zipper detail" loading="lazy" decoding="async">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-3%20Zipper%20and%20Storm%20Flap%20-%20Sanitation.png?w=400" alt="Sanitation zipper detail" loading="lazy" decoding="async">
         <h3>The Closure</h3>
         <p>YKK zipper with full storm flap</p>
       </div>
       <div class="detail-card">
-        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-10%20Inside%20Patch%20Pocket%20-%20Sanitation.png" alt="Sanitation inside pocket detail" loading="lazy" decoding="async">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-10%20Inside%20Patch%20Pocket%20-%20Sanitation.png?w=400" alt="Sanitation inside pocket detail" loading="lazy" decoding="async">
         <h3>The Pocket</h3>
         <p>Inside patch pocket for secure storage</p>
       </div>
       <div class="detail-card">
-        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-8%20Made%20in%20Vancouver%20Label%20-%20Sanitation.png" alt="Sanitation made in Vancouver label" loading="lazy" decoding="async">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-8%20Made%20in%20Vancouver%20Label%20-%20Sanitation.png?w=400" alt="Sanitation made in Vancouver label" loading="lazy" decoding="async">
         <h3>The Label</h3>
         <p>100% Canadian made in Vancouver</p>
       </div>
       <div class="detail-card">
-        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-4%20Hand%20in%20Pocket%20-%20Sanitation.png" alt="Sanitation hand in pocket" loading="lazy" decoding="async">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-4%20Hand%20in%20Pocket%20-%20Sanitation.png?w=400" alt="Sanitation hand in pocket" loading="lazy" decoding="async">
         <h3>The Fit</h3>
         <p>Deep fleece-lined hand pockets</p>
       </div>
@@ -301,7 +323,7 @@
     data-product-image="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Sanitation.png">
     <div class="purchase-section-inner">
       <div class="purchase-image">
-        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Sanitation.png" alt="Sanitation Rain Parka fabric detail" loading="lazy" decoding="async">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Sanitation.png?w=500" alt="Sanitation Rain Parka fabric detail" loading="lazy" decoding="async">
       </div>
       <div class="purchase-details">
         <p class="subhead">Sanitation Collection</p>
@@ -323,17 +345,17 @@
     </div>
     <div class="collections-grid">
       <a href="libation.html" class="collection-card">
-        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/L3%20Borough%20Market%20Browse.png" alt="Libation Collection" loading="lazy" decoding="async">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/L3%20Borough%20Market%20Browse.png?w=500" alt="Libation Collection" loading="lazy" decoding="async">
         <h3>Libation</h3>
         <p>The celebration of gathering</p>
       </a>
       <a href="money.html" class="collection-card">
-        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/L6%20Tate%20Modern%20Exit.png" alt="Money Collection" loading="lazy" decoding="async">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/L6%20Tate%20Modern%20Exit.png?w=500" alt="Money Collection" loading="lazy" decoding="async">
         <h3>Money</h3>
         <p>The currency of connection</p>
       </a>
       <a href="transport.html" class="collection-card">
-        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/P1%20Hawthorne%20Bridge%20Bike.png" alt="Transport Collection" loading="lazy" decoding="async">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/P1%20Hawthorne%20Bridge%20Bike.png?w=500" alt="Transport Collection" loading="lazy" decoding="async">
         <h3>Transport</h3>
         <p>The journey is the destination</p>
       </a>
