@@ -44,6 +44,15 @@
                             <circle cx="16" cy="18" r="1" fill="currentColor"/>
                         </svg>
                         <span class="cart-count">0</span>
+                        <!-- Mini Cart Dropdown -->
+                        <div class="mini-cart-dropdown">
+                            <div id="miniCartContent">
+                                <div class="mini-cart-empty">
+                                    <p>Your cart is empty</p>
+                                    <a href="shop.html" class="btn btn-primary btn-small">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
                     </button>
                     <button class="hamburger mobile-only" aria-label="Menu">
                         <span></span>
@@ -173,53 +182,84 @@
             <h2 class="fade-up">Wearable art, serious weather.</h2>
             <p class="section-intro fade-up">Each jacket starts as a painting, then gets turned into a shell that can handle sideways rain and sprinting for the bus.</p>
 
-            <div class="product-grid-home">
-                <!-- Product 1: Libation -->
-                <div class="product-card fade-up">
-                    <a href="product-libation.html" class="product-link">
-                        <div class="product-image">
+            <!-- Featured Available Product -->
+            <div class="product-section-featured fade-up">
+                <div class="section-availability-label">AVAILABLE NOW</div>
+                <div class="product-card-featured">
+                    <a href="product-libation.html" class="product-link-featured">
+                        <div class="product-image-featured">
                             <img src="Pictures/35_Product_FrontView.png" alt="Libation rain jacket front view - warm yellows, deep reds, forest greens in celebration-inspired geometric pattern" style="width: 100%; height: 100%; object-fit: cover;">
-                            <span class="product-badge new">New Drop</span>
+                            <button class="wishlist-heart" data-product-id="libation" aria-label="Add to wishlist">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                </svg>
+                            </button>
+                            <button class="quick-view-btn"
+                                    data-product-name="Libation"
+                                    data-product-price="$185 CAD"
+                                    data-product-image="Pictures/35_Product_FrontView.png"
+                                    data-product-description="A celebration print inspired by shared drinks, rhythm, and late-night stories. Waterproof shell with taped seams and adjustable hood."
+                                    data-product-link="product-libation.html">
+                                Quick View
+                            </button>
+                            <span class="product-badge available-now">Available Now</span>
                         </div>
-                        <div class="product-info">
-                            <h3 class="product-name">Libation</h3>
-                            <p class="product-price">$185 CAD</p>
-                            <p class="product-sizes">XS - XXL</p>
+                        <div class="product-info-featured">
+                            <h3 class="product-name-featured">Libation</h3>
+                            <p class="product-price-featured">$185 CAD</p>
+                            <p class="product-description-featured">A celebration print inspired by shared drinks, rhythm, and late-night stories. Waterproof shell with taped seams and adjustable hood.</p>
+                            <p class="product-sizes-featured">Available in XS - XXL</p>
                         </div>
                     </a>
-                    <a href="product-libation.html" class="btn btn-secondary btn-small">View Details</a>
+                    <a href="product-libation.html" class="btn btn-primary btn-large">Shop Now</a>
                 </div>
+            </div>
 
-                <!-- Product 2: Market Circuit -->
-                <div class="product-card fade-up delay-1">
-                    <a href="product-market-circuit.html" class="product-link">
-                        <div class="product-image">
-                            <img src="Pictures/35_Product_FrontView.png" alt="Market Circuit rain jacket - electric blue and bright green with coin and cowrie motifs, sharp geometric lines" style="width: 100%; height: 100%; object-fit: cover;">
-                            <span class="product-badge limited">Limited Run</span>
+            <!-- Coming Soon Products -->
+            <div class="product-section-coming-soon fade-up">
+                <div class="section-availability-label">COMING SOON</div>
+                <div class="product-grid-coming-soon">
+                    <!-- Product 2: Market Circuit -->
+                    <div class="product-card-secondary">
+                        <div class="product-link">
+                            <div class="product-image-secondary">
+                                <img src="Pictures/35_Product_FrontView.png" alt="Market Circuit rain jacket - electric blue and bright green with coin and cowrie motifs, sharp geometric lines" style="width: 100%; height: 100%; object-fit: cover;">
+                                <button class="wishlist-heart" data-product-id="market-circuit" aria-label="Add to wishlist">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                    </svg>
+                                </button>
+                                <span class="product-badge coming-soon">Coming Soon</span>
+                            </div>
+                            <div class="product-info-secondary">
+                                <h3 class="product-name">Market Circuit</h3>
+                                <p class="product-price">$185 CAD</p>
+                                <p class="product-sizes">XS - XXL</p>
+                            </div>
                         </div>
-                        <div class="product-info">
-                            <h3 class="product-name">Market Circuit</h3>
-                            <p class="product-price">$185 CAD</p>
-                            <p class="product-sizes">XS - XXL</p>
-                        </div>
-                    </a>
-                    <a href="product-market-circuit.html" class="btn btn-secondary btn-small">View Details</a>
-                </div>
+                        <button class="btn btn-notify btn-small" data-product="Market Circuit">Notify Me</button>
+                    </div>
 
-                <!-- Product 3: Stormwave -->
-                <div class="product-card fade-up delay-2">
-                    <a href="product-stormwave.html" class="product-link">
-                        <div class="product-image">
-                            <img src="Pictures/35_Product_FrontView.png" alt="Stormwave rain jacket - kinetic wave pattern of reds, blues, and greens inspired by street murals and storms" style="width: 100%; height: 100%; object-fit: cover;">
-                            <span class="product-badge new">New Drop</span>
+                    <!-- Product 3: Stormwave -->
+                    <div class="product-card-secondary">
+                        <div class="product-link">
+                            <div class="product-image-secondary">
+                                <img src="Pictures/35_Product_FrontView.png" alt="Stormwave rain jacket - kinetic wave pattern of reds, blues, and greens inspired by street murals and storms" style="width: 100%; height: 100%; object-fit: cover;">
+                                <button class="wishlist-heart" data-product-id="stormwave" aria-label="Add to wishlist">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                    </svg>
+                                </button>
+                                <span class="product-badge coming-soon">Coming Soon</span>
+                            </div>
+                            <div class="product-info-secondary">
+                                <h3 class="product-name">Stormwave</h3>
+                                <p class="product-price">$185 CAD</p>
+                                <p class="product-sizes">XS - XXL</p>
+                            </div>
                         </div>
-                        <div class="product-info">
-                            <h3 class="product-name">Stormwave</h3>
-                            <p class="product-price">$185 CAD</p>
-                            <p class="product-sizes">XS - XXL</p>
-                        </div>
-                    </a>
-                    <a href="product-stormwave.html" class="btn btn-secondary btn-small">View Details</a>
+                        <button class="btn btn-notify btn-small" data-product="Stormwave">Notify Me</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -270,10 +310,32 @@
                     <p>The same bold patterns, remixed for kids who never want to come inside. High-visibility colour for safety, tough fabrics for everyday chaos, and little stories hidden on the inside labels.</p>
                     
                     <form class="newsletter-form kids-form">
-                        <input type="email" placeholder="your@email.com" class="form-input">
+                        <input type="email" placeholder="your@email.com" class="form-input" required>
                         <button type="submit" class="btn btn-primary">Get Kids Line Updates</button>
                     </form>
                     <p class="form-helper">No spam. Just early access and launch info.</p>
+
+                    <div class="form-message-container">
+                        <div class="form-success-message">
+                            <div class="success-checkmark">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M8 12l2.5 2.5L16 9"/>
+                                </svg>
+                            </div>
+                            <span class="form-message-text">Thanks! We'll notify you when the kids line drops.</span>
+                        </div>
+
+                        <div class="form-error-message">
+                            <div class="error-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 8v4M12 16h.01"/>
+                                </svg>
+                            </div>
+                            <span class="form-message-text">Something went wrong. Please try again.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -333,9 +395,31 @@
                 <h3>Join the rainy season list</h3>
                 <p>Be first in line for new drops, early access, and behind the scenes from Hogan's Alley.</p>
                 <form class="newsletter-form">
-                    <input type="email" placeholder="your@email.com" class="form-input">
+                    <input type="email" placeholder="your@email.com" class="form-input" required>
                     <button type="submit" class="btn btn-primary">Sign Up</button>
                 </form>
+
+                <div class="form-message-container">
+                    <div class="form-success-message">
+                        <div class="success-checkmark">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M8 12l2.5 2.5L16 9"/>
+                            </svg>
+                        </div>
+                        <span class="form-message-text">Thanks! Check your inbox for confirmation.</span>
+                    </div>
+
+                    <div class="form-error-message">
+                        <div class="error-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 8v4M12 16h.01"/>
+                            </svg>
+                        </div>
+                        <span class="form-message-text">Something went wrong. Please try again.</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -389,6 +473,87 @@
             </div>
         </div>
     </footer>
+
+    <!-- Notify Me Modal -->
+    <div class="notify-modal" id="notifyModal">
+        <div class="notify-modal-backdrop"></div>
+        <div class="notify-modal-content">
+            <button class="notify-modal-close" aria-label="Close modal">&times;</button>
+            <div class="notify-modal-body">
+                <h3>Get notified when it drops</h3>
+                <p>We'll send you an email as soon as this print is available.</p>
+
+                <form class="notify-form" id="notifyForm">
+                    <div class="form-group">
+                        <label for="notifyEmail">Email Address</label>
+                        <input type="email" id="notifyEmail" class="form-input" placeholder="your@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Which print interests you?</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="product" value="Market Circuit" required>
+                                <span>Market Circuit</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="product" value="Stormwave" required>
+                                <span>Stormwave</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-submit">Notify Me</button>
+                </form>
+
+                <div class="notify-success" id="notifySuccess">
+                    <div class="success-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3">
+                            <circle cx="24" cy="24" r="22"/>
+                            <path d="M14 24l8 8 12-16"/>
+                        </svg>
+                    </div>
+                    <h4>Thanks! We'll email you when <span id="selectedProduct"></span> drops.</h4>
+                    <p>Keep an eye on your inbox.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div class="quick-view-modal" id="quickViewModal">
+        <div class="quick-view-backdrop"></div>
+        <div class="quick-view-content">
+            <button class="quick-view-close" aria-label="Close modal">&times;</button>
+            <div class="quick-view-body">
+                <div class="quick-view-image-container">
+                    <img id="quickViewImage" src="" alt="">
+                </div>
+                <div class="quick-view-details">
+                    <h3 class="quick-view-product-name" id="quickViewProductName"></h3>
+                    <p class="quick-view-price" id="quickViewPrice"></p>
+                    <p class="quick-view-description" id="quickViewDescription"></p>
+
+                    <div class="quick-view-size-selector">
+                        <label class="quick-view-size-label">Select Size</label>
+                        <div class="size-options">
+                            <button class="size-btn" data-size="XS">XS</button>
+                            <button class="size-btn" data-size="S">S</button>
+                            <button class="size-btn" data-size="M">M</button>
+                            <button class="size-btn" data-size="L">L</button>
+                            <button class="size-btn" data-size="XL">XL</button>
+                            <button class="size-btn" data-size="XXL">XXL</button>
+                        </div>
+                    </div>
+
+                    <div class="quick-view-actions">
+                        <button class="quick-view-add-to-bag" id="quickViewAddToBag">Add to Bag</button>
+                        <a href="#" class="quick-view-full-details" id="quickViewFullDetails">Full Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="animations.js"></script>
 </body>

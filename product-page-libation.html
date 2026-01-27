@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Libation Rain Jacket - [BRAND NAME]</title>
+    <title>Libation Rain Jacket - Hogan's Alley</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <style>
         :root {
             --night-rain: #070A0F;
@@ -39,16 +40,16 @@
             font-family: var(--font-heading);
             line-height: 1.2;
         }
-        
+
         h1 {
-            font-size: 40px;
-            font-weight: 700;
+            font-size: 42px;
+            font-weight: 600;
             margin-bottom: 16px;
         }
-        
+
         h2 {
-            font-size: 32px;
-            font-weight: 700;
+            font-size: 36px;
+            font-weight: 500;
             margin-bottom: 24px;
         }
         
@@ -106,6 +107,7 @@
         /* Breadcrumb */
         .breadcrumb {
             padding: 24px 0;
+            padding-top: 100px;
             font-size: 14px;
             color: var(--text-muted);
         }
@@ -349,11 +351,11 @@
         
         /* Buttons */
         .btn-primary {
-            background-color: var(--heat-yellow);
-            color: var(--ink-black);
+            background-color: #0A0A0A;
+            color: #FFFFFF;
             border: none;
             padding: 14px 24px;
-           
+
             font-family: var(--font-heading);
             font-size: 16px;
             font-weight: 600;
@@ -363,10 +365,11 @@
             transition: all 0.3s;
             letter-spacing: 0.05em;
         }
-        
+
         .btn-primary:hover {
-            background-color: #E0AF20;
+            background-color: #1A1A1A;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(10, 10, 10, 0.2);
         }
         
         .wishlist-link {
@@ -669,9 +672,9 @@
         }
         
         .btn-secondary {
-            background-color: var(--deep-rain-green);
-            color: white;
-            border: none;
+            background-color: transparent;
+            color: #1A1A1A;
+            border: 1.5px solid #1A1A1A;
             padding: 10px 20px;
             border-radius: 6px;
             font-size: 14px;
@@ -681,9 +684,11 @@
             text-decoration: none;
             display: inline-block;
         }
-        
+
         .btn-secondary:hover {
-            background-color: #075A38;
+            background-color: #0A0A0A;
+            color: #FFFFFF;
+            border-color: #0A0A0A;
         }
         
         /* Community Section */
@@ -798,26 +803,81 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
+    <!-- Navigation -->
+    <header class="nav-header" id="mainNav">
         <div class="container">
-            <nav>
-                <div class="logo">[BRAND NAME]</div>
-                <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop Jackets</a></li>
-                    <li><a href="#">Story</a></li>
-                    <li><a href="#">Kids (Coming Soon)</a></li>
-                    <li><a href="#">Care & Quality</a></li>
+            <nav class="nav-bar">
+                <div class="logo">
+                    <a href="index.html">HOGAN'S ALLEY</a>
+                </div>
+                <ul class="nav-links desktop-nav">
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="story.html">Story</a></li>
+                    <li><a href="kids.html">Kids</a></li>
+                    <li><a href="lookbook.html">Lookbook</a></li>
+                    <li><a href="care.html">Care</a></li>
                 </ul>
+                <div class="nav-icons">
+                    <button class="icon-btn search-btn" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="8" cy="8" r="6"/>
+                            <path d="M13 13l5 5"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn account-btn" aria-label="Account">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="10" cy="6" r="4"/>
+                            <path d="M2 19c0-4 3.5-7 8-7s8 3 8 7"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn cart-btn" aria-label="Cart">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 1h3l2 13h11l3-9H6"/>
+                            <circle cx="8" cy="18" r="1" fill="currentColor"/>
+                            <circle cx="16" cy="18" r="1" fill="currentColor"/>
+                        </svg>
+                        <span class="cart-count">0</span>
+                        <!-- Mini Cart Dropdown -->
+                        <div class="mini-cart-dropdown">
+                            <div id="miniCartContent">
+                                <div class="mini-cart-empty">
+                                    <p>Your cart is empty</p>
+                                    <a href="shop.html" class="btn btn-primary btn-small">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                    <button class="hamburger mobile-only" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </nav>
         </div>
     </header>
 
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <ul class="mobile-nav-links">
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="story.html">Story</a></li>
+                <li><a href="kids.html">Kids</a></li>
+                <li><a href="lookbook.html">Lookbook</a></li>
+                <li><a href="care.html">Care</a></li>
+            </ul>
+            <div class="mobile-nav-footer">
+                <a href="#" class="mobile-nav-link">Account</a>
+                <a href="#" class="mobile-nav-link">Help</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Breadcrumb -->
     <div class="container">
         <div class="breadcrumb">
-            <a href="#">Home</a> / <a href="#">Shop Jackets</a> / Libation
+            <a href="index.html">Home</a> / <a href="shop.html">Shop Jackets</a> / Libation
         </div>
     </div>
 
@@ -897,7 +957,7 @@
                 </div>
 
                 <!-- Add to Bag -->
-                <button class="btn-primary">Add to Bag</button>
+                <button class="btn-primary" id="addToBagBtn">Add to Bag</button>
                 <a href="#" class="wishlist-link">Add to wishlist ♡</a>
 
                 <!-- Features -->
@@ -1092,22 +1152,39 @@
                 <div class="product-card">
                     <div class="product-image">
                         <img src="Pictures/35_Product_FrontView.png" alt="Market Circuit rain jacket product image" style="width: 100%; height: 100%; object-fit: cover;">
+                        <button class="wishlist-heart" data-product-id="market-circuit" aria-label="Add to wishlist">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                        </button>
+                        <span class="product-badge coming-soon">Coming Soon</span>
                     </div>
                     <div class="product-name">Market Circuit</div>
                     <div class="product-price">$185 CAD</div>
-                    <a href="#" class="btn-secondary">View details</a>
+                    <button class="btn-notify btn-secondary" data-product="Market Circuit">Notify Me</button>
                 </div>
                 <div class="product-card">
                     <div class="product-image">
                         <img src="Pictures/35_Product_FrontView.png" alt="Stormwave rain jacket product image" style="width: 100%; height: 100%; object-fit: cover;">
+                        <button class="wishlist-heart" data-product-id="stormwave" aria-label="Add to wishlist">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                        </button>
+                        <span class="product-badge coming-soon">Coming Soon</span>
                     </div>
                     <div class="product-name">Stormwave</div>
                     <div class="product-price">$185 CAD</div>
-                    <a href="#" class="btn-secondary">View details</a>
+                    <button class="btn-notify btn-secondary" data-product="Stormwave">Notify Me</button>
                 </div>
                 <div class="product-card">
                     <div class="product-image">
                         <img src="Pictures/35_Product_FrontView.png" alt="Urban Rain jacket product image" style="width: 100%; height: 100%; object-fit: cover;">
+                        <button class="wishlist-heart" data-product-id="urban-rain" aria-label="Add to wishlist">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                        </button>
                     </div>
                     <div class="product-name">Urban Rain</div>
                     <div class="product-price">$185 CAD</div>
@@ -1219,6 +1296,32 @@
 
         // Add to bag
         document.querySelector('.btn-primary').addEventListener('click', function() {
+            // Get selected size
+            const selectedSizeBtn = document.querySelector('.size-btn.active');
+            if (!selectedSizeBtn) {
+                alert('Please select a size');
+                return;
+            }
+
+            const size = selectedSizeBtn.textContent;
+            const qty = quantity;
+
+            // Create product object
+            const product = {
+                id: 'libation',
+                name: 'Libation',
+                price: '$185 CAD',
+                size: size,
+                quantity: qty,
+                image: 'Pictures/35_Product_FrontView.png'
+            };
+
+            // Add to cart using the global function
+            if (window.addToCart) {
+                window.addToCart(product);
+            }
+
+            // Visual feedback
             const originalText = this.textContent;
             this.textContent = 'Added to bag ✓';
             this.style.backgroundColor = '#0B7A4C';
@@ -1230,6 +1333,53 @@
             }, 2000);
         });
     </script>
+
+    <!-- Notify Me Modal -->
+    <div class="notify-modal" id="notifyModal">
+        <div class="notify-modal-backdrop"></div>
+        <div class="notify-modal-content">
+            <button class="notify-modal-close" aria-label="Close modal">&times;</button>
+            <div class="notify-modal-body">
+                <h3>Get notified when it drops</h3>
+                <p>We'll send you an email as soon as this print is available.</p>
+
+                <form class="notify-form" id="notifyForm">
+                    <div class="form-group">
+                        <label for="notifyEmail">Email Address</label>
+                        <input type="email" id="notifyEmail" class="form-input" placeholder="your@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Which print interests you?</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="product" value="Market Circuit" required>
+                                <span>Market Circuit</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="product" value="Stormwave" required>
+                                <span>Stormwave</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-submit">Notify Me</button>
+                </form>
+
+                <div class="notify-success" id="notifySuccess">
+                    <div class="success-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3">
+                            <circle cx="24" cy="24" r="22"/>
+                            <path d="M14 24l8 8 12-16"/>
+                        </svg>
+                    </div>
+                    <h4>Thanks! We'll email you when <span id="selectedProduct"></span> drops.</h4>
+                    <p>Keep an eye on your inbox.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="animations.js"></script>
 </body>
 </html>

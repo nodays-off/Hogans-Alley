@@ -44,6 +44,15 @@
                             <circle cx="16" cy="18" r="1" fill="currentColor"/>
                         </svg>
                         <span class="cart-count">0</span>
+                        <!-- Mini Cart Dropdown -->
+                        <div class="mini-cart-dropdown">
+                            <div id="miniCartContent">
+                                <div class="mini-cart-empty">
+                                    <p>Your cart is empty</p>
+                                    <a href="shop.html" class="btn btn-primary btn-small">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
                     </button>
                     <button class="hamburger mobile-only" aria-label="Menu">
                         <span></span>
@@ -139,7 +148,7 @@
     <!-- Gallery Preview -->
     <section class="section section-alt">
         <div class="container">
-            <h2 class="text-center">Sneak peek</h2>
+            <h2 class="text-center">Sneak Peek</h2>
             <p class="section-intro text-center">We're still finalizing designs, but here's the vibe we're going for.</p>
             
             <div class="ugc-grid" style="grid-template-columns: repeat(4, 1fr);">
@@ -167,10 +176,32 @@
                 <p>Sign up to get early access when the kids line drops. We'll send sizing guides, launch dates, and exclusive previews.</p>
                 
                 <form class="newsletter-form kids-form">
-                    <input type="email" placeholder="your@email.com" class="form-input" style="background-color: rgba(0,0,0,0.05); color: var(--ink-black); border-color: rgba(0,0,0,0.2);">
+                    <input type="email" placeholder="your@email.com" class="form-input" style="background-color: rgba(0,0,0,0.05); color: var(--ink-black); border-color: rgba(0,0,0,0.2);" required>
                     <button type="submit" class="btn btn-primary">Get Kids Line Updates</button>
                 </form>
                 <p class="form-helper" style="color: rgba(0,0,0,0.6);">No spam. Just early access and launch info.</p>
+
+                <div class="form-message-container">
+                    <div class="form-success-message">
+                        <div class="success-checkmark">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M8 12l2.5 2.5L16 9"/>
+                            </svg>
+                        </div>
+                        <span class="form-message-text">Thanks! We'll notify you when the kids line drops.</span>
+                    </div>
+
+                    <div class="form-error-message">
+                        <div class="error-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 8v4M12 16h.01"/>
+                            </svg>
+                        </div>
+                        <span class="form-message-text">Something went wrong. Please try again.</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -179,7 +210,7 @@
     <section class="section">
         <div class="container text-center">
             <h2 class="fade-up">While you wait...</h2>
-            <p class="section-intro">Check out our adult collection. We ship worldwide and sizing runs from XS to XXL.</p>
+            <p class="section-intro text-center">Check out our adult collection. We ship worldwide and sizing runs from XS to XXL.</p>
             <a href="shop.html" class="btn btn-secondary">Shop Adult Jackets</a>
         </div>
     </section>
