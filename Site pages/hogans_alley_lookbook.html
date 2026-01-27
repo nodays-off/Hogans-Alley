@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lookbook — Hogan's Alley</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-black: #0A0A0A;
+      --color-white: #FAFAF9;
+      --color-warm-white: #F5F4F2;
+      --color-accent: #C4A962;
+      --color-text-primary: #0A0A0A;
+      --color-text-secondary: #4A4A4A;
+      --color-text-muted: #8A8A8A;
+      --color-border: #E5E5E3;
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 6rem;
+    }
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-text-primary);
+      background: var(--color-white);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    
+    h1, h2, h3 {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem var(--space-lg);
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .nav-logo {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-black);
+    }
+    .nav-links {
+      display: flex;
+      gap: var(--space-md);
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--color-black); }
+    .nav-links a.active { color: var(--color-black); border-bottom: 1px solid var(--color-black); }
+    
+    /* PAGE HEADER */
+    .page-header {
+      text-align: center;
+      padding: var(--space-xl) var(--space-md);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .page-header .subhead {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+    }
+    .page-header h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      margin-bottom: var(--space-sm);
+    }
+    .page-header p {
+      color: var(--color-text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* FILTER TABS */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-xs);
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--color-border);
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      padding: 0.75rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: transparent;
+      border: 1px solid var(--color-border);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-tab:hover {
+      border-color: var(--color-black);
+    }
+    .filter-tab.active {
+      background: var(--color-black);
+      color: var(--color-white);
+      border-color: var(--color-black);
+    }
+    
+    /* CITY SECTION */
+    .city-section {
+      padding: var(--space-xl) var(--space-md);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .city-section:last-of-type {
+      border-bottom: none;
+    }
+    .city-header {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+      max-width: 1600px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: var(--space-lg);
+    }
+    .city-name {
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+    .city-country {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    
+    /* MASONRY GRID */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+    @media (max-width: 1000px) {
+      .photo-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .photo-grid { grid-template-columns: 1fr; }
+    }
+    
+    /* PHOTO CARD */
+    .photo-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .photo-card img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .photo-card.wide {
+      grid-column: span 2;
+    }
+    .photo-card.wide img {
+      aspect-ratio: 16/9;
+    }
+    @media (max-width: 600px) {
+      .photo-card.wide { grid-column: span 1; }
+      .photo-card.wide img { aspect-ratio: 4/5; }
+    }
+    .photo-card:hover img {
+      transform: scale(1.03);
+    }
+    
+    /* PHOTO OVERLAY */
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.8) 0%,
+        rgba(0,0,0,0) 50%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: var(--space-md);
+    }
+    .photo-card:hover .photo-overlay {
+      opacity: 1;
+    }
+    .photo-location {
+      font-family: var(--font-headline);
+      font-size: 1.25rem;
+      color: white;
+      margin-bottom: 0.25rem;
+    }
+    .photo-meta {
+      display: flex;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+    .photo-print {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+    }
+    .photo-model {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.7);
+    }
+    
+    /* HERO SHOTS - FULL WIDTH */
+    .hero-section {
+      padding: 0;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4px;
+    }
+    @media (max-width: 800px) {
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .hero-card:hover img {
+      transform: scale(1.02);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.7) 0%,
+        rgba(0,0,0,0) 40%
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: var(--space-lg);
+    }
+    .hero-title {
+      font-family: var(--font-headline);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+    .hero-subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+    }
+    
+    /* COLLECTION QUICK NAV */
+    .collection-nav {
+      background: var(--color-warm-white);
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+    }
+    .collection-nav-title {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-md);
+    }
+    .collection-swatches {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .collection-swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-xs);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s;
+    }
+    .collection-swatch:hover {
+      transform: translateY(-4px);
+    }
+    .collection-swatch img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+    }
+    .collection-swatch span {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    
+    /* FOOTER */
+    .footer {
+      background: var(--color-black);
+      color: white;
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+      max-width: 1000px;
+      margin: 0 auto var(--space-lg);
+    }
+    @media (min-width: 768px) {
+      .footer-content { grid-template-columns: repeat(4, 1fr); }
+    }
+    .footer h4 {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+    }
+    .footer a {
+      display: block;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+    .footer a:hover { color: white; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      flex-wrap: wrap;
+      gap: 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .footer-flag {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    /* LIGHTBOX */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+    }
+    .lightbox.active {
+      display: flex;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      width: 48px;
+      height: 48px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s;
+    }
+    .lightbox-close:hover {
+      border-color: white;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+    }
+    .lightbox-caption {
+      position: absolute;
+      bottom: var(--space-md);
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: white;
+    }
+    .lightbox-caption h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+    }
+    .lightbox-caption p {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      font-size: 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s;
+    }
+    .lightbox-nav:hover { border-color: white; }
+    .lightbox-prev { left: var(--space-md); }
+    .lightbox-next { right: var(--space-md); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="/" class="nav-logo">Hogan's Alley</a>
+    <ul class="nav-links">
+      <li><a href="/shop">Shop</a></li>
+      <li><a href="/story">Story</a></li>
+      <li><a href="/lookbook" class="active">Lookbook</a></li>
+      <li><a href="/care">Care</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <span class="subhead">Fall/Winter 2026</span>
+    <h1>Lookbook</h1>
+    <p>Four cities. Four prints. Shot on location in London, Seattle, Portland, and Vancouver — the grey cities we made these jackets for.</p>
+  </header>
+
+  <!-- FILTER TABS -->
+  <div class="filter-tabs">
+    <button class="filter-tab active" data-filter="all">All</button>
+    <button class="filter-tab" data-filter="vancouver">Vancouver</button>
+    <button class="filter-tab" data-filter="london">London</button>
+    <button class="filter-tab" data-filter="seattle">Seattle</button>
+    <button class="filter-tab" data-filter="portland">Portland</button>
+    <button class="filter-tab" data-filter="libation">Libation</button>
+    <button class="filter-tab" data-filter="money">Money</button>
+    <button class="filter-tab" data-filter="sanitation">Sanitation</button>
+    <button class="filter-tab" data-filter="transport">Transport</button>
+  </div>
+
+  <!-- HERO SHOTS -->
+  <section class="hero-section" data-city="vancouver">
+    <div class="hero-grid">
+      <div class="hero-card" data-city="vancouver" data-print="money">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/V-HERO-1%20Vancouver%20Art%20Gallery%20Plaza%20-%201.png" alt="Vancouver Art Gallery Plaza">
+        <div class="hero-overlay">
+          <span class="hero-subtitle">Money Collection</span>
+          <h2 class="hero-title">Vancouver Art Gallery</h2>
+        </div>
+      </div>
+      <div class="hero-card" data-city="vancouver" data-print="money">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/VHERO2%20Coal%20Harbour%20Seawall%20-%201.png" alt="Coal Harbour Seawall">
+        <div class="hero-overlay">
+          <span class="hero-subtitle">Money Collection</span>
+          <h2 class="hero-title">Coal Harbour Seawall</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VANCOUVER -->
+  <section class="city-section" data-city="vancouver">
+    <div class="city-header">
+      <h2 class="city-name">Vancouver</h2>
+      <span class="city-country">Canada</span>
+    </div>
+    <div class="photo-grid">
+      <!-- Row 1: wide (2) + regular (1) = 3 -->
+      <div class="photo-card wide" data-city="vancouver" data-print="transport">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/V1%20Stanley%20Park%20Seawall.png" alt="Stanley Park Seawall">
+        <div class="photo-overlay">
+          <span class="photo-location">Stanley Park Seawall</span>
+          <div class="photo-meta">
+            <span class="photo-print">Transport</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card" data-city="vancouver" data-print="money">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/V2%20Gastown%20Steam%20Clock%20-%201.png" alt="Gastown Steam Clock">
+        <div class="photo-overlay">
+          <span class="photo-location">Gastown Steam Clock</span>
+          <div class="photo-meta">
+            <span class="photo-print">Money</span>
+          </div>
+        </div>
+      </div>
+      <!-- Row 2: regular (1) + wide (2) = 3 -->
+      <div class="photo-card" data-city="vancouver" data-print="libation">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/V4%20Granville%20Island%20-%201.png" alt="Granville Island">
+        <div class="photo-overlay">
+          <span class="photo-location">Granville Island</span>
+          <div class="photo-meta">
+            <span class="photo-print">Libation</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card wide" data-city="vancouver" data-print="sanitation">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-V2%20Olympic%20Village%20Seawall%20-%201.png" alt="Olympic Village Seawall">
+        <div class="photo-overlay">
+          <span class="photo-location">Olympic Village Seawall</span>
+          <div class="photo-meta">
+            <span class="photo-print">Sanitation</span>
+          </div>
+        </div>
+      </div>
+      <!-- Row 3: regular (1) + regular (1) + regular (1) = 3 -->
+      <div class="photo-card" data-city="vancouver" data-print="sanitation">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-V1%20Shipyard%20District%20Morning.png" alt="Shipyard District">
+        <div class="photo-overlay">
+          <span class="photo-location">Shipyard District</span>
+          <div class="photo-meta">
+            <span class="photo-print">Sanitation</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card" data-city="vancouver" data-print="money">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/V2%20Gastown%20Steam%20Clock%20-%202.png" alt="Gastown Steam Clock 2">
+        <div class="photo-overlay">
+          <span class="photo-location">Gastown Steam Clock</span>
+          <div class="photo-meta">
+            <span class="photo-print">Money</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card" data-city="vancouver" data-print="libation">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/V4%20Granville%20Island%20-%202.png" alt="Granville Island 2">
+        <div class="photo-overlay">
+          <span class="photo-location">Granville Island</span>
+          <div class="photo-meta">
+            <span class="photo-print">Libation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LONDON -->
+  <section class="city-section" data-city="london">
+    <div class="city-header">
+      <h2 class="city-name">London</h2>
+      <span class="city-country">United Kingdom</span>
+    </div>
+    <div class="photo-grid">
+      <!-- Row 1: regular + regular + regular = 3 -->
+      <div class="photo-card" data-city="london" data-print="libation">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/L1%20Southbank%20Morning%20Commute.png" alt="Southbank Morning Commute">
+        <div class="photo-overlay">
+          <span class="photo-location">Southbank Morning</span>
+          <div class="photo-meta">
+            <span class="photo-print">Libation</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card" data-city="london" data-print="money">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/L2%20Underground%20Platform.png" alt="Underground Platform">
+        <div class="photo-overlay">
+          <span class="photo-location">Underground Platform</span>
+          <div class="photo-meta">
+            <span class="photo-print">Money</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card" data-city="london" data-print="libation">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/L3%20Borough%20Market%20Browse.png" alt="Borough Market">
+        <div class="photo-overlay">
+          <span class="photo-location">Borough Market</span>
+          <div class="photo-meta">
+            <span class="photo-print">Libation</span>
+          </div>
+        </div>
+      </div>
+      <!-- Row 2: wide (2) + regular (1) = 3 -->
+      <div class="photo-card wide" data-city="london" data-print="transport">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/L4%20Pub%20Arrival%20%E2%80%94%20Two%20Friends.png" alt="Pub Arrival">
+        <div class="photo-overlay">
+          <span class="photo-location">Pub Arrival — Two Friends</span>
+          <div class="photo-meta">
+            <span class="photo-print">Transport</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card" data-city="london" data-print="money">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/L5%20Regent's%20Canal%20Walk.png" alt="Regent's Canal Walk">
+        <div class="photo-overlay">
+          <span class="photo-location">Regent's Canal</span>
+          <div class="photo-meta">
+            <span class="photo-print">Money</span>
+          </div>
+        </div>
+      </div>
+      <!-- Row 3: regular (1) + wide (2) = 3 -->
+      <div class="photo-card" data-city="london" data-print="money">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/L6%20Tate%20Modern%20Exit.png" alt="Tate Modern Exit">
+        <div class="photo-overlay">
+          <span class="photo-location">Tate Modern Exit</span>
+          <div class="photo-meta">
+            <span class="photo-print">Money</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card wide" data-city="london" data-print="sanitation">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-L2%20Barbican%20Brutalist%20-1.png" alt="Barbican Brutalist">
+        <div class="photo-overlay">
+          <span class="photo-location">Barbican Brutalist</span>
+          <div class="photo-meta">
+            <span class="photo-print">Sanitation</span>
+          </div>
+        </div>
+      </div>
+      <!-- Row 4: regular + regular + regular = 3 -->
+      <div class="photo-card" data-city="london" data-print="sanitation">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-L1%20Early%20Morning%20Street%20Sweep%20-%201.png" alt="Early Morning Street Sweep">
+        <div class="photo-overlay">
+          <span class="photo-location">Early Morning Street Sweep</span>
+          <div class="photo-meta">
+            <span class="photo-print">Sanitation</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card" data-city="london" data-print="sanitation">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-L2%20Barbican%20Brutalist%20-%202.png" alt="Barbican Brutalist 2">
+        <div class="photo-overlay">
+          <span class="photo-location">Barbican Brutalist</span>
+          <div class="photo-meta">
+            <span class="photo-print">Sanitation</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card" data-city="london" data-print="sanitation">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-L2%20Barbican%20Brutalist%20-%203.png" alt="Barbican Brutalist 3">
+        <div class="photo-overlay">
+          <span class="photo-location">Barbican Brutalist</span>
+          <div class="photo-meta">
+            <span class="photo-print">Sanitation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEATTLE -->
+  <section class="city-section" data-city="seattle">
+    <div class="city-header">
+      <h2 class="city-name">Seattle</h2>
+      <span class="city-country">United States</span>
+    </div>
+    <div class="photo-grid">
+      <!-- Row 1: wide (2) + regular (1) = 3 -->
+      <div class="photo-card wide" data-city="seattle" data-print="libation">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/S1%20Capitol%20Hill%20Coffee%20Run.png" alt="Capitol Hill Coffee Run">
+        <div class="photo-overlay">
+          <span class="photo-location">Capitol Hill Coffee Run</span>
+          <div class="photo-meta">
+            <span class="photo-print">Libation</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card" data-city="seattle" data-print="money">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/S2%20Pike%20Place%20Market.png" alt="Pike Place Market">
+        <div class="photo-overlay">
+          <span class="photo-location">Pike Place Market</span>
+          <div class="photo-meta">
+            <span class="photo-print">Money</span>
+          </div>
+        </div>
+      </div>
+      <!-- Row 2: regular + regular + regular = 3 -->
+      <div class="photo-card" data-city="seattle" data-print="transport">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/S3%20Ferry%20Commute.png" alt="Ferry Commute">
+        <div class="photo-overlay">
+          <span class="photo-location">Ferry Commute</span>
+          <div class="photo-meta">
+            <span class="photo-print">Transport</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card" data-city="seattle" data-print="money">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/S4%20South%20Lake%20Union%20Tech%20Walk.png" alt="South Lake Union">
+        <div class="photo-overlay">
+          <span class="photo-location">South Lake Union</span>
+          <div class="photo-meta">
+            <span class="photo-print">Money</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card" data-city="seattle" data-print="sanitation">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-S1%20Industrial%20SoDo%20District%20-%201.png" alt="Industrial SoDo District">
+        <div class="photo-overlay">
+          <span class="photo-location">Industrial SoDo District</span>
+          <div class="photo-meta">
+            <span class="photo-print">Sanitation</span>
+          </div>
+        </div>
+      </div>
+      <!-- Row 3: regular + wide (2) = 3 -->
+      <div class="photo-card" data-city="seattle" data-print="sanitation">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-S2%20University%20District%20Coffee.png" alt="University District Coffee">
+        <div class="photo-overlay">
+          <span class="photo-location">University District</span>
+          <div class="photo-meta">
+            <span class="photo-print">Sanitation</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card wide" data-city="seattle" data-print="sanitation">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-S1%20Industrial%20SoDo%20District%20-%202.png" alt="Industrial SoDo District 2">
+        <div class="photo-overlay">
+          <span class="photo-location">Industrial SoDo District</span>
+          <div class="photo-meta">
+            <span class="photo-print">Sanitation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTLAND -->
+  <section class="city-section" data-city="portland">
+    <div class="city-header">
+      <h2 class="city-name">Portland</h2>
+      <span class="city-country">United States</span>
+    </div>
+    <div class="photo-grid">
+      <!-- Row 1: regular (1) + wide (2) = 3 -->
+      <div class="photo-card" data-city="portland" data-print="transport">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/P1%20Hawthorne%20Bridge%20Bike.png" alt="Hawthorne Bridge Bike">
+        <div class="photo-overlay">
+          <span class="photo-location">Hawthorne Bridge</span>
+          <div class="photo-meta">
+            <span class="photo-print">Transport</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card wide" data-city="portland" data-print="transport">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/P3%20Powell's%20Books%20Exit%20-%201.png" alt="Powell's Books Exit">
+        <div class="photo-overlay">
+          <span class="photo-location">Powell's Books Exit</span>
+          <div class="photo-meta">
+            <span class="photo-print">Transport</span>
+          </div>
+        </div>
+      </div>
+      <!-- Row 2: regular + regular + regular = 3 -->
+      <div class="photo-card" data-city="portland" data-print="transport">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/P3%20Powell's%20Books%20Exit%20-%202.png" alt="Powell's Books Exit 2">
+        <div class="photo-overlay">
+          <span class="photo-location">Powell's Books Exit</span>
+          <div class="photo-meta">
+            <span class="photo-print">Transport</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card" data-city="portland" data-print="transport">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/P3%20Powell's%20Books%20Exit%20-%203.png" alt="Powell's Books Exit 3">
+        <div class="photo-overlay">
+          <span class="photo-location">Powell's Books Exit</span>
+          <div class="photo-meta">
+            <span class="photo-print">Transport</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo-card" data-city="portland" data-print="libation">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/P4%20Alberta%20Arts%20District%20Walk.png" alt="Alberta Arts District">
+        <div class="photo-overlay">
+          <span class="photo-location">Alberta Arts District</span>
+          <div class="photo-meta">
+            <span class="photo-print">Libation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTION NAV -->
+  <section class="collection-nav">
+    <div class="collection-nav-title">Shop by Collection</div>
+    <div class="collection-swatches">
+      <a href="/shop?print=libation" class="collection-swatch">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Libation.png" alt="Libation">
+        <span>Libation</span>
+      </a>
+      <a href="/shop?print=money" class="collection-swatch">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Money.png" alt="Money">
+        <span>Money</span>
+      </a>
+      <a href="/shop?print=sanitation" class="collection-swatch">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Sanitation.png" alt="Sanitation">
+        <span>Sanitation</span>
+      </a>
+      <a href="/shop?print=transport" class="collection-swatch">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Transportaion.png" alt="Transport">
+        <span>Transport</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <h4>Shop</h4>
+        <a href="/shop?print=libation">Libation</a>
+        <a href="/shop?print=money">Money</a>
+        <a href="/shop?print=sanitation">Sanitation</a>
+        <a href="/shop?print=transport">Transport</a>
+      </div>
+      <div>
+        <h4>Story</h4>
+        <a href="/story">About</a>
+        <a href="/story/made-in-vancouver">Made in Vancouver</a>
+        <a href="/story/sustainability">Sustainability</a>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <a href="/size-guide">Size Guide</a>
+        <a href="/care">Care</a>
+        <a href="/shipping">Shipping</a>
+        <a href="/contact">Contact</a>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <a href="#">Instagram</a>
+        <a href="#">Newsletter</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Hogan's Alley. All rights reserved.</span>
+      <span class="footer-flag">
+        <svg width="20" height="12" viewBox="0 0 20 12">
+          <rect fill="#FF0000" width="5" height="12"/>
+          <rect fill="#FFFFFF" x="5" width="10" height="12"/>
+          <rect fill="#FF0000" x="15" width="5" height="12"/>
+          <path fill="#FF0000" d="M10 2L8.5 5H7L8 6.5L7.5 8.5L10 7L12.5 8.5L12 6.5L13 5H11.5L10 2Z"/>
+        </svg>
+        Made in Canada
+      </span>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <button class="lightbox-nav lightbox-prev" onclick="prevImage()">‹</button>
+    <button class="lightbox-nav lightbox-next" onclick="nextImage()">›</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption">
+      <h3 id="lightbox-title"></h3>
+      <p id="lightbox-print"></p>
+    </div>
+  </div>
+
+  <script>
+    // Image data for lightbox
+    const images = [];
+    let currentIndex = 0;
+    
+    // Collect all images
+    document.querySelectorAll('.photo-card, .hero-card').forEach((card, i) => {
+      const img = card.querySelector('img');
+      const location = card.querySelector('.photo-location, .hero-title')?.textContent || '';
+      const print = card.querySelector('.photo-print, .hero-subtitle')?.textContent || '';
+      const city = card.dataset.city || '';
+      const printFilter = card.dataset.print || '';
+      
+      images.push({
+        src: img.src,
+        location,
+        print,
+        city,
+        printFilter
+      });
+      
+      card.addEventListener('click', () => openLightbox(i));
+    });
+    
+    function openLightbox(index) {
+      currentIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    function updateLightbox() {
+      const img = images[currentIndex];
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-title').textContent = img.location;
+      document.getElementById('lightbox-print').textContent = img.print;
+    }
+    
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateLightbox();
+    }
+    
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateLightbox();
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!document.getElementById('lightbox').classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+    });
+    
+    // Filter functionality
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Update active tab
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        const filter = tab.dataset.filter;
+        
+        // Filter sections and cards
+        document.querySelectorAll('.city-section, .hero-section').forEach(section => {
+          if (filter === 'all') {
+            section.style.display = '';
+          } else {
+            const hasMatch = section.querySelector(`[data-city="${filter}"], [data-print="${filter}"]`);
+            section.style.display = hasMatch ? '' : 'none';
+          }
+        });
+        
+        document.querySelectorAll('.photo-card, .hero-card').forEach(card => {
+          if (filter === 'all') {
+            card.style.display = '';
+          } else {
+            const matchCity = card.dataset.city === filter;
+            const matchPrint = card.dataset.print === filter;
+            card.style.display = (matchCity || matchPrint) ? '' : 'none';
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

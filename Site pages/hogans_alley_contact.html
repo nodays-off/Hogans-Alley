@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Hogan's Alley</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================
+       CSS VARIABLES — PREMIUM PALETTE
+       (Exact copy from homepage)
+    ============================================ */
+    :root {
+      /* Colors */
+      --color-black: #0A0A0A;
+      --color-white: #FAFAF9;
+      --color-warm-white: #F5F4F2;
+      --color-accent: #C4A962;
+      --color-accent-hover: #B39952;
+      --color-text-primary: #0A0A0A;
+      --color-text-secondary: #4A4A4A;
+      --color-text-muted: #8A8A8A;
+      --color-border: #E5E5E3;
+      
+      /* Typography */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      /* Spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 8rem;
+      --space-2xl: 10rem;
+    }
+    
+    /* ============================================
+       RESET & BASE
+       (Exact copy from homepage)
+    ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-text-primary);
+      background: var(--color-white);
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0 !important; /* SHARP CORNERS - PREMIUM */
+    }
+    
+    /* ============================================
+       TYPOGRAPHY
+       (Exact copy from homepage)
+    ============================================ */
+    h1, h2, h3 {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    
+    h1 {
+      font-size: clamp(3rem, 10vw, 6rem);
+    }
+    
+    h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+    
+    h3 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+    
+    .subhead {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+    }
+    
+    p {
+      color: var(--color-text-secondary);
+      max-width: 55ch;
+    }
+    
+    /* ============================================
+       NAVIGATION — PREMIUM
+       (Exact copy from homepage)
+    ============================================ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem var(--space-lg);
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .nav-logo {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-black);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: var(--space-md);
+      list-style: none;
+    }
+    
+    .nav-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      transition: color 0.2s ease;
+    }
+    
+    .nav-links a:hover {
+      color: var(--color-black);
+    }
+    
+    @media (max-width: 768px) {
+      .nav {
+        padding: 1rem var(--space-sm);
+      }
+      .nav-links {
+        gap: var(--space-sm);
+      }
+      .nav-links a {
+        font-size: 0.625rem;
+      }
+    }
+    
+    /* ============================================
+       BUTTONS — PREMIUM (BLACK, NOT YELLOW)
+       (Exact copy from homepage)
+    ============================================ */
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary {
+      background: var(--color-black);
+      color: var(--color-white);
+    }
+    
+    .btn-primary:hover {
+      background: var(--color-text-secondary);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--color-black);
+      border: 1px solid var(--color-black);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--color-black);
+      color: var(--color-white);
+    }
+    
+    /* ============================================
+       SECTION DIVIDER
+       (Exact copy from homepage)
+    ============================================ */
+    .section-divider {
+      text-align: center;
+      padding: var(--space-lg) 0;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    
+    .section-divider::before,
+    .section-divider::after {
+      content: '—';
+      margin: 0 var(--space-sm);
+    }
+    
+    /* ============================================
+       SECTION HEADER (CENTERED)
+       (Exact copy from homepage)
+    ============================================ */
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto var(--space-lg);
+    }
+    
+    .section-header h2 {
+      margin: var(--space-sm) 0;
+    }
+    
+    .section-header p {
+      margin: 0 auto;
+    }
+    
+    /* ============================================
+       FOOTER
+       (Exact copy from homepage)
+    ============================================ */
+    .footer {
+      background: var(--color-black);
+      color: var(--color-white);
+      padding: var(--space-xl) var(--space-lg);
+    }
+    
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-lg);
+    }
+    
+    .footer h4 {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-sm);
+      color: var(--color-accent);
+    }
+    
+    .footer a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.875rem;
+      display: block;
+      margin-bottom: var(--space-xs);
+      transition: color 0.2s ease;
+    }
+    
+    .footer a:hover {
+      color: var(--color-white);
+    }
+    
+    .footer-bottom {
+      max-width: 1400px;
+      margin: var(--space-lg) auto 0;
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    
+    .footer-flag {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    /* ============================================
+       PAGE HERO
+    ============================================ */
+    .page-hero {
+      padding: var(--space-xl) var(--space-lg);
+      background: var(--color-warm-white);
+      text-align: center;
+    }
+    
+    .page-hero h1 {
+      margin-bottom: var(--space-sm);
+    }
+    
+    .page-hero p {
+      margin: 0 auto;
+      max-width: 50ch;
+    }
+    
+    @media (max-width: 768px) {
+      .page-hero {
+        padding: var(--space-lg) var(--space-sm);
+      }
+    }
+    
+    /* ============================================
+       CONTACT LAYOUT
+    ============================================ */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: var(--space-lg);
+    }
+    
+    @media (max-width: 900px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .contact-layout {
+        padding: var(--space-md) var(--space-sm);
+      }
+    }
+    
+    /* ============================================
+       CONTACT INFO
+    ============================================ */
+    .contact-info {
+      padding: var(--space-md);
+    }
+    
+    .contact-info h2 {
+      margin-bottom: var(--space-md);
+    }
+    
+    .contact-method {
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .contact-method:last-of-type {
+      border-bottom: none;
+    }
+    
+    .contact-method h3 {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+      font-weight: 400;
+    }
+    
+    .contact-method a {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      color: var(--color-text-primary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    
+    .contact-method a:hover {
+      color: var(--color-accent);
+    }
+    
+    .contact-method p {
+      font-size: 0.875rem;
+      margin-top: var(--space-xs);
+    }
+    
+    /* ============================================
+       SOCIAL LINKS
+    ============================================ */
+    .social-links {
+      display: flex;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    
+    .social-link {
+      width: 48px;
+      height: 48px;
+      background: var(--color-black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+    
+    .social-link:hover {
+      background: var(--color-accent);
+    }
+    
+    .social-link svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--color-white);
+    }
+    
+    /* ============================================
+       CONTACT FORM
+    ============================================ */
+    .contact-form {
+      padding: var(--space-md);
+      background: var(--color-warm-white);
+      border: 1px solid var(--color-border);
+    }
+    
+    .contact-form h2 {
+      margin-bottom: var(--space-md);
+    }
+    
+    .form-group {
+      margin-bottom: var(--space-md);
+    }
+    
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-xs);
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--color-text-primary);
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      transition: border-color 0.2s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-black);
+    }
+    
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238A8A8A' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+    
+    @media (max-width: 500px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .form-submit {
+      margin-top: var(--space-md);
+    }
+    
+    .form-submit .btn {
+      width: 100%;
+      text-align: center;
+    }
+    
+    .form-note {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-top: var(--space-sm);
+      text-align: center;
+    }
+    
+    /* ============================================
+       HOURS & LOCATION
+    ============================================ */
+    .info-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg) var(--space-lg);
+    }
+    
+    @media (max-width: 768px) {
+      .info-section {
+        padding: 0 var(--space-sm) var(--space-md);
+      }
+    }
+    
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+    
+    @media (max-width: 700px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .info-card {
+      padding: var(--space-md);
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      text-align: center;
+    }
+    
+    .info-card-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--color-black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-sm);
+    }
+    
+    .info-card-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--color-accent);
+      stroke-width: 1.5;
+      fill: none;
+    }
+    
+    .info-card h3 {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-xs);
+      font-weight: 400;
+    }
+    
+    .info-card p {
+      font-size: 0.9375rem;
+      color: var(--color-text-primary);
+      max-width: none;
+    }
+    
+    .info-card p + p {
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <a href="hogans_alley_homepage_v2_5.html" class="nav-logo">Hogan's Alley</a>
+    <ul class="nav-links">
+      <li><a href="hogans_alley_shop_v3.html">Shop</a></li>
+      <li><a href="hogans_alley_lookbook.html">Lookbook</a></li>
+      <li><a href="hogans_alley_story.html">Story</a></li>
+      <li><a href="hogans_alley_sizing_guide.html">Size & Care</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <span class="subhead">We'd Love to Hear From You</span>
+    <h1>Contact</h1>
+    <p>Questions about sizing, orders, or just want to say hello? We're here to help.</p>
+  </section>
+
+  <!-- CONTACT LAYOUT -->
+  <div class="contact-layout">
+    
+    <!-- LEFT: CONTACT INFO -->
+    <div class="contact-info">
+      <h2>Get in Touch</h2>
+      
+      <div class="contact-method">
+        <h3>Email</h3>
+        <a href="mailto:hello@hogansalley.ca">hello@hogansalley.ca</a>
+        <p>We respond within 24 hours</p>
+      </div>
+      
+      <div class="contact-method">
+        <h3>Press Inquiries</h3>
+        <a href="mailto:press@hogansalley.ca">press@hogansalley.ca</a>
+        <p>For media, collaborations, and partnerships</p>
+      </div>
+      
+      <div class="contact-method">
+        <h3>Wholesale</h3>
+        <a href="mailto:wholesale@hogansalley.ca">wholesale@hogansalley.ca</a>
+        <p>Interested in carrying Hogan's Alley?</p>
+      </div>
+      
+      <div class="contact-method">
+        <h3>Follow Along</h3>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- RIGHT: CONTACT FORM -->
+    <div class="contact-form">
+      <h2>Send a Message</h2>
+      
+      <form action="#" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <select id="subject" name="subject" required>
+            <option value="" disabled selected>Select a topic</option>
+            <option value="order">Order Question</option>
+            <option value="sizing">Sizing Help</option>
+            <option value="returns">Returns & Exchanges</option>
+            <option value="wholesale">Wholesale Inquiry</option>
+            <option value="press">Press & Media</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="order-number">Order Number (if applicable)</label>
+          <input type="text" id="order-number" name="order-number" placeholder="e.g. HA-12345">
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+        </div>
+        
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary">Send Message</button>
+          <p class="form-note">We typically respond within 24 hours.</p>
+        </div>
+      </form>
+    </div>
+    
+  </div>
+
+  <!-- INFO SECTION -->
+  <div class="section-divider">Quick Info</div>
+  
+  <section class="info-section">
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3>Response Time</h3>
+        <p>Within 24 hours</p>
+        <p>Monday – Friday</p>
+      </div>
+      
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Location</h3>
+        <p>Vancouver, BC</p>
+        <p>Canada</p>
+      </div>
+      
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <h3>Prefer Email</h3>
+        <p>We're a small team</p>
+        <p>Email works best</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <h4>Shop</h4>
+        <a href="hogans_alley_shop_v3.html">All Jackets</a>
+        <a href="#">Libation Collection</a>
+        <a href="#">Money Collection</a>
+        <a href="#">Transport Collection</a>
+        <a href="#">Sanitation Collection</a>
+      </div>
+      <div>
+        <h4>About</h4>
+        <a href="hogans_alley_story.html">Our Story</a>
+        <a href="#">The Artists</a>
+        <a href="#">Sustainability</a>
+        <a href="#">Press</a>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <a href="hogans_alley_sizing_guide.html">Size & Care</a>
+        <a href="hogans_alley_faq.html">FAQ</a>
+        <a href="hogans_alley_contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <a href="#">Instagram</a>
+        <a href="#">Newsletter</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Hogan's Alley. All rights reserved.</span>
+      <span class="footer-flag">
+        <svg width="20" height="12" viewBox="0 0 20 12">
+          <rect fill="#FF0000" width="5" height="12"/>
+          <rect fill="#FFFFFF" x="5" width="10" height="12"/>
+          <rect fill="#FF0000" x="15" width="5" height="12"/>
+          <path fill="#FF0000" d="M10 2L8.5 5H7L8 6.5L7.5 8.5L10 7L12.5 8.5L12 6.5L13 5H11.5L10 2Z"/>
+        </svg>
+        Made in Canada
+      </span>
+    </div>
+  </footer>
+
+</body>
+</html>

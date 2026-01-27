@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Size Guide & Care — Hogan's Alley</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================
+       CSS VARIABLES — PREMIUM PALETTE
+       (Exact copy from homepage)
+    ============================================ */
+    :root {
+      /* Colors */
+      --color-black: #0A0A0A;
+      --color-white: #FAFAF9;
+      --color-warm-white: #F5F4F2;
+      --color-accent: #C4A962;
+      --color-accent-hover: #B39952;
+      --color-text-primary: #0A0A0A;
+      --color-text-secondary: #4A4A4A;
+      --color-text-muted: #8A8A8A;
+      --color-border: #E5E5E3;
+      
+      /* Typography */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      /* Spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 8rem;
+      --space-2xl: 10rem;
+    }
+    
+    /* ============================================
+       RESET & BASE
+       (Exact copy from homepage)
+    ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-text-primary);
+      background: var(--color-white);
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0 !important; /* SHARP CORNERS - PREMIUM */
+    }
+    
+    /* ============================================
+       TYPOGRAPHY
+       (Exact copy from homepage)
+    ============================================ */
+    h1, h2, h3 {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    
+    h1 {
+      font-size: clamp(3rem, 10vw, 6rem);
+    }
+    
+    h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+    
+    h3 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+    
+    .subhead {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+    }
+    
+    p {
+      color: var(--color-text-secondary);
+      max-width: 55ch;
+    }
+    
+    /* ============================================
+       NAVIGATION — PREMIUM
+       (Exact copy from homepage)
+    ============================================ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem var(--space-lg);
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .nav-logo {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-black);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: var(--space-md);
+      list-style: none;
+    }
+    
+    .nav-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      transition: color 0.2s ease;
+    }
+    
+    .nav-links a:hover {
+      color: var(--color-black);
+    }
+    
+    @media (max-width: 768px) {
+      .nav {
+        padding: 1rem var(--space-sm);
+      }
+      .nav-links {
+        gap: var(--space-sm);
+      }
+      .nav-links a {
+        font-size: 0.625rem;
+      }
+    }
+    
+    /* ============================================
+       SECTION DIVIDER
+       (Exact copy from homepage)
+    ============================================ */
+    .section-divider {
+      text-align: center;
+      padding: var(--space-lg) 0;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    
+    .section-divider::before,
+    .section-divider::after {
+      content: '—';
+      margin: 0 var(--space-sm);
+    }
+    
+    /* ============================================
+       SECTION HEADER (CENTERED)
+       (Exact copy from homepage)
+    ============================================ */
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto var(--space-lg);
+    }
+    
+    .section-header h2 {
+      margin: var(--space-sm) 0;
+    }
+    
+    .section-header p {
+      margin: 0 auto;
+    }
+    
+    /* ============================================
+       FOOTER
+       (Exact copy from homepage)
+    ============================================ */
+    .footer {
+      background: var(--color-black);
+      color: var(--color-white);
+      padding: var(--space-xl) var(--space-lg);
+    }
+    
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-lg);
+    }
+    
+    .footer h4 {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-sm);
+      color: var(--color-accent);
+    }
+    
+    .footer a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.875rem;
+      display: block;
+      margin-bottom: var(--space-xs);
+      transition: color 0.2s ease;
+    }
+    
+    .footer a:hover {
+      color: var(--color-white);
+    }
+    
+    .footer-bottom {
+      max-width: 1400px;
+      margin: var(--space-lg) auto 0;
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    
+    .footer-flag {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    /* ============================================
+       PAGE HERO
+    ============================================ */
+    .page-hero {
+      padding: var(--space-xl) var(--space-lg);
+      background: var(--color-warm-white);
+      text-align: center;
+    }
+    
+    .page-hero h1 {
+      margin-bottom: var(--space-sm);
+    }
+    
+    .page-hero p {
+      margin: 0 auto;
+      max-width: 55ch;
+    }
+    
+    @media (max-width: 768px) {
+      .page-hero {
+        padding: var(--space-lg) var(--space-sm);
+      }
+    }
+    
+    /* ============================================
+       PAGE NAV (ANCHOR LINKS)
+    ============================================ */
+    .page-nav {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-md);
+      padding: var(--space-sm) var(--space-lg);
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-white);
+      flex-wrap: wrap;
+    }
+    
+    .page-nav a {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      color: var(--color-text-muted);
+      padding: var(--space-xs) 0;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease;
+    }
+    
+    .page-nav a:hover {
+      color: var(--color-text-primary);
+      border-bottom-color: var(--color-accent);
+    }
+    
+    @media (max-width: 600px) {
+      .page-nav {
+        gap: var(--space-sm);
+        padding: var(--space-sm);
+      }
+      .page-nav a {
+        font-size: 0.5625rem;
+      }
+    }
+    
+    /* ============================================
+       CONTENT SECTIONS
+    ============================================ */
+    .content-section {
+      padding: var(--space-lg) var(--space-lg);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 768px) {
+      .content-section {
+        padding: var(--space-md) var(--space-sm);
+      }
+    }
+    
+    /* ============================================
+       SIZE TABLE
+    ============================================ */
+    .size-table-wrapper {
+      overflow-x: auto;
+      margin-bottom: var(--space-md);
+    }
+    
+    .size-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    
+    .size-table th,
+    .size-table td {
+      padding: 1rem 1.25rem;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .size-table thead th {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-text-muted);
+      background: var(--color-warm-white);
+    }
+    
+    .size-table thead th:first-child {
+      text-align: left;
+    }
+    
+    .size-table thead th:not(:first-child) {
+      text-align: center;
+    }
+    
+    .size-table tbody td:first-child {
+      font-weight: 500;
+      color: var(--color-text-primary);
+    }
+    
+    .size-table tbody td:not(:first-child) {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      text-align: center;
+      color: var(--color-text-secondary);
+    }
+    
+    .size-table tbody tr:hover {
+      background: var(--color-warm-white);
+    }
+    
+    .size-table .highlight-col {
+      background: rgba(196, 169, 98, 0.08);
+    }
+    
+    .table-note {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-top: var(--space-xs);
+    }
+    
+    /* ============================================
+       FIT CARDS
+    ============================================ */
+    .fit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+    
+    @media (max-width: 900px) {
+      .fit-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .fit-card {
+      padding: var(--space-md);
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+    }
+    
+    .fit-card h3 {
+      margin-bottom: var(--space-xs);
+      font-size: 1.25rem;
+    }
+    
+    .fit-card p {
+      font-size: 0.875rem;
+    }
+    
+    .fit-card .size-range {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-accent);
+      margin-top: var(--space-sm);
+    }
+    
+    /* ============================================
+       HOW TO MEASURE
+    ============================================ */
+    .measure-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    
+    .measure-illustration {
+      background: var(--color-warm-white);
+      aspect-ratio: 3/4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--color-border);
+    }
+    
+    .measure-illustration svg {
+      width: 80%;
+      height: auto;
+    }
+    
+    .measure-steps {
+      list-style: none;
+    }
+    
+    .measure-step {
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid var(--color-border);
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: var(--space-sm);
+      align-items: start;
+    }
+    
+    .measure-step:last-child {
+      border-bottom: none;
+    }
+    
+    .step-number {
+      width: 2rem;
+      height: 2rem;
+      background: var(--color-black);
+      color: var(--color-white);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .step-content h4 {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+    
+    .step-content p {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+    }
+    
+    @media (max-width: 768px) {
+      .measure-grid {
+        grid-template-columns: 1fr;
+      }
+      .measure-illustration {
+        max-height: 350px;
+      }
+    }
+    
+    /* ============================================
+       CARE SYMBOLS BAR
+    ============================================ */
+    .care-symbols {
+      display: flex;
+      gap: var(--space-lg);
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: var(--space-lg);
+      background: var(--color-black);
+    }
+    
+    .care-symbol {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+    
+    .care-symbol svg {
+      width: 40px;
+      height: 40px;
+      stroke: var(--color-white);
+      stroke-width: 1.5;
+      fill: none;
+    }
+    
+    .care-symbol span {
+      font-family: var(--font-mono);
+      font-size: 0.5625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.6);
+      text-align: center;
+      line-height: 1.4;
+    }
+    
+    /* ============================================
+       CARE CARDS
+    ============================================ */
+    .care-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+    
+    @media (max-width: 700px) {
+      .care-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .care-card {
+      padding: var(--space-md);
+      background: var(--color-warm-white);
+      border: 1px solid var(--color-border);
+    }
+    
+    .care-card-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--color-black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .care-card-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--color-accent);
+      stroke-width: 1.5;
+      fill: none;
+    }
+    
+    .care-card h3 {
+      margin-bottom: var(--space-xs);
+      font-size: 1.25rem;
+    }
+    
+    .care-card p {
+      font-size: 0.875rem;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .care-card ul {
+      list-style: none;
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+    }
+    
+    .care-card li {
+      padding: 0.375rem 0;
+      padding-left: 1rem;
+      position: relative;
+    }
+    
+    .care-card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.6875rem;
+      width: 4px;
+      height: 4px;
+      background: var(--color-accent);
+    }
+    
+    /* ============================================
+       DWR STEPS
+    ============================================ */
+    .dwr-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-sm);
+    }
+    
+    @media (max-width: 900px) {
+      .dwr-steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 500px) {
+      .dwr-steps {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .dwr-step {
+      padding: var(--space-md);
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      text-align: center;
+    }
+    
+    .dwr-step-number {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--color-black);
+      color: var(--color-white);
+      font-family: var(--font-headline);
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-sm);
+    }
+    
+    .dwr-step h4 {
+      font-family: var(--font-headline);
+      font-size: 1.125rem;
+      margin-bottom: var(--space-xs);
+    }
+    
+    .dwr-step p {
+      font-size: 0.8125rem;
+      max-width: none;
+      text-align: center;
+    }
+    
+    /* ============================================
+       DO / DON'T — ON BRAND (NO GREEN/RED)
+    ============================================ */
+    .do-dont-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+    
+    @media (max-width: 600px) {
+      .do-dont-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .do-box {
+      padding: var(--space-md);
+      background: var(--color-white);
+      border: 2px solid var(--color-accent);
+    }
+    
+    .dont-box {
+      padding: var(--space-md);
+      background: var(--color-black);
+      color: var(--color-white);
+    }
+    
+    .do-box h3, .dont-box h3 {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: var(--space-sm);
+      color: var(--color-accent);
+    }
+    
+    .do-box ul, .dont-box ul {
+      list-style: none;
+      font-size: 0.8125rem;
+    }
+    
+    .do-box ul {
+      color: var(--color-text-secondary);
+    }
+    
+    .dont-box ul {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .do-box li, .dont-box li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .dont-box li {
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .do-box li:last-child, .dont-box li:last-child {
+      border-bottom: none;
+    }
+    
+    .do-box li::before {
+      content: "+";
+      position: absolute;
+      left: 0;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--color-accent);
+    }
+    
+    .dont-box li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--color-accent);
+    }
+    
+    /* ============================================
+       FABRIC SPECS
+    ============================================ */
+    .fabric-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+    
+    @media (max-width: 600px) {
+      .fabric-specs {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .fabric-card {
+      padding: var(--space-md);
+      border: 1px solid var(--color-border);
+      background: var(--color-white);
+    }
+    
+    .fabric-card h4 {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-accent);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .fabric-card dl {
+      font-size: 0.8125rem;
+    }
+    
+    .fabric-card dt {
+      color: var(--color-text-muted);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 0.75rem;
+    }
+    
+    .fabric-card dt:first-of-type {
+      margin-top: 0;
+    }
+    
+    .fabric-card dd {
+      color: var(--color-text-primary);
+      margin-top: 0.125rem;
+    }
+    
+    /* ============================================
+       CALLOUT BOX
+    ============================================ */
+    .callout-box {
+      padding: var(--space-md);
+      background: var(--color-black);
+      color: var(--color-white);
+    }
+    
+    .callout-box h3 {
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+      font-size: 1.25rem;
+    }
+    
+    .callout-box p {
+      color: rgba(255, 255, 255, 0.8);
+      max-width: none;
+      font-size: 0.9375rem;
+    }
+    
+    .callout-box a {
+      color: var(--color-accent);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <a href="hogans_alley_homepage_v2_5.html" class="nav-logo">Hogan's Alley</a>
+    <ul class="nav-links">
+      <li><a href="hogans_alley_shop_v3.html">Shop</a></li>
+      <li><a href="hogans_alley_lookbook.html">Lookbook</a></li>
+      <li><a href="hogans_alley_story.html">Story</a></li>
+      <li><a href="hogans_alley_sizing_guide.html">Size & Care</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <span class="subhead">Everything You Need</span>
+    <h1>Size Guide & Care</h1>
+    <p>Find your perfect fit and keep your jacket looking fresh for years. Our rain jackets feature a relaxed, unisex fit designed for comfortable layering.</p>
+  </section>
+
+  <!-- PAGE NAV -->
+  <nav class="page-nav">
+    <a href="#sizing">Sizing</a>
+    <a href="#measure">How to Measure</a>
+    <a href="#care">Care</a>
+    <a href="#dwr">DWR</a>
+    <a href="#materials">Materials</a>
+  </nav>
+
+  <!-- SIZING -->
+  <div class="section-divider" id="sizing">Size Chart</div>
+
+  <section class="content-section">
+    <div class="section-header">
+      <span class="subhead">Garment Measurements</span>
+      <h2>Rain Jacket Specs</h2>
+      <p>Actual garment measurements, taken flat. For chest and hem, double for full circumference. All measurements in inches.</p>
+    </div>
+    
+    <div class="size-table-wrapper">
+      <table class="size-table">
+        <thead>
+          <tr>
+            <th>Measurement</th>
+            <th>XS</th>
+            <th>S</th>
+            <th>M</th>
+            <th class="highlight-col">L</th>
+            <th>XL</th>
+            <th>2XL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Chest Width (flat)</td>
+            <td>23.5</td>
+            <td>24.5</td>
+            <td>25.5</td>
+            <td class="highlight-col">27</td>
+            <td>28.5</td>
+            <td>30</td>
+          </tr>
+          <tr>
+            <td>Chest Circumference</td>
+            <td>47</td>
+            <td>49</td>
+            <td>51</td>
+            <td class="highlight-col">54</td>
+            <td>57</td>
+            <td>60</td>
+          </tr>
+          <tr>
+            <td>Shoulder Width</td>
+            <td>20.75</td>
+            <td>21.25</td>
+            <td>21.75</td>
+            <td class="highlight-col">22.5</td>
+            <td>23.25</td>
+            <td>24.125</td>
+          </tr>
+          <tr>
+            <td>Front Length</td>
+            <td>31.375</td>
+            <td>31.875</td>
+            <td>32.25</td>
+            <td class="highlight-col">33</td>
+            <td>33.625</td>
+            <td>34.375</td>
+          </tr>
+          <tr>
+            <td>Back Length</td>
+            <td>32.5</td>
+            <td>33</td>
+            <td>33.375</td>
+            <td class="highlight-col">34.125</td>
+            <td>34.875</td>
+            <td>35.625</td>
+          </tr>
+          <tr>
+            <td>Sleeve Length</td>
+            <td>25</td>
+            <td>25.25</td>
+            <td>25.5</td>
+            <td class="highlight-col">25.75</td>
+            <td>26</td>
+            <td>26.25</td>
+          </tr>
+          <tr>
+            <td>Hem Width (flat)</td>
+            <td>24.375</td>
+            <td>25.375</td>
+            <td>26.375</td>
+            <td class="highlight-col">27.875</td>
+            <td>29.375</td>
+            <td>30.875</td>
+          </tr>
+          <tr>
+            <td>Bicep Width</td>
+            <td>16.25</td>
+            <td>16.75</td>
+            <td>17.25</td>
+            <td class="highlight-col">17.875</td>
+            <td>18.625</td>
+            <td>19.375</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">L is our base size. All measurements ±0.25" tolerance.</p>
+  </section>
+
+  <section class="content-section" style="background: var(--color-warm-white);">
+    <div class="section-header">
+      <span class="subhead">Body Measurements</span>
+      <h2>Find Your Size</h2>
+      <p>Compare your body measurements to our recommended ranges. Our jackets have 4–6" of ease for comfortable layering.</p>
+    </div>
+    
+    <div class="size-table-wrapper">
+      <table class="size-table">
+        <thead>
+          <tr>
+            <th>Your Body</th>
+            <th>XS</th>
+            <th>S</th>
+            <th>M</th>
+            <th class="highlight-col">L</th>
+            <th>XL</th>
+            <th>2XL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Chest</td>
+            <td>32–34</td>
+            <td>35–37</td>
+            <td>38–40</td>
+            <td class="highlight-col">41–44</td>
+            <td>45–48</td>
+            <td>49–52</td>
+          </tr>
+          <tr>
+            <td>Waist</td>
+            <td>26–28</td>
+            <td>29–31</td>
+            <td>32–34</td>
+            <td class="highlight-col">35–38</td>
+            <td>39–42</td>
+            <td>43–46</td>
+          </tr>
+          <tr>
+            <td>Hip</td>
+            <td>34–36</td>
+            <td>37–39</td>
+            <td>40–42</td>
+            <td class="highlight-col">43–46</td>
+            <td>47–50</td>
+            <td>51–54</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="fit-grid">
+      <div class="fit-card">
+        <h3>Slim Fit</h3>
+        <p>Prefer a closer fit? Size down. Works well for lighter layering — t-shirt or thin sweater.</p>
+        <p class="size-range">40" chest → choose S</p>
+      </div>
+      <div class="fit-card">
+        <h3>Relaxed Fit</h3>
+        <p>Our standard fit. Roomy enough for a hoodie underneath with comfortable arm movement.</p>
+        <p class="size-range">40" chest → choose M</p>
+      </div>
+      <div class="fit-card">
+        <h3>Oversized Fit</h3>
+        <p>Want extra room for heavy layering or a street-style silhouette? Size up.</p>
+        <p class="size-range">40" chest → choose L</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO MEASURE -->
+  <div class="section-divider" id="measure">How to Measure</div>
+
+  <section class="content-section">
+    <div class="measure-grid">
+      <div class="measure-illustration">
+        <svg viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 30 C85 30, 70 45, 70 65 L70 90 L55 95 L40 140 L55 145 L55 200 L70 200 L70 280 L85 280 L85 200 L115 200 L115 280 L130 280 L130 200 L145 200 L145 145 L160 140 L145 95 L130 90 L130 65 C130 45, 115 30, 100 30 Z" stroke="#0A0A0A" stroke-width="1.5" fill="none"/>
+          <circle cx="100" cy="20" r="15" stroke="#0A0A0A" stroke-width="1.5" fill="none"/>
+          <line x1="55" y1="110" x2="145" y2="110" stroke="#C4A962" stroke-width="2"/>
+          <circle cx="55" cy="110" r="3" fill="#C4A962"/><circle cx="145" cy="110" r="3" fill="#C4A962"/>
+          <text x="150" y="114" font-family="JetBrains Mono" font-size="8" fill="#C4A962">1</text>
+          <line x1="60" y1="150" x2="140" y2="150" stroke="#C4A962" stroke-width="2"/>
+          <circle cx="60" cy="150" r="3" fill="#C4A962"/><circle cx="140" cy="150" r="3" fill="#C4A962"/>
+          <text x="145" y="154" font-family="JetBrains Mono" font-size="8" fill="#C4A962">2</text>
+          <line x1="55" y1="190" x2="145" y2="190" stroke="#C4A962" stroke-width="2"/>
+          <circle cx="55" cy="190" r="3" fill="#C4A962"/><circle cx="145" cy="190" r="3" fill="#C4A962"/>
+          <text x="150" y="194" font-family="JetBrains Mono" font-size="8" fill="#C4A962">3</text>
+        </svg>
+      </div>
+      
+      <ol class="measure-steps">
+        <li class="measure-step">
+          <span class="step-number">1</span>
+          <div class="step-content">
+            <h4>Chest</h4>
+            <p>Measure around the fullest part of your chest, keeping the tape parallel to the floor. Keep arms relaxed at your sides.</p>
+          </div>
+        </li>
+        <li class="measure-step">
+          <span class="step-number">2</span>
+          <div class="step-content">
+            <h4>Waist</h4>
+            <p>Measure around your natural waistline, typically at the narrowest point above your belly button.</p>
+          </div>
+        </li>
+        <li class="measure-step">
+          <span class="step-number">3</span>
+          <div class="step-content">
+            <h4>Hip</h4>
+            <p>Measure around the fullest part of your hips, keeping the tape parallel to the floor.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+    
+    <div class="callout-box" style="margin-top: var(--space-lg);">
+      <h3>Between Sizes?</h3>
+      <p>We recommend sizing up for a more comfortable layered fit. Still unsure? <a href="mailto:hello@hogansalley.ca">Contact us</a> — we're happy to help.</p>
+    </div>
+  </section>
+
+  <!-- CARE -->
+  <div class="section-divider" id="care">Care Instructions</div>
+
+  <div class="care-symbols">
+    <div class="care-symbol">
+      <svg viewBox="0 0 40 40"><path d="M20 8C12 8 6 14 6 20C6 26 12 32 20 32C28 32 34 26 34 20"/><text x="20" y="23" text-anchor="middle" font-size="9" fill="currentColor" stroke="none">30°</text></svg>
+      <span>Machine Wash<br>Cold</span>
+    </div>
+    <div class="care-symbol">
+      <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="12"/><circle cx="20" cy="20" r="4"/></svg>
+      <span>Tumble Dry<br>Low</span>
+    </div>
+    <div class="care-symbol">
+      <svg viewBox="0 0 40 40"><path d="M10 30L20 10L30 30Z"/><line x1="8" y1="34" x2="32" y2="6" stroke-width="2"/></svg>
+      <span>No<br>Bleach</span>
+    </div>
+    <div class="care-symbol">
+      <svg viewBox="0 0 40 40"><rect x="12" y="10" width="16" height="20" rx="1"/><line x1="8" y1="36" x2="32" y2="4" stroke-width="2"/></svg>
+      <span>No Fabric<br>Softener</span>
+    </div>
+    <div class="care-symbol">
+      <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="12"/><text x="20" y="24" text-anchor="middle" font-size="8" fill="currentColor" stroke="none">P</text><line x1="8" y1="34" x2="32" y2="6" stroke-width="2"/></svg>
+      <span>No Dry<br>Clean</span>
+    </div>
+  </div>
+
+  <section class="content-section">
+    <div class="section-header">
+      <span class="subhead">The Basics</span>
+      <h2>Caring for Your Jacket</h2>
+    </div>
+    
+    <div class="care-grid">
+      <div class="care-card">
+        <div class="care-card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
+        </div>
+        <h3>Washing</h3>
+        <p>Machine wash cold (30°C) on a gentle cycle.</p>
+        <ul>
+          <li>Close all zippers and snaps</li>
+          <li>Turn jacket inside out</li>
+          <li>Use mild liquid detergent</li>
+          <li>Wash with similar colours</li>
+        </ul>
+      </div>
+      
+      <div class="care-card">
+        <div class="care-card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3>Drying</h3>
+        <p>Tumble dry low to reactivate DWR coating.</p>
+        <ul>
+          <li>Low heat for 20 minutes</li>
+          <li>Or hang dry, then tumble</li>
+          <li>Heat reactivates water repellency</li>
+          <li>Remove promptly when done</li>
+        </ul>
+      </div>
+      
+      <div class="care-card">
+        <div class="care-card-icon">
+          <svg viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="16" rx="1"/><line x1="6" y1="8" x2="18" y2="8"/></svg>
+        </div>
+        <h3>Storage</h3>
+        <p>Store properly to maintain shape and coating.</p>
+        <ul>
+          <li>Hang on a wide, padded hanger</li>
+          <li>Store in a cool, dry place</li>
+          <li>Avoid direct sunlight</li>
+          <li>Don't compress for long periods</li>
+        </ul>
+      </div>
+      
+      <div class="care-card">
+        <div class="care-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2v6M12 22v-6M2 12h6M22 12h-6"/></svg>
+        </div>
+        <h3>Spot Cleaning</h3>
+        <p>For minor stains, spot clean instead.</p>
+        <ul>
+          <li>Dampen with cold water</li>
+          <li>Apply mild soap to stain</li>
+          <li>Gently blot (don't rub)</li>
+          <li>Rinse and air dry</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div style="margin-top: var(--space-lg);">
+      <div class="do-dont-grid">
+        <div class="do-box">
+          <h3>Do</h3>
+          <ul>
+            <li>Wash in cold water (30°C)</li>
+            <li>Use mild, liquid detergent</li>
+            <li>Close all zippers before washing</li>
+            <li>Tumble dry low to reactivate DWR</li>
+            <li>Hang on a wide hanger</li>
+            <li>Reapply DWR treatment as needed</li>
+          </ul>
+        </div>
+        <div class="dont-box">
+          <h3>Don't</h3>
+          <ul>
+            <li>Use fabric softener (blocks DWR)</li>
+            <li>Use bleach or harsh detergents</li>
+            <li>Dry clean</li>
+            <li>Iron directly on print</li>
+            <li>Wash in hot water</li>
+            <li>Store wet or damp</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DWR -->
+  <div class="section-divider" id="dwr">DWR Reactivation</div>
+
+  <section class="content-section" style="background: var(--color-warm-white);">
+    <div class="section-header">
+      <span class="subhead">Water Repellency</span>
+      <h2>Reactivating DWR</h2>
+      <p>DWR (Durable Water Repellent) makes water bead up and roll off. Over time it can wear down — but it's easy to restore.</p>
+    </div>
+    
+    <div class="dwr-steps">
+      <div class="dwr-step">
+        <span class="dwr-step-number">1</span>
+        <h4>Wash</h4>
+        <p>Clean the jacket first. Dirt blocks DWR.</p>
+      </div>
+      <div class="dwr-step">
+        <span class="dwr-step-number">2</span>
+        <h4>Heat</h4>
+        <p>Tumble dry low for 20 min to reactivate.</p>
+      </div>
+      <div class="dwr-step">
+        <span class="dwr-step-number">3</span>
+        <h4>Test</h4>
+        <p>Sprinkle water. Does it bead up?</p>
+      </div>
+      <div class="dwr-step">
+        <span class="dwr-step-number">4</span>
+        <h4>Refresh</h4>
+        <p>If not, apply spray-on DWR treatment.</p>
+      </div>
+    </div>
+    
+    <div class="callout-box" style="margin-top: var(--space-lg);">
+      <h3>When to Refresh</h3>
+      <p>Most jackets need DWR refreshing every 10–15 washes, or when water stops beading. If your jacket starts "wetting out" (water soaking in), it's time for a spray-on treatment like Nikwax TX.Direct or Grangers.</p>
+    </div>
+  </section>
+
+  <!-- MATERIALS -->
+  <div class="section-divider" id="materials">Materials</div>
+
+  <section class="content-section">
+    <div class="section-header">
+      <span class="subhead">What It's Made Of</span>
+      <h2>Fabric Specifications</h2>
+    </div>
+    
+    <div class="fabric-specs">
+      <div class="fabric-card">
+        <h4>Shell Fabric</h4>
+        <dl>
+          <dt>Composition</dt>
+          <dd>88% Recycled Polyester, 12% Spandex</dd>
+          <dt>Weight</dt>
+          <dd>110 gsm (3.2 oz/sq yd)</dd>
+          <dt>Finish</dt>
+          <dd>DWR (Durable Water Repellent)</dd>
+          <dt>Certification</dt>
+          <dd>OEKO-TEX Standard 100</dd>
+          <dt>Print Method</dt>
+          <dd>Sublimation — won't crack, peel, or fade</dd>
+        </dl>
+      </div>
+      
+      <div class="fabric-card">
+        <h4>Lining</h4>
+        <dl>
+          <dt>Composition</dt>
+          <dd>Face: 94% Recycled Poly, 6% Spandex<br>Back: 100% Recycled Polyester</dd>
+          <dt>Weight</dt>
+          <dd>320 gsm (9.4 oz/sq yd)</dd>
+          <dt>Type</dt>
+          <dd>Soft recycled PET (matte, not fleece)</dd>
+          <dt>Certification</dt>
+          <dd>OEKO-TEX Standard 100</dd>
+        </dl>
+      </div>
+    </div>
+    
+    <div class="callout-box" style="margin-top: var(--space-lg);">
+      <h3>About the Print</h3>
+      <p>Our artwork is sublimation printed — the dye becomes part of the fabric rather than sitting on top. This makes the print extremely durable. Colours stay vibrant wash after wash.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <h4>Shop</h4>
+        <a href="hogans_alley_shop_v3.html">All Jackets</a>
+        <a href="#">Libation Collection</a>
+        <a href="#">Money Collection</a>
+        <a href="#">Transport Collection</a>
+        <a href="#">Sanitation Collection</a>
+      </div>
+      <div>
+        <h4>About</h4>
+        <a href="hogans_alley_story.html">Our Story</a>
+        <a href="#">The Artists</a>
+        <a href="#">Sustainability</a>
+        <a href="#">Press</a>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <a href="hogans_alley_sizing_guide.html">Size & Care</a>
+        <a href="hogans_alley_faq.html">FAQ</a>
+        <a href="#">Contact</a>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <a href="#">Instagram</a>
+        <a href="#">Newsletter</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Hogan's Alley. All rights reserved.</span>
+      <span class="footer-flag">
+        <svg width="20" height="12" viewBox="0 0 20 12">
+          <rect fill="#FF0000" width="5" height="12"/>
+          <rect fill="#FFFFFF" x="5" width="10" height="12"/>
+          <rect fill="#FF0000" x="15" width="5" height="12"/>
+          <path fill="#FF0000" d="M10 2L8.5 5H7L8 6.5L7.5 8.5L10 7L12.5 8.5L12 6.5L13 5H11.5L10 2Z"/>
+        </svg>
+        Made in Canada
+      </span>
+    </div>
+  </footer>
+
+</body>
+</html>

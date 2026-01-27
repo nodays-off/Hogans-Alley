@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Money Collection — Hogan's Alley</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-black: #0A0A0A;
+      --color-white: #FAFAF9;
+      --color-warm-white: #F5F4F2;
+      --color-accent: #C4A962;
+      --color-text-primary: #0A0A0A;
+      --color-text-secondary: #4A4A4A;
+      --color-text-muted: #8A8A8A;
+      --color-border: #E5E5E3;
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --space-xs: 0.5rem; --space-sm: 1rem; --space-md: 2rem; --space-lg: 4rem; --space-xl: 6rem;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); font-size: 1rem; line-height: 1.6; color: var(--color-text-primary); background: var(--color-white); -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; height: auto; display: block; }
+    h1, h2, h3 { font-family: var(--font-headline); font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; }
+    h1 { font-size: clamp(2.5rem, 8vw, 5rem); }
+    h2 { font-size: clamp(1.75rem, 4vw, 3rem); }
+    h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); }
+    .subhead { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-accent); }
+    
+    .nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem var(--space-lg); background: var(--color-white); border-bottom: 1px solid var(--color-border); }
+    .nav-logo { font-family: var(--font-headline); font-size: 1.5rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--color-black); }
+    .nav-links { display: flex; gap: var(--space-md); list-style: none; }
+    .nav-links a { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: var(--color-text-secondary); transition: color 0.2s ease; }
+    .nav-links a:hover { color: var(--color-black); }
+    @media (max-width: 768px) { .nav { padding: 1rem var(--space-sm); } .nav-links { gap: var(--space-sm); } .nav-links a { font-size: 0.625rem; } }
+    
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .animate-fade-up { animation: fadeUp 0.8s ease forwards; }
+    .delay-1 { animation-delay: 0.1s; opacity: 0; } .delay-2 { animation-delay: 0.2s; opacity: 0; }
+    
+    .section-divider { text-align: center; padding: var(--space-lg) 0; font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-text-muted); }
+    .section-divider::before, .section-divider::after { content: '—'; margin: 0 var(--space-sm); }
+    
+    .hero { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
+    .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.8) 0%, rgba(10,10,10,0.3) 40%, transparent 70%); }
+    .hero-content { position: absolute; bottom: 0; left: 0; right: 0; padding: var(--space-xl) var(--space-lg); color: var(--color-white); }
+    .hero-content .subhead { color: var(--color-accent); margin-bottom: var(--space-xs); }
+    .hero-content h1 { margin-bottom: var(--space-sm); }
+    .hero-content p { max-width: 550px; font-size: 1.0625rem; color: rgba(255,255,255,0.85); line-height: 1.7; }
+    @media (max-width: 768px) { .hero-content { padding: var(--space-lg) var(--space-sm); } }
+    
+    .intro { max-width: 800px; margin: 0 auto; padding: var(--space-xl) var(--space-lg); text-align: center; }
+    .intro .subhead { margin-bottom: var(--space-sm); } .intro h2 { margin-bottom: var(--space-md); }
+    .intro p { color: var(--color-text-secondary); font-size: 1.0625rem; line-height: 1.8; }
+    
+    .editorial { display: grid; grid-template-columns: 1fr 1fr; min-height: 500px; }
+    .editorial.reverse { direction: rtl; } .editorial.reverse > * { direction: ltr; }
+    .editorial-image { position: relative; overflow: hidden; }
+    .editorial-image img { width: 100%; height: 100%; object-fit: cover; }
+    .editorial-text { display: flex; flex-direction: column; justify-content: center; padding: var(--space-xl) var(--space-lg); background: var(--color-warm-white); }
+    .editorial.dark .editorial-text { background: var(--color-black); color: var(--color-white); }
+    .editorial.dark .editorial-text p { color: rgba(255,255,255,0.7); }
+    .editorial-text .subhead { margin-bottom: var(--space-sm); } .editorial-text h2 { margin-bottom: var(--space-md); }
+    .editorial-text p { color: var(--color-text-secondary); max-width: 450px; line-height: 1.8; }
+    .editorial-text p + p { margin-top: var(--space-sm); }
+    @media (max-width: 900px) { .editorial { grid-template-columns: 1fr; } .editorial.reverse { direction: ltr; } .editorial-image { aspect-ratio: 16/9; } .editorial-text { padding: var(--space-lg) var(--space-sm); } }
+    
+    .full-image { width: 100%; aspect-ratio: 2/1; overflow: hidden; }
+    .full-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+    
+    .details { padding: var(--space-xl) var(--space-lg); max-width: 1200px; margin: 0 auto; }
+    .details-header { text-align: center; margin-bottom: var(--space-lg); }
+    .details-header .subhead { margin-bottom: var(--space-xs); }
+    .details-header p { color: var(--color-text-secondary); max-width: 500px; margin: var(--space-sm) auto 0; }
+    .details-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+    .detail-card { text-align: center; }
+    .detail-card img { width: 100%; aspect-ratio: 1; object-fit: cover; margin-bottom: var(--space-sm); }
+    .detail-card h3 { font-size: 1.125rem; margin-bottom: var(--space-xs); }
+    .detail-card p { font-size: 0.875rem; color: var(--color-text-muted); }
+    @media (max-width: 768px) { .details { padding: var(--space-lg) var(--space-sm); } .details-grid { grid-template-columns: 1fr; gap: var(--space-lg); } }
+    
+    .specs { background: var(--color-black); color: var(--color-white); padding: var(--space-xl) var(--space-lg); }
+    .specs-inner { max-width: 1000px; margin: 0 auto; }
+    .specs .subhead { color: var(--color-accent); margin-bottom: var(--space-xs); }
+    .specs h2 { margin-bottom: var(--space-lg); }
+    .specs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg); }
+    .spec-group h3 { font-size: 0.875rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-accent); margin-bottom: var(--space-sm); }
+    .spec-group ul { list-style: none; }
+    .spec-group li { padding: var(--space-xs) 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.9375rem; color: rgba(255,255,255,0.75); }
+    @media (max-width: 768px) { .specs { padding: var(--space-lg) var(--space-sm); } .specs-grid { grid-template-columns: 1fr; } }
+    
+    .cta { padding: var(--space-xl) var(--space-lg); text-align: center; }
+    .cta .subhead { margin-bottom: var(--space-xs); } .cta h2 { margin-bottom: var(--space-md); }
+    .btn { display: inline-block; padding: 1rem 3rem; background: var(--color-black); color: var(--color-white); text-decoration: none; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; transition: background 0.3s ease; }
+    .btn:hover { background: var(--color-text-secondary); }
+    
+    .other-collections { padding: var(--space-xl) var(--space-lg); background: var(--color-warm-white); }
+    .other-collections-header { text-align: center; margin-bottom: var(--space-lg); }
+    .other-collections-header .subhead { margin-bottom: var(--space-xs); }
+    .collections-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); max-width: 1400px; margin: 0 auto; }
+    .collection-card { text-decoration: none; color: inherit; }
+    .collection-card img { width: 100%; aspect-ratio: 16/10; object-fit: cover; object-position: center 25%; margin-bottom: var(--space-sm); transition: transform 0.4s ease; }
+    .collection-card:hover img { transform: scale(1.03); }
+    .collection-card h3 { margin-bottom: var(--space-xs); }
+    .collection-card p { font-size: 0.875rem; color: var(--color-text-muted); }
+    @media (max-width: 900px) { .other-collections { padding: var(--space-lg) var(--space-sm); } .collections-grid { grid-template-columns: 1fr; } }
+    
+    .footer { padding: var(--space-xl) var(--space-lg) var(--space-lg); background: var(--color-black); color: var(--color-white); }
+    .footer-inner { max-width: 1400px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--space-lg); margin-bottom: var(--space-lg); }
+    .footer-brand h3 { font-family: var(--font-headline); font-size: 1.5rem; margin-bottom: var(--space-sm); }
+    .footer-brand p { font-size: 0.875rem; color: rgba(255,255,255,0.6); max-width: 280px; }
+    .footer-links h4 { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-accent); margin-bottom: var(--space-sm); }
+    .footer-links ul { list-style: none; } .footer-links li { margin-bottom: var(--space-xs); }
+    .footer-links a { font-size: 0.875rem; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s ease; }
+    .footer-links a:hover { color: var(--color-white); }
+    .footer-bottom { padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+    @media (max-width: 900px) { .footer { padding: var(--space-lg) var(--space-sm); } .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-md); } }
+    @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: var(--space-sm); text-align: center; } }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="hogans_alley_homepage_v2_5.html" class="nav-logo">Hogan's Alley</a>
+    <ul class="nav-links">
+      <li><a href="hogans_alley_shop_v3.html">Shop</a></li>
+      <li><a href="hogans_alley_lookbook.html">Lookbook</a></li>
+      <li><a href="hogans_alley_story.html">Story</a></li>
+      <li><a href="hogans_alley_faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/L6%20Tate%20Modern%20Exit.png" alt="Model exiting Tate Modern London wearing Money collection jacket">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="subhead animate-fade-up">The Money Collection</p>
+      <h1 class="animate-fade-up delay-1">Make It Rain</h1>
+      <p class="animate-fade-up delay-2">The cowrie shell was Africa's first currency — traded across continents, worn as adornment, buried with kings. This print honors that original blockchain: value agreed upon, community enforced.</p>
+    </div>
+  </section>
+
+  <div class="section-divider">The Story</div>
+
+  <section class="intro fade-in">
+    <p class="subhead">The Inspiration</p>
+    <h2>Before Paper, Before Coin</h2>
+    <p>For over 4,000 years, cowrie shells were the currency of exchange across Africa, South Asia, and the Pacific. Small enough to carry, beautiful enough to wear, valuable because everyone agreed they were.</p>
+  </section>
+
+  <section class="editorial fade-in">
+    <div class="editorial-image">
+      <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/L2%20Underground%20Platform.png" alt="Model on London Underground platform wearing Money jacket">
+    </div>
+    <div class="editorial-text">
+      <p class="subhead">The Pattern</p>
+      <h2>Eyes That Watch</h2>
+      <p>Royal blues and emerald greens evoke depths where shells are gathered. Gold accents speak to the wealth they represented. The concentric circles are eyes — watching, witnessing, validating each transaction.</p>
+      <p>From the London Underground to the SkyTrain, from Pike Place to Powell's — every grey city has its flows of exchange.</p>
+    </div>
+  </section>
+
+  <div class="full-image fade-in">
+    <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/L5%20Regent's%20Canal%20Walk.png" alt="Model walking Regent's Canal London wearing Money jacket">
+  </div>
+
+  <section class="editorial reverse dark fade-in">
+    <div class="editorial-image">
+      <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/S2%20Pike%20Place%20Market.png" alt="Model at Pike Place Market Seattle wearing Money jacket">
+    </div>
+    <div class="editorial-text">
+      <p class="subhead">Global Markets</p>
+      <h2>Where Value Flows</h2>
+      <p>Pike Place. Gastown. Powell's Books. The Money print finds its home wherever commerce happens — wherever people gather to buy, sell, trade, and connect.</p>
+      <p>Cowrie shells, concentric eye circles, geometric blocks — an intricate conversation between ancient currency and modern movement.</p>
+    </div>
+  </section>
+
+  <div class="section-divider">The Details</div>
+
+  <section class="details fade-in">
+    <div class="details-header">
+      <p class="subhead">The Artwork</p>
+      <h2>Study the Print</h2>
+      <p>Ancient symbols rendered in modern precision.</p>
+    </div>
+    <div class="details-grid">
+      <div class="detail-card">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Money.png" alt="Money fabric detail">
+        <h3>The Fabric</h3>
+        <p>Recycled polyester shell with DWR finish</p>
+      </div>
+      <div class="detail-card">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-2%20Hood%20with%20Drawcord%20System%20-%20Money.png" alt="Money hood detail">
+        <h3>The Hood</h3>
+        <p>Adjustable drawcord with matte hardware</p>
+      </div>
+      <div class="detail-card">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-3%20Zipper%20and%20Storm%20Flap%20-%20Money.png" alt="Money zipper detail">
+        <h3>The Closure</h3>
+        <p>YKK zipper with full storm flap</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">Technical</div>
+
+  <section class="specs fade-in">
+    <div class="specs-inner">
+      <p class="subhead">Construction</p>
+      <h2>Built for Real Weather</h2>
+      <div class="specs-grid">
+        <div class="spec-group"><h3>Shell</h3><ul><li>88% Recycled Polyester, 12% Spandex</li><li>Two-way stretch construction</li><li>DWR (Durable Water Repellent) finish</li><li>OEKO-TEX Standard 100 certified</li></ul></div>
+        <div class="spec-group"><h3>Lining</h3><ul><li>100% Recycled Polyester fleece-back</li><li>320gsm brushed fleece for warmth</li><li>Matte, soft hand feel throughout</li><li>FSC certified materials</li></ul></div>
+        <div class="spec-group"><h3>Features</h3><ul><li>Fully taped seams</li><li>45" adjustable hood drawcord</li><li>Deep fleece-lined pockets</li><li>Adjustable hem drawcord</li></ul></div>
+        <div class="spec-group"><h3>Provenance</h3><ul><li>Designed in Vancouver, BC</li><li>Cut and sewn in Vancouver</li><li>KenDor Textiles (Delta, BC)</li><li>100% Canadian made</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">Explore</div>
+
+  <section class="other-collections fade-in">
+    <div class="other-collections-header">
+      <p class="subhead">More Collections</p>
+      <h2>Continue Exploring</h2>
+    </div>
+    <div class="collections-grid">
+      <a href="hogans_alley_collection_libation.html" class="collection-card">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/L3%20Borough%20Market%20Browse.png" alt="Libation Collection">
+        <h3>Libation</h3>
+        <p>The celebration of gathering</p>
+      </a>
+      <a href="hogans_alley_collection_transport.html" class="collection-card">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/P1%20Hawthorne%20Bridge%20Bike.png" alt="Transport Collection">
+        <h3>Transport</h3>
+        <p>The journey is the destination</p>
+      </a>
+      <a href="hogans_alley_collection_sanitation.html" class="collection-card">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/SAN-S1%20Industrial%20SoDo%20District%20-%201.png" alt="Sanitation Collection">
+        <h3>Sanitation</h3>
+        <p>The poetry of urban order</p>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand"><h3>Hogan's Alley</h3><p>Colour for grey days. Premium rain jackets featuring original wax-print inspired artwork, made in Vancouver.</p></div>
+        <div class="footer-links"><h4>Shop</h4><ul><li><a href="hogans_alley_collection_libation.html">Libation</a></li><li><a href="hogans_alley_collection_money.html">Money</a></li><li><a href="hogans_alley_collection_transport.html">Transport</a></li><li><a href="hogans_alley_collection_sanitation.html">Sanitation</a></li></ul></div>
+        <div class="footer-links"><h4>About</h4><ul><li><a href="hogans_alley_story.html">Our Story</a></li><li><a href="hogans_alley_lookbook.html">Lookbook</a></li><li><a href="hogans_alley_sizing_guide.html">Size Guide</a></li><li><a href="hogans_alley_faq.html">FAQ</a></li></ul></div>
+        <div class="footer-links"><h4>Connect</h4><ul><li><a href="hogans_alley_contact.html">Contact</a></li><li><a href="#">Instagram</a></li><li><a href="#">Newsletter</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 Hogan's Alley. Vancouver, BC.</span><span>All artwork original. All jackets Canadian-made.</span></div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

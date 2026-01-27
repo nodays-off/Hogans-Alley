@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — Hogan's Alley</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================
+       CSS VARIABLES — PREMIUM PALETTE
+       (Exact copy from homepage)
+    ============================================ */
+    :root {
+      /* Colors */
+      --color-black: #0A0A0A;
+      --color-white: #FAFAF9;
+      --color-warm-white: #F5F4F2;
+      --color-accent: #C4A962;
+      --color-accent-hover: #B39952;
+      --color-text-primary: #0A0A0A;
+      --color-text-secondary: #4A4A4A;
+      --color-text-muted: #8A8A8A;
+      --color-border: #E5E5E3;
+      
+      /* Typography */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      /* Spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 8rem;
+      --space-2xl: 10rem;
+    }
+    
+    /* ============================================
+       RESET & BASE
+       (Exact copy from homepage)
+    ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-text-primary);
+      background: var(--color-white);
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0 !important; /* SHARP CORNERS - PREMIUM */
+    }
+    
+    /* ============================================
+       TYPOGRAPHY
+       (Exact copy from homepage)
+    ============================================ */
+    h1, h2, h3 {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    
+    h1 {
+      font-size: clamp(3rem, 10vw, 6rem);
+    }
+    
+    h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+    
+    h3 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+    
+    .subhead {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+    }
+    
+    p {
+      color: var(--color-text-secondary);
+      max-width: 55ch;
+    }
+    
+    /* ============================================
+       NAVIGATION — PREMIUM
+       (Exact copy from homepage)
+    ============================================ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem var(--space-lg);
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .nav-logo {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-black);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: var(--space-md);
+      list-style: none;
+    }
+    
+    .nav-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      transition: color 0.2s ease;
+    }
+    
+    .nav-links a:hover {
+      color: var(--color-black);
+    }
+    
+    @media (max-width: 768px) {
+      .nav {
+        padding: 1rem var(--space-sm);
+      }
+      .nav-links {
+        gap: var(--space-sm);
+      }
+      .nav-links a {
+        font-size: 0.625rem;
+      }
+    }
+    
+    /* ============================================
+       SECTION DIVIDER
+       (Exact copy from homepage)
+    ============================================ */
+    .section-divider {
+      text-align: center;
+      padding: var(--space-lg) 0;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    
+    .section-divider::before,
+    .section-divider::after {
+      content: '—';
+      margin: 0 var(--space-sm);
+    }
+    
+    /* ============================================
+       SECTION HEADER (CENTERED)
+       (Exact copy from homepage)
+    ============================================ */
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto var(--space-lg);
+    }
+    
+    .section-header h2 {
+      margin: var(--space-sm) 0;
+    }
+    
+    .section-header p {
+      margin: 0 auto;
+    }
+    
+    /* ============================================
+       FOOTER
+       (Exact copy from homepage)
+    ============================================ */
+    .footer {
+      background: var(--color-black);
+      color: var(--color-white);
+      padding: var(--space-xl) var(--space-lg);
+    }
+    
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-lg);
+    }
+    
+    .footer h4 {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-sm);
+      color: var(--color-accent);
+    }
+    
+    .footer a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.875rem;
+      display: block;
+      margin-bottom: var(--space-xs);
+      transition: color 0.2s ease;
+    }
+    
+    .footer a:hover {
+      color: var(--color-white);
+    }
+    
+    .footer-bottom {
+      max-width: 1400px;
+      margin: var(--space-lg) auto 0;
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    
+    .footer-flag {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    /* ============================================
+       PAGE HERO — FAQ SPECIFIC
+    ============================================ */
+    .page-hero {
+      padding: var(--space-xl) var(--space-lg);
+      background: var(--color-warm-white);
+      text-align: center;
+    }
+    
+    .page-hero h1 {
+      margin-bottom: var(--space-sm);
+    }
+    
+    .page-hero p {
+      margin: 0 auto;
+      max-width: 50ch;
+    }
+    
+    @media (max-width: 768px) {
+      .page-hero {
+        padding: var(--space-lg) var(--space-sm);
+      }
+    }
+    
+    /* ============================================
+       PAGE NAV (ANCHOR LINKS)
+    ============================================ */
+    .page-nav {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-md);
+      padding: var(--space-sm) var(--space-lg);
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-white);
+      flex-wrap: wrap;
+    }
+    
+    .page-nav a {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      color: var(--color-text-muted);
+      padding: var(--space-xs) 0;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease;
+    }
+    
+    .page-nav a:hover {
+      color: var(--color-text-primary);
+      border-bottom-color: var(--color-accent);
+    }
+    
+    @media (max-width: 600px) {
+      .page-nav {
+        gap: var(--space-sm);
+        padding: var(--space-sm);
+      }
+      .page-nav a {
+        font-size: 0.5625rem;
+      }
+    }
+    
+    /* ============================================
+       CONTENT SECTIONS
+    ============================================ */
+    .content-section {
+      padding: var(--space-lg) var(--space-lg);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 768px) {
+      .content-section {
+        padding: var(--space-md) var(--space-sm);
+      }
+    }
+    
+    /* ============================================
+       POLICY HIGHLIGHT BOX
+    ============================================ */
+    .policy-box {
+      background: var(--color-warm-white);
+      border: 1px solid var(--color-border);
+      padding: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+    
+    .policy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+    
+    @media (max-width: 600px) {
+      .policy-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .policy-item {
+      text-align: center;
+    }
+    
+    .policy-item-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--color-black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-sm);
+    }
+    
+    .policy-item-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--color-accent);
+      stroke-width: 1.5;
+      fill: none;
+    }
+    
+    .policy-item h4 {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-primary);
+      margin-bottom: 0.25rem;
+    }
+    
+    .policy-item p {
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+      max-width: none;
+    }
+    
+    /* ============================================
+       FAQ ACCORDION
+    ============================================ */
+    .faq-list {
+      list-style: none;
+    }
+    
+    .faq-item {
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: var(--space-md) 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      transition: color 0.2s ease;
+    }
+    
+    .faq-question:hover {
+      color: var(--color-accent);
+    }
+    
+    .faq-question::after {
+      content: "+";
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--color-accent);
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-item.open .faq-question::after {
+      content: "−";
+    }
+    
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    
+    .faq-item.open .faq-answer {
+      max-height: 500px;
+      padding-bottom: var(--space-md);
+    }
+    
+    .faq-answer-inner {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+    
+    .faq-answer-inner p {
+      margin-bottom: var(--space-sm);
+      max-width: none;
+    }
+    
+    .faq-answer-inner p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .faq-answer-inner ul {
+      margin: var(--space-sm) 0;
+      padding-left: 1.5rem;
+    }
+    
+    .faq-answer-inner li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .faq-answer-inner strong {
+      color: var(--color-text-primary);
+    }
+    
+    .faq-answer-inner a {
+      color: var(--color-accent);
+      text-decoration: underline;
+      transition: color 0.2s ease;
+    }
+    
+    .faq-answer-inner a:hover {
+      color: var(--color-accent-hover);
+    }
+    
+    /* ============================================
+       CALLOUT BOX
+    ============================================ */
+    .callout-box {
+      padding: var(--space-md);
+      background: var(--color-black);
+      color: var(--color-white);
+    }
+    
+    .callout-box h3 {
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+    }
+    
+    .callout-box p {
+      color: rgba(255,255,255,0.8);
+      max-width: none;
+      font-size: 0.9375rem;
+    }
+    
+    .callout-box a {
+      color: var(--color-accent);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <a href="hogans_alley_homepage_v2_5.html" class="nav-logo">Hogan's Alley</a>
+    <ul class="nav-links">
+      <li><a href="hogans_alley_shop_v3.html">Shop</a></li>
+      <li><a href="hogans_alley_lookbook.html">Lookbook</a></li>
+      <li><a href="hogans_alley_story.html">Story</a></li>
+      <li><a href="hogans_alley_sizing_guide.html">Size & Care</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <span class="subhead">We're Here to Help</span>
+    <h1>FAQ</h1>
+    <p>Everything you need to know about ordering, shipping, returns, and our products.</p>
+  </section>
+
+  <!-- PAGE NAV -->
+  <nav class="page-nav">
+    <a href="#shipping">Shipping</a>
+    <a href="#returns">Returns</a>
+    <a href="#orders">Orders</a>
+    <a href="#product">Product</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- POLICY HIGHLIGHTS -->
+  <section class="content-section">
+    <div class="policy-box">
+      <div class="policy-grid">
+        <div class="policy-item">
+          <div class="policy-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M5 18H3a2 2 0 01-2-2V8a2 2 0 012-2h3.19M15 6h3.19A2 2 0 0121 8v8a2 2 0 01-2 2h-2"/><path d="M14 6H9.8L8 9h8l-1.8-3z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+          </div>
+          <h4>Free Shipping</h4>
+          <p>On all Canadian orders</p>
+        </div>
+        <div class="policy-item">
+          <div class="policy-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1018 0 9 9 0 00-18 0z"/><path d="M12 8v4l2 2"/></svg>
+          </div>
+          <h4>30-Day Returns</h4>
+          <p>No questions asked</p>
+        </div>
+        <div class="policy-item">
+          <div class="policy-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4>Secure Checkout</h4>
+          <p>SSL encrypted payments</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHIPPING -->
+  <div class="section-divider" id="shipping">Shipping</div>
+
+  <section class="content-section">
+    <ul class="faq-list">
+      <li class="faq-item">
+        <button class="faq-question">Where do you ship?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>We currently ship throughout <strong>Canada</strong>. We're working on expanding to the US and international markets — join our newsletter to be notified when we do.</p>
+          </div>
+        </div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-question">How much does shipping cost?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p><strong>Free shipping</strong> on all orders within Canada. No minimum purchase required.</p>
+          </div>
+        </div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-question">How long does shipping take?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Orders are processed within <strong>1–2 business days</strong>. Once shipped:</p>
+            <ul>
+              <li><strong>British Columbia:</strong> 2–3 business days</li>
+              <li><strong>Alberta, Saskatchewan, Manitoba:</strong> 3–5 business days</li>
+              <li><strong>Ontario, Quebec:</strong> 4–6 business days</li>
+              <li><strong>Atlantic provinces:</strong> 5–7 business days</li>
+              <li><strong>Northern territories:</strong> 7–10 business days</li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-question">How do I track my order?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>You'll receive a shipping confirmation email with a tracking number once your order ships. You can also track your order by contacting us at <a href="mailto:hello@hogansalley.ca">hello@hogansalley.ca</a>.</p>
+          </div>
+        </div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-question">Do you offer express shipping?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Not at this time. We ship all orders via Canada Post Expedited Parcel, which provides a good balance of speed and reliability with full tracking.</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- RETURNS -->
+  <div class="section-divider" id="returns">Returns & Exchanges</div>
+
+  <section class="content-section">
+    <ul class="faq-list">
+      <li class="faq-item">
+        <button class="faq-question">What is your return policy?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>We offer <strong>30-day returns</strong> on all unworn items with tags attached. If you're not completely satisfied, you can return your jacket for a full refund or exchange.</p>
+          </div>
+        </div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-question">How do I start a return?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Email us at <a href="mailto:hello@hogansalley.ca">hello@hogansalley.ca</a> with your order number and reason for return. We'll send you a prepaid return label within 24 hours.</p>
+            <p>Once we receive and inspect your return, we'll process your refund within 3–5 business days.</p>
+          </div>
+        </div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-question">Are returns free?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p><strong>Yes.</strong> We provide prepaid return labels for all Canadian returns. Just pack your jacket in its original packaging (or similar), attach the label, and drop it off at any Canada Post location.</p>
+          </div>
+        </div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-question">Can I exchange for a different size?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Absolutely. Email us at <a href="mailto:hello@hogansalley.ca">hello@hogansalley.ca</a> with your order number and the size you need. If the new size is in stock, we'll ship it as soon as we receive your return — or immediately if you prefer (we'll just need a card on file).</p>
+            <p>Not sure which size? Check our <a href="hogans_alley_sizing_guide.html">Size Guide</a> or reach out — we're happy to help.</p>
+          </div>
+        </div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-question">What if my jacket is defective?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>We stand behind our products. If you receive a defective jacket or notice a manufacturing issue, contact us immediately at <a href="mailto:hello@hogansalley.ca">hello@hogansalley.ca</a> with photos. We'll send a replacement right away — no return required.</p>
+          </div>
+        </div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-question">How long do refunds take?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Refunds are processed within <strong>3–5 business days</strong> of receiving your return. It may take an additional 5–10 business days for the refund to appear on your statement, depending on your bank.</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ORDERS -->
+  <div class="section-divider" id="orders">Orders & Payment</div>
+
+  <section class="content-section">
+    <ul class="faq-list">
+      <li class="faq-item">
+        <button class="faq-question">What payment methods do you accept?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>We accept all major credit cards (Visa, Mastercard, American Express), as well as Apple Pay, Google Pay, and Shop Pay.</p>
+          </div>
+        </div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-question">Is my payment information secure?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Yes. All transactions are encrypted with SSL and processed through Shopify Payments, which is PCI-DSS compliant. We never store your full credit card information.</p>
+          </div>
+        </div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-question">Can I modify or cancel my order?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>We process orders quickly, but if you need to make changes, email us at <a href="mailto:hello@hogansalley.ca">hello@hogansalley.ca</a> as soon as possible. If your order hasn't shipped yet, we can usually accommodate changes or cancellations.</p>
+          </div>
+        </div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-question">Do you offer gift cards?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Not yet, but we're working on it. Sign up for our newsletter to be notified when gift cards become available.</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- PRODUCT -->
+  <div class="section-divider" id="product">Product Questions</div>
+
+  <section class="content-section">
+    <ul class="faq-list">
+      <li class="faq-item">
+        <button class="faq-question">Are your jackets waterproof?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Our jackets are <strong>water-resistant</strong> with a DWR (Durable Water Repellent) finish that causes water to bead up and roll off. They're perfect for light to moderate rain — the kind you encounter walking around the city. For heavy downpours or extended exposure, you may eventually get some moisture through.</p>
+            <p>The DWR can be reactivated with heat (tumble dry low) and refreshed with spray-on treatments. See our <a href="hogans_alley_sizing_guide.html#dwr">Care Guide</a> for details.</p>
+          </div>
+        </div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-question">What are the jackets made of?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p><strong>Shell:</strong> 88% Recycled Polyester, 12% Spandex (110 gsm) with DWR finish</p>
+            <p><strong>Lining:</strong> 94% Recycled Polyester face, 100% Recycled Polyester back (320 gsm) — a soft, matte recycled PET fabric, not fleece</p>
+            <p>Both fabrics are OEKO-TEX Standard 100 certified. Each jacket uses approximately 27 recycled plastic bottles.</p>
+          </div>
+        </div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-question">Will the print fade or peel?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>No. Our artwork is <strong>sublimation printed</strong>, which means the dye becomes part of the fabric itself rather than sitting on top. It won't crack, peel, or fade with washing. The colours will stay vibrant for the life of the jacket.</p>
+          </div>
+        </div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-question">How should I wash my jacket?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Machine wash cold (30°C), gentle cycle, with mild liquid detergent. Close all zippers, turn inside out. Tumble dry low to reactivate the DWR coating. No fabric softener, no bleach, no dry cleaning.</p>
+            <p>For complete care instructions, see our <a href="hogans_alley_sizing_guide.html#care">Care Guide</a>.</p>
+          </div>
+        </div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-question">How do I find my size?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Our jackets have a relaxed, unisex fit designed for layering. Check our <a href="hogans_alley_sizing_guide.html">Size Guide</a> for detailed measurements. If you're between sizes, we recommend sizing up for a more comfortable layered fit.</p>
+            <p>Still unsure? Email us at <a href="mailto:hello@hogansalley.ca">hello@hogansalley.ca</a> with your measurements and we'll help you find the perfect fit.</p>
+          </div>
+        </div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-question">Where are your jackets made?</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Our jackets are <strong>made in Canada</strong> using domestic production. The artwork is created locally in Vancouver, and each piece is cut and sewn by skilled Canadian workers.</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="section-divider" id="contact">Still Have Questions?</div>
+
+  <section class="content-section">
+    <div class="callout-box">
+      <h3>Get in Touch</h3>
+      <p>Can't find what you're looking for? We're here to help. Email us at <a href="mailto:hello@hogansalley.ca">hello@hogansalley.ca</a> and we'll get back to you within 24 hours.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <h4>Shop</h4>
+        <a href="hogans_alley_shop_v3.html">All Jackets</a>
+        <a href="#">Libation Collection</a>
+        <a href="#">Money Collection</a>
+        <a href="#">Transport Collection</a>
+        <a href="#">Sanitation Collection</a>
+      </div>
+      <div>
+        <h4>About</h4>
+        <a href="hogans_alley_story.html">Our Story</a>
+        <a href="#">The Artists</a>
+        <a href="#">Sustainability</a>
+        <a href="#">Press</a>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <a href="hogans_alley_sizing_guide.html">Size & Care</a>
+        <a href="hogans_alley_faq.html">FAQ</a>
+        <a href="#">Contact</a>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <a href="#">Instagram</a>
+        <a href="#">Newsletter</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Hogan's Alley. All rights reserved.</span>
+      <span class="footer-flag">
+        <svg width="20" height="12" viewBox="0 0 20 12">
+          <rect fill="#FF0000" width="5" height="12"/>
+          <rect fill="#FFFFFF" x="5" width="10" height="12"/>
+          <rect fill="#FF0000" x="15" width="5" height="12"/>
+          <path fill="#FF0000" d="M10 2L8.5 5H7L8 6.5L7.5 8.5L10 7L12.5 8.5L12 6.5L13 5H11.5L10 2Z"/>
+        </svg>
+        Made in Canada
+      </span>
+    </div>
+  </footer>
+
+  <!-- ACCORDION SCRIPT -->
+  <script>
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const isOpen = item.classList.contains('open');
+        
+        // Close all other items
+        document.querySelectorAll('.faq-item.open').forEach(openItem => {
+          if (openItem !== item) {
+            openItem.classList.remove('open');
+          }
+        });
+        
+        // Toggle current item
+        item.classList.toggle('open');
+      });
+    });
+  </script>
+
+</body>
+</html>

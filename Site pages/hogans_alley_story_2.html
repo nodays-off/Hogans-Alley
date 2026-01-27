@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story — Hogan's Alley</title>
+  
+  <!-- Premium Fonts (same as homepage) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================
+       CSS VARIABLES — PREMIUM PALETTE (from homepage)
+    ============================================ */
+    :root {
+      /* Colors */
+      --color-black: #0A0A0A;
+      --color-white: #FAFAF9;
+      --color-warm-white: #F5F4F2;
+      --color-accent: #C4A962;
+      --color-accent-hover: #B39952;
+      --color-text-primary: #0A0A0A;
+      --color-text-secondary: #4A4A4A;
+      --color-text-muted: #8A8A8A;
+      --color-border: #E5E5E3;
+      
+      /* Typography */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      /* Spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 8rem;
+      --space-2xl: 10rem;
+    }
+    
+    /* ============================================
+       RESET & BASE
+    ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-text-primary);
+      background: var(--color-white);
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0 !important; /* SHARP CORNERS - PREMIUM */
+    }
+    
+    /* ============================================
+       TYPOGRAPHY
+    ============================================ */
+    h1, h2, h3 {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    
+    h1 { font-size: clamp(3rem, 10vw, 6rem); }
+    h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
+    h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+    
+    .subhead {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+    }
+    
+    p {
+      color: var(--color-text-secondary);
+      max-width: 55ch;
+    }
+    
+    /* ============================================
+       NAVIGATION — PREMIUM (from homepage)
+    ============================================ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem var(--space-lg);
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .nav-logo {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-black);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: var(--space-md);
+      list-style: none;
+    }
+    
+    .nav-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      transition: color 0.2s ease;
+    }
+    
+    .nav-links a:hover { color: var(--color-black); }
+    .nav-links a.active { color: var(--color-black); }
+    
+    @media (max-width: 768px) {
+      .nav { padding: 1rem var(--space-md); }
+      .nav-links { display: none; }
+    }
+    
+    /* ============================================
+       PAGE HERO
+    ============================================ */
+    .page-hero {
+      padding: var(--space-xl) var(--space-lg) var(--space-lg);
+      max-width: 900px;
+    }
+    
+    .page-hero h1 {
+      margin: var(--space-sm) 0 var(--space-md);
+    }
+    
+    .page-hero p {
+      font-size: 1.125rem;
+    }
+    
+    @media (max-width: 768px) {
+      .page-hero { padding: var(--space-lg) var(--space-md) var(--space-md); }
+    }
+    
+    /* ============================================
+       SECTIONS (from homepage patterns)
+    ============================================ */
+    .section {
+      padding: var(--space-2xl) var(--space-lg);
+    }
+    
+    .section-alt {
+      background: var(--color-warm-white);
+    }
+    
+    .section-dark {
+      background: var(--color-black);
+      color: var(--color-white);
+    }
+    
+    .section-dark .subhead { color: var(--color-accent); }
+    .section-dark h2 { color: var(--color-white); }
+    .section-dark p { color: rgba(255,255,255,0.7); }
+    
+    .section-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    @media (min-width: 900px) {
+      .section-split {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-xl);
+      }
+    }
+    
+    .section-content h2 {
+      margin: var(--space-sm) 0 var(--space-md);
+    }
+    
+    .section-content p {
+      margin-bottom: var(--space-sm);
+    }
+    
+    .section-image img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+    
+    .section-center {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 768px) {
+      .section { padding: var(--space-lg) var(--space-md); }
+    }
+    
+    /* ============================================
+       HISTORY SECTION
+    ============================================ */
+    .quote-block {
+      border-left: 3px solid var(--color-accent);
+      padding-left: var(--space-md);
+      margin: var(--space-md) 0;
+      font-style: italic;
+      font-size: 1.125rem;
+      color: var(--color-text-secondary);
+    }
+    
+    .history-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin-top: var(--space-md);
+    }
+    
+    .history-tag {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--color-black);
+      color: var(--color-white);
+      padding: 0.5rem 1rem;
+    }
+    
+    .history-image-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--color-black);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-lg);
+    }
+    
+    .history-image-placeholder .placeholder-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .history-image-placeholder .placeholder-title {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      color: var(--color-white);
+      margin-bottom: var(--space-xs);
+    }
+    
+    .history-image-placeholder .placeholder-caption {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.5);
+    }
+    
+    /* ============================================
+       SUSTAINABILITY STATS
+    ============================================ */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      margin: var(--space-lg) 0;
+    }
+    
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+    
+    .stat-card {
+      padding: var(--space-md);
+      border: 1px solid var(--color-border);
+      background: var(--color-white);
+    }
+    
+    .stat-number {
+      font-family: var(--font-headline);
+      font-size: clamp(3rem, 8vw, 4.5rem);
+      font-weight: 500;
+      color: var(--color-accent);
+      line-height: 1;
+      margin-bottom: var(--space-xs);
+    }
+    
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    
+    .stat-desc {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      margin-top: var(--space-xs);
+    }
+    
+    .materials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    
+    @media (max-width: 768px) {
+      .materials-grid { grid-template-columns: 1fr; }
+    }
+    
+    .material-card {
+      padding: var(--space-md);
+      border: 1px solid var(--color-border);
+      background: var(--color-white);
+    }
+    
+    .material-title {
+      font-family: var(--font-headline);
+      font-size: 1.25rem;
+      margin-bottom: var(--space-xs);
+    }
+    
+    .material-spec {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-xs);
+    }
+    
+    .recycled-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      background: #2d5a27;
+      color: white;
+      padding: 0.4rem 0.8rem;
+      margin-top: var(--space-xs);
+    }
+    
+    .certifications {
+      display: flex;
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+      flex-wrap: wrap;
+    }
+    
+    .cert-badge {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+    }
+    
+    .cert-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--color-black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+    
+    .fabric-partner {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+      padding: var(--space-md);
+      border: 1px solid var(--color-border);
+      background: var(--color-white);
+    }
+    
+    .kendor-logo {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1a3a6e;
+      font-style: italic;
+    }
+    
+    .kendor-info strong {
+      display: block;
+      color: var(--color-text-primary);
+    }
+    
+    .kendor-info span {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+    }
+    
+    /* ============================================
+       PARTNER SECTIONS (Artist, Maker)
+    ============================================ */
+    .partner-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+    }
+    
+    .partner-images img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+    
+    .partner-images img:first-child {
+      grid-column: span 2;
+      aspect-ratio: 16/9;
+    }
+    
+    @media (max-width: 768px) {
+      .partner-images { grid-template-columns: 1fr; }
+      .partner-images img:first-child {
+        grid-column: span 1;
+        aspect-ratio: 4/3;
+      }
+    }
+    
+    .partner-name {
+      font-family: var(--font-headline);
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      margin-bottom: var(--space-xs);
+    }
+    
+    .partner-role {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-md);
+    }
+    
+    .partner-quote {
+      border-left: 3px solid var(--color-accent);
+      padding-left: var(--space-md);
+      margin: var(--space-md) 0;
+      font-style: italic;
+    }
+    
+    .section-dark .partner-quote {
+      color: rgba(255,255,255,0.6);
+    }
+    
+    .partner-series {
+      margin-top: var(--space-md);
+    }
+    
+    .series-label {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-xs);
+    }
+    
+    .section-dark .series-label {
+      color: rgba(255,255,255,0.5);
+    }
+    
+    .series-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+    
+    .series-tag {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.05em;
+      background: rgba(196, 169, 98, 0.2);
+      color: var(--color-accent);
+      padding: 0.4rem 0.8rem;
+    }
+    
+    .partner-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-accent);
+      margin-top: var(--space-md);
+      transition: gap 0.2s ease;
+    }
+    
+    .partner-link:hover { gap: var(--space-sm); }
+    
+    .partnership-list {
+      list-style: none;
+      margin: var(--space-md) 0;
+    }
+    
+    .partnership-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+    }
+    
+    .partnership-list li::before {
+      content: "✓";
+      color: var(--color-accent);
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    
+    /* ============================================
+       FOUNDERS SECTION
+    ============================================ */
+    .founders-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+    
+    @media (max-width: 900px) {
+      .founders-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+      }
+    }
+    
+    .founder-card { text-align: center; }
+    
+    .founder-image {
+      width: 100%;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, var(--color-warm-white) 0%, var(--color-border) 100%);
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .founder-image span {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    
+    .founder-name {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      margin-bottom: var(--space-xs);
+    }
+    
+    .founder-role {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .founder-bio {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+    
+    .founder-origin {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      background: var(--color-warm-white);
+      padding: 0.4rem 0.8rem;
+      color: var(--color-text-muted);
+      margin-top: var(--space-sm);
+    }
+    
+    /* ============================================
+       MISSION BANNER
+    ============================================ */
+    .mission-banner {
+      background: var(--color-accent);
+      color: var(--color-black);
+      padding: var(--space-xl) var(--space-lg);
+      text-align: center;
+    }
+    
+    .mission-text {
+      font-family: var(--font-headline);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 500;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+    
+    /* ============================================
+       FOOTER (from homepage)
+    ============================================ */
+    .footer {
+      background: var(--color-black);
+      color: var(--color-white);
+      padding: var(--space-xl) var(--space-lg) var(--space-lg);
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: var(--space-lg);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+    }
+    
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    
+    .footer-brand {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .footer-tagline {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 300px;
+    }
+    
+    .footer h4 {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li { margin-bottom: var(--space-xs); }
+    
+    .footer-links a {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    
+    .footer-links a:hover { color: var(--color-white); }
+    
+    .footer-bottom {
+      max-width: 1400px;
+      margin: var(--space-lg) auto 0;
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+    }
+    
+    @media (max-width: 600px) {
+      .footer-bottom {
+        flex-direction: column;
+        gap: var(--space-xs);
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <a href="hogans_alley_homepage_v2_5.html" class="nav-logo">Hogan's Alley</a>
+    <ul class="nav-links">
+      <li><a href="hogans_alley_homepage_v2_5.html">Home</a></li>
+      <li><a href="hogans_alley_shop_v3.html">Shop</a></li>
+      <li><a href="hogans_alley_lookbook.html">Lookbook</a></li>
+      <li><a href="hogans_alley_story.html" class="active">Story</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <header class="page-hero">
+    <span class="subhead">Our Story</span>
+    <h1>Made in Vancouver</h1>
+    <p>Rain jackets that carry history, celebrate culture, and protect the planet — crafted with fabric that gives plastic a second life.</p>
+  </header>
+
+  <!-- HOGAN'S ALLEY HISTORY -->
+  <section class="section">
+    <div class="section-split">
+      <div class="section-content">
+        <span class="subhead">The Name</span>
+        <h2>Hogan's Alley</h2>
+        <p>Our name honors Vancouver's historic Black neighbourhood — a vibrant community that thrived from the 1930s to the late 1960s in the blocks around Park Lane and Union Street. It was the heart of Black Vancouver: a place of music, culture, entrepreneurship, and resilience.</p>
+        <p>Jazz clubs, chicken joints, barbershops, and rooming houses lined the streets. It was where Jimi Hendrix's grandmother, Nora Hendrix, ran a rooming house. Where the Harlem Nocturne club hosted legends. Where a community built something beautiful against the odds.</p>
+        
+        <div class="quote-block">
+          "In 1967, the City of Vancouver demolished Hogan's Alley to build the Georgia Viaduct. An entire community was displaced, scattered, erased from the map — but not from memory."
+        </div>
+        
+        <p>By adopting this name, we bring light to that history. We carry forward the creative spirit of those musicians, artists, and entrepreneurs who called this neighbourhood home.</p>
+        
+        <div class="history-tags">
+          <span class="history-tag">Nora Hendrix</span>
+          <span class="history-tag">Vie's Chicken & Steak</span>
+          <span class="history-tag">Harlem Nocturne</span>
+          <span class="history-tag">Eleanor Collins</span>
+        </div>
+      </div>
+      <div class="section-image">
+        <div class="history-image-placeholder">
+          <span class="placeholder-label">Archival Image</span>
+          <div class="placeholder-title">Hogan's Alley, Vancouver</div>
+          <span class="placeholder-caption">c. 1950s–1960s<br>Source: City of Vancouver Archives</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUSTAINABILITY -->
+  <section class="section section-alt">
+    <div class="section-center">
+      <span class="subhead">Sustainability</span>
+      <h2>Plastic Bottles, Reimagined</h2>
+      <p>Every Hogan's Alley jacket is made from recycled PET plastic — the same material in water bottles and food containers. Instead of ending up in landfills, oceans, and waterways, that plastic becomes the fabric you wear.</p>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">~27</div>
+          <div class="stat-label">Plastic Bottles</div>
+          <div class="stat-desc">Diverted from landfills and waterways per jacket</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">65</div>
+          <div class="stat-label">Jackets Made</div>
+          <div class="stat-desc">And counting — each one handcrafted in Vancouver</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">~1,755</div>
+          <div class="stat-label">Bottles Saved</div>
+          <div class="stat-desc">Total plastic diverted from polluting our environment</div>
+        </div>
+      </div>
+      
+      <p>Our fabrics are sourced from KenDor Textiles in Delta, BC — keeping our supply chain local and our carbon footprint low. The recycled polyester performs just as well as virgin material: water-resistant, breathable, and built to last.</p>
+      
+      <div class="materials-grid">
+        <div class="material-card">
+          <h3 class="material-title">Shell Fabric</h3>
+          <p class="material-spec">T3541 Recycled Poly Spandex Two-Way Stretch + DWR</p>
+          <p class="material-spec">88% Recycled Polyester, 12% Spandex • 110 gsm</p>
+          <span class="recycled-badge">88% RECYCLED</span>
+        </div>
+        <div class="material-card">
+          <h3 class="material-title">Lining</h3>
+          <p class="material-spec">T3086 Recycled Dintex Fleece Back Softshell</p>
+          <p class="material-spec">Face: 94% Recycled Poly • Back: 100% Recycled Poly • 320 gsm</p>
+          <span class="recycled-badge">~97% RECYCLED</span>
+        </div>
+      </div>
+      
+      <div class="certifications">
+        <div class="cert-badge">
+          <div class="cert-icon">OEKO</div>
+          <span>OEKO-TEX Standard 100</span>
+        </div>
+        <div class="cert-badge">
+          <div class="cert-icon">DWR</div>
+          <span>Durable Water Repellent</span>
+        </div>
+        <div class="cert-badge">
+          <div class="cert-icon">FSC</div>
+          <span>FSC Certified Supplier</span>
+        </div>
+      </div>
+      
+      <div class="fabric-partner">
+        <div class="kendor-logo">KenDor</div>
+        <div class="kendor-info">
+          <strong>KenDor Textiles Limited</strong>
+          <span>7722 Progress Way, Delta BC — Our Local Fabric Partner</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTIST -->
+  <section class="section section-dark">
+    <div class="section-split">
+      <div class="partner-images">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/Artist%20Print%20Creation%20Photo%20-%201.png" alt="Chidi creating artwork">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/Artist%20Print%20Creation%20Photo%20-%202.png" alt="Chidi artwork detail">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Libation.png" alt="Libation print detail">
+      </div>
+      <div class="section-content">
+        <span class="subhead">The Artist</span>
+        <h2 class="partner-name">Joel "Chidi" Sydenham</h2>
+        <div class="partner-role">Visual Artist & Creative Partner — London, UK</div>
+        
+        <p>Chidi is a British-Nigerian visual artist and poet whose work explores the connections between all living things. His art is deeply influenced by his cultural experiences and his belief in an underlying unity between all things in existence.</p>
+        
+        <div class="partner-quote">
+          "The intention with everything I practice is to uplift people, build social bridges, and remind everyone that there is endless beauty within them."
+        </div>
+        
+        <p>We work closely with Chidi to develop the themes behind each print collection. His vision aligns perfectly with ours: celebrating interconnectedness, honoring cultural heritage, and creating work that uplifts. Our repeating patterns pay homage to traditional African wax prints while bringing them into a contemporary Canadian context.</p>
+        
+        <div class="partner-series">
+          <div class="series-label">Influences from Chidi's Work</div>
+          <div class="series-tags">
+            <span class="series-tag">Connected Series</span>
+            <span class="series-tag">Divine Feminine</span>
+            <span class="series-tag">Natural Mystic</span>
+          </div>
+        </div>
+        
+        <a href="https://chidi3s.com/" target="_blank" class="partner-link">
+          Explore Chidi's Art →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAKER / SEAMSTRESS -->
+  <section class="section">
+    <div class="section-split">
+      <div class="section-content">
+        <span class="subhead">The Maker</span>
+        <h2 class="partner-name">Gwen Lutz & Symmetry Patterns</h2>
+        <div class="partner-role">Full-Service Pattern Studio — Vancouver, BC</div>
+        
+        <p>Every Hogan's Alley jacket is expertly crafted by Gwen at Symmetry Patterns, a Vancouver-based pattern studio that has been our partner from day one. Her attention to detail and commitment to quality matches our own.</p>
+        
+        <p>Symmetry Patterns isn't just a manufacturer — they're a true collaborator. Gwen has helped us refine our designs, test durability, and bring our vision to life with expert craftsmanship. Working with a local small business means we can maintain the highest quality standards while supporting our community.</p>
+        
+        <ul class="partnership-list">
+          <li>Expert pattern development and prototyping</li>
+          <li>Rigorous durability testing for all-weather performance</li>
+          <li>Design consultation and technical refinement</li>
+          <li>Premium construction with meticulous attention to detail</li>
+          <li>Local Vancouver production — reducing carbon footprint</li>
+        </ul>
+        
+        <a href="https://www.symmetrypatterns.com/" target="_blank" class="partner-link">
+          Visit Symmetry Patterns →
+        </a>
+      </div>
+      <div class="partner-images" style="grid-template-columns: 1fr 1fr;">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/Gwen%20Photos%20-%20Front%20Shot.jpg" alt="Gwen at work" style="grid-column: span 1; aspect-ratio: 3/4;">
+        <img src="https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/Gwen%20Photos%20-%20Back%20Shot.jpg" alt="Symmetry Patterns workshop" style="grid-column: span 1; aspect-ratio: 3/4;">
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDERS -->
+  <section class="section section-alt">
+    <div class="section-center">
+      <span class="subhead">The Founders</span>
+      <h2>Three Friends, One Vision</h2>
+      <p>We're three millennials who immigrated to Canada in the mid-2000s and became fast friends. Together with our artist Chidi, we draw on inspiration from our experiences back home to create prints that celebrate African heritage in a Canadian context — paying homage to traditional wax fabrics through bold, contemporary patterns.</p>
+      
+      <div class="founders-grid">
+        <div class="founder-card">
+          <div class="founder-image"><span>Photo</span></div>
+          <h3 class="founder-name">Founder Name</h3>
+          <div class="founder-role">Co-Founder</div>
+          <p class="founder-bio">Drawing on experiences from Mali and France, bringing a unique perspective on pattern and design to the team. Passionate about bridging African and Canadian fashion cultures.</p>
+          <span class="founder-origin">Mali → France → Canada</span>
+        </div>
+        
+        <div class="founder-card">
+          <div class="founder-image"><span>Photo</span></div>
+          <h3 class="founder-name">Founder Name</h3>
+          <div class="founder-role">Co-Founder</div>
+          <p class="founder-bio">Born in Nigeria and raised between cultures. Brings expertise in operations and a deep connection to West African textile traditions and their contemporary evolution.</p>
+          <span class="founder-origin">Nigeria → Canada</span>
+        </div>
+        
+        <div class="founder-card">
+          <div class="founder-image"><span>Photo</span></div>
+          <h3 class="founder-name">Founder Name</h3>
+          <div class="founder-role">Co-Founder</div>
+          <p class="founder-bio">Also Nigerian-Canadian, focused on brand development and customer experience. Believes in fashion as a form of cultural storytelling and community building.</p>
+          <span class="founder-origin">Nigeria → Canada</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION BANNER -->
+  <div class="mission-banner">
+    <p class="mission-text">"We love bringing contemporary African fashion to a Canadian context — creating rain gear that's as bold as the cities we live in."</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Hogan's Alley</div>
+        <p class="footer-tagline">Premium rain jackets featuring original artwork. Made in Vancouver from recycled materials.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul class="footer-links">
+          <li><a href="hogans_alley_shop_v3.html">All Products</a></li>
+          <li><a href="hogans_alley_lookbook.html">Lookbook</a></li>
+          <li><a href="#">Size Guide</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="hogans_alley_story.html">Our Story</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Partners</h4>
+        <ul class="footer-links">
+          <li><a href="https://chidi3s.com/" target="_blank">Chidi3s Art</a></li>
+          <li><a href="https://www.symmetrypatterns.com/" target="_blank">Symmetry Patterns</a></li>
+          <li><a href="https://kendortextiles.com/" target="_blank">KenDor Textiles</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Hogan's Alley. All rights reserved.</span>
+      <span>Made in Vancouver, BC</span>
+    </div>
+  </footer>
+
+</body>
+</html>
