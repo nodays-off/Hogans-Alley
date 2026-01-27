@@ -1,480 +1,1036 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop All Jackets - Hogan's Alley</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rain Parka — Hogan's Alley</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-black: #0A0A0A;
+      --color-white: #FAFAF9;
+      --color-warm-white: #F5F4F2;
+      --color-accent: #C4A962;
+      --color-text-primary: #0A0A0A;
+      --color-text-secondary: #4A4A4A;
+      --color-text-muted: #8A8A8A;
+      --color-border: #E5E5E3;
+      --color-success: #2E7D32;
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+    }
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-text-primary);
+      background: var(--color-white);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    
+    h1, h2, h3 {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem var(--space-md);
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .nav-logo {
+      font-family: var(--font-headline);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-black);
+    }
+    .nav-links {
+      display: flex;
+      gap: var(--space-sm);
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--color-black); }
+    
+    /* BREADCRUMB */
+    .breadcrumb {
+      padding: var(--space-sm) var(--space-md);
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .breadcrumb a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover { color: var(--color-text-primary); }
+    
+    /* PRODUCT LAYOUT */
+    .product-page {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--space-md);
+    }
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+    @media (min-width: 900px) {
+      .product-layout {
+        grid-template-columns: 1.3fr 1fr;
+        gap: var(--space-lg);
+      }
+    }
+    
+    /* GALLERY */
+    .gallery {
+      display: flex;
+      gap: 1rem;
+    }
+    .gallery-thumbs {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 80px;
+      flex-shrink: 0;
+    }
+    .thumb {
+      width: 80px;
+      height: 80px;
+      border: 2px solid transparent;
+      background: var(--color-warm-white);
+      cursor: pointer;
+      padding: 0;
+      position: relative;
+      transition: border-color 0.2s;
+      overflow: hidden;
+    }
+    .thumb:hover { border-color: var(--color-border); }
+    .thumb.active { border-color: var(--color-black); }
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .thumb-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      font-size: 0.5rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: rgba(0,0,0,0.75);
+      color: white;
+      padding: 3px 4px;
+      text-align: center;
+    }
+    .gallery-main {
+      flex: 1;
+      position: relative;
+      background: var(--color-warm-white);
+      aspect-ratio: 4/5;
+      overflow: hidden;
+    }
+    .gallery-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .zoom-btn {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      background: white;
+      border: 1px solid var(--color-border);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .zoom-btn:hover { background: var(--color-warm-white); }
+    
+    /* PRODUCT INFO */
+    .product-info {
+      padding: var(--space-sm) 0;
+    }
+    .product-collection {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-accent);
+      margin-bottom: 0.5rem;
+    }
+    .product-title {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      margin-bottom: 0.5rem;
+    }
+    .product-price {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      margin-bottom: var(--space-sm);
+    }
+    .product-description {
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-md);
+      line-height: 1.7;
+    }
+    
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--color-border);
+      margin: var(--space-md) 0;
+    }
+    
+    /* PRINT SELECTOR */
+    .selector-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .print-swatches {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .swatch {
+      width: 48px;
+      height: 48px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      padding: 0;
+      background: var(--color-warm-white);
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .swatch:hover { border-color: var(--color-border); }
+    .swatch.active { border-color: var(--color-black); }
+    .swatch img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .swatch-check {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 18px;
+      height: 18px;
+      background: var(--color-black);
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .swatch.active .swatch-check { display: flex; }
+    .print-name {
+      font-family: var(--font-headline);
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    .print-tagline {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 0.5rem;
+    }
+    .print-link {
+      font-size: 0.75rem;
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+    .print-link:hover { text-decoration: underline; }
+    
+    /* SIZE SELECTOR */
+    .size-buttons {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .size-btn {
+      min-width: 50px;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--color-border);
+      background: white;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .size-btn:hover { border-color: var(--color-black); }
+    .size-btn.active {
+      background: var(--color-black);
+      color: white;
+      border-color: var(--color-black);
+    }
+    
+    .size-guide-link {
+      font-size: 0.75rem;
+      color: var(--color-text-secondary);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    
+    /* ADD TO CART */
+    .add-to-cart {
+      width: 100%;
+      padding: 1.25rem 2rem;
+      background: var(--color-black);
+      color: white;
+      border: none;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: var(--space-md);
+    }
+    .add-to-cart:hover { background: #333; }
+    
+    .shipping-note {
+      margin-top: var(--space-sm);
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      text-align: center;
+    }
+    .shipping-note svg {
+      vertical-align: middle;
+      margin-right: 0.25rem;
+    }
+    
+    /* ACCORDION */
+    .accordion {
+      margin-top: var(--space-lg);
+      border-top: 1px solid var(--color-border);
+    }
+    .accordion-item {
+      border-bottom: 1px solid var(--color-border);
+    }
+    .accordion-header {
+      width: 100%;
+      padding: 1.25rem 0;
+      background: none;
+      border: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-align: left;
+    }
+    .accordion-header:hover { color: var(--color-text-secondary); }
+    .accordion-icon {
+      font-size: 1.25rem;
+      transition: transform 0.2s;
+    }
+    .accordion-item.open .accordion-icon {
+      transform: rotate(45deg);
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .accordion-item.open .accordion-content {
+      max-height: 500px;
+    }
+    .accordion-inner {
+      padding-bottom: 1.5rem;
+      color: var(--color-text-secondary);
+      font-size: 0.875rem;
+      line-height: 1.8;
+    }
+    .accordion-inner ul {
+      list-style: none;
+      padding: 0;
+    }
+    .accordion-inner li {
+      padding: 0.35rem 0;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+    .accordion-inner li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+    }
+    
+    /* SIZE CHART */
+    .size-chart {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+    }
+    .size-chart th, .size-chart td {
+      padding: 0.5rem;
+      text-align: center;
+      border: 1px solid var(--color-border);
+    }
+    .size-chart th {
+      background: var(--color-warm-white);
+      font-weight: 500;
+    }
+    
+    /* YOU MAY ALSO LIKE */
+    .also-like {
+      margin-top: var(--space-lg);
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--color-border);
+    }
+    .also-like-title {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-text-muted);
+      text-align: center;
+      margin-bottom: var(--space-md);
+    }
+    .also-like-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 600px) {
+      .also-like-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .also-like-card {
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+    .also-like-card img {
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      background: var(--color-warm-white);
+      margin-bottom: 0.75rem;
+      transition: opacity 0.2s;
+    }
+    .also-like-card:hover img { opacity: 0.9; }
+    .also-like-card h4 {
+      font-family: var(--font-headline);
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+    .also-like-card p {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+    }
+    
+    /* FOOTER */
+    .footer {
+      background: var(--color-black);
+      color: white;
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+      max-width: 1000px;
+      margin: 0 auto var(--space-lg);
+    }
+    @media (min-width: 768px) {
+      .footer-content { grid-template-columns: repeat(4, 1fr); }
+    }
+    .footer h4 {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+    }
+    .footer a {
+      display: block;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+    .footer a:hover { color: white; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      flex-wrap: wrap;
+      gap: 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .footer-flag {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <header class="nav-header" id="mainNav">
-        <div class="container">
-            <nav class="nav-bar">
-                <div class="logo">
-                    <a href="index.html">HOGAN'S ALLEY</a>
-                </div>
-                <ul class="nav-links desktop-nav">
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="story.html">Story</a></li>
-                    <li><a href="kids.html">Kids</a></li>
-                    <li><a href="lookbook.html">Lookbook</a></li>
-                    <li><a href="care.html">Care</a></li>
+
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Hogan's Alley</a>
+    <ul class="nav-links">
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="story.html">Story</a></li>
+      <li><a href="lookbook.html">Lookbook</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="/cart" style="display: flex; align-items: center; gap: 0.25rem;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 6h15l-1.5 9h-12z M9 21a1 1 0 100-2 1 1 0 000 2z M18 21a1 1 0 100-2 1 1 0 000 2z"/>
+        </svg>
+        Bag (0)
+      </a></li>
+    </ul>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="index.html">Home</a> / <a href="shop.html">Shop</a> / <span id="breadcrumb-print">Money</span> Rain Parka
+  </div>
+
+  <!-- PRODUCT PAGE -->
+  <main class="product-page">
+    <div class="product-layout">
+      
+      <!-- LEFT: GALLERY -->
+      <div class="gallery">
+        <div class="gallery-thumbs" id="thumbs">
+          <!-- Populated by JS -->
+        </div>
+        <div class="gallery-main">
+          <img id="main-image" src="" alt="Rain Parka">
+          <button class="zoom-btn" title="Zoom">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <!-- RIGHT: PRODUCT INFO -->
+      <div class="product-info">
+        <div class="product-collection" id="collection-label">Money Collection</div>
+        <h1 class="product-title">Rain Parka</h1>
+        <div class="product-price">$395 CAD</div>
+        
+        <p class="product-description" id="product-description">
+          Mid-thigh length waterproof parka featuring our Money print — royal blue, emerald green, and gold with cowrie shells, currency symbols, and geometric patterns exploring value and exchange. Each jacket starts as an original painting before being transferred to technical waterproof fabric.
+        </p>
+        
+        <div class="divider"></div>
+        
+        <!-- PRINT SELECTOR -->
+        <div class="selector-label">Print</div>
+        <div class="print-swatches" id="print-swatches">
+          <!-- Populated by JS -->
+        </div>
+        <div class="print-name" id="print-name">Money</div>
+        <div class="print-tagline" id="print-tagline">"Currency & Exchange"</div>
+        <a href="/collections/money" class="print-link" id="print-link">Learn the story →</a>
+        
+        <div class="divider"></div>
+        
+        <!-- SIZE SELECTOR -->
+        <div class="selector-label">
+          <span>Size</span>
+          <span class="size-guide-link" onclick="toggleAccordion('sizing')">Size Guide</span>
+        </div>
+        <div class="size-buttons">
+          <button class="size-btn" data-size="XS">XS</button>
+          <button class="size-btn" data-size="S">S</button>
+          <button class="size-btn active" data-size="M">M</button>
+          <button class="size-btn" data-size="L">L</button>
+          <button class="size-btn" data-size="XL">XL</button>
+          <button class="size-btn" data-size="XXL">XXL</button>
+        </div>
+        
+        <!-- ADD TO CART -->
+        <button class="add-to-cart" id="add-to-cart">
+          Add to Cart — $395 CAD
+        </button>
+        
+        <p class="shipping-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+          Free shipping across Canada. 30-day returns.
+        </p>
+        
+        <!-- ACCORDION DETAILS -->
+        <div class="accordion">
+          <div class="accordion-item" id="accordion-construction">
+            <button class="accordion-header" onclick="toggleAccordion('construction')">
+              <span>Construction Details</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul>
+                  <li>Fully taped seams prevent water penetration</li>
+                  <li>Adjustable hood with 45" drawcord and toggle</li>
+                  <li>Storm flap covers center front YKK zipper</li>
+                  <li>Deep front pockets with fleece lining</li>
+                  <li>Adjustable hem drawcord for custom fit</li>
+                  <li>Set-in sleeves with fitted cuffs</li>
+                  <li>Mid-thigh length (34" on size M)</li>
                 </ul>
-                <div class="nav-icons">
-                    <button class="icon-btn search-btn" aria-label="Search">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="8" cy="8" r="6"/>
-                            <path d="M13 13l5 5"/>
-                        </svg>
-                    </button>
-                    <button class="icon-btn account-btn" aria-label="Account">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="10" cy="6" r="4"/>
-                            <path d="M2 19c0-4 3.5-7 8-7s8 3 8 7"/>
-                        </svg>
-                    </button>
-                    <button class="icon-btn cart-btn" aria-label="Cart">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M1 1h3l2 13h11l3-9H6"/>
-                            <circle cx="8" cy="18" r="1" fill="currentColor"/>
-                            <circle cx="16" cy="18" r="1" fill="currentColor"/>
-                        </svg>
-                        <span class="cart-count">0</span>
-                        <!-- Mini Cart Dropdown -->
-                        <div class="mini-cart-dropdown">
-                            <div id="miniCartContent">
-                                <div class="mini-cart-empty">
-                                    <p>Your cart is empty</p>
-                                    <a href="shop.html" class="btn btn-primary btn-small">Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </button>
-                    <button class="hamburger mobile-only" aria-label="Menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-content">
-            <ul class="mobile-nav-links">
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="story.html">Story</a></li>
-                <li><a href="kids.html">Kids</a></li>
-                <li><a href="lookbook.html">Lookbook</a></li>
-                <li><a href="care.html">Care</a></li>
-            </ul>
-            <div class="mobile-nav-footer">
-                <a href="#" class="mobile-nav-link">Account</a>
-                <a href="#" class="mobile-nav-link">Help</a>
+              </div>
             </div>
+          </div>
+          
+          <div class="accordion-item" id="accordion-materials">
+            <button class="accordion-header" onclick="toggleAccordion('materials')">
+              <span>Materials & Sustainability</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul>
+                  <li><strong>Shell:</strong> 88% Recycled Polyester, 12% Spandex (110gsm)</li>
+                  <li><strong>Lining:</strong> 100% Recycled Polyester fleece-back softshell (320gsm)</li>
+                  <li><strong>Finish:</strong> DWR (Durable Water Repellent) — PFAS-free</li>
+                  <li><strong>Certified:</strong> OEKO-TEX Standard 100, FSC</li>
+                  <li><strong>Source:</strong> KenDor Textiles, Delta, BC</li>
+                  <li><strong>Made:</strong> Cut and sewn in Vancouver, BC</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item" id="accordion-sizing">
+            <button class="accordion-header" onclick="toggleAccordion('sizing')">
+              <span>Sizing & Fit</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <p style="margin-bottom: 1rem;">Relaxed fit, designed to layer over hoodies and sweaters. Model is 5'9" / 175cm wearing size M.</p>
+                <table class="size-chart">
+                  <tr>
+                    <th></th>
+                    <th>XS</th>
+                    <th>S</th>
+                    <th>M</th>
+                    <th>L</th>
+                    <th>XL</th>
+                    <th>XXL</th>
+                  </tr>
+                  <tr>
+                    <td><strong>Chest</strong></td>
+                    <td>44"</td>
+                    <td>46"</td>
+                    <td>48"</td>
+                    <td>50"</td>
+                    <td>52"</td>
+                    <td>54"</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Length</strong></td>
+                    <td>32"</td>
+                    <td>33"</td>
+                    <td>34"</td>
+                    <td>35"</td>
+                    <td>36"</td>
+                    <td>37"</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Sleeve</strong></td>
+                    <td>25"</td>
+                    <td>25.25"</td>
+                    <td>25.5"</td>
+                    <td>25.75"</td>
+                    <td>26"</td>
+                    <td>26.25"</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item" id="accordion-care">
+            <button class="accordion-header" onclick="toggleAccordion('care')">
+              <span>Care Instructions</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul>
+                  <li>Machine wash cold, gentle cycle</li>
+                  <li>Use mild detergent — no fabric softener</li>
+                  <li>Tumble dry low to reactivate DWR finish</li>
+                  <li>Do not iron directly on print</li>
+                  <li>Do not dry clean</li>
+                </ul>
+                <p style="margin-top: 1rem;"><a href="faq.html" style="color: var(--color-accent);">Full care guide →</a></p>
+              </div>
+            </div>
+          </div>
         </div>
+        
+      </div>
     </div>
-
-    <!-- Shop Header -->
-    <section class="shop-header">
-        <div class="container">
-            <h1 class="fade-up">All Jackets</h1>
-            <p class="shop-subline fade-up">Art-driven shells for real rain. Unisex fit, built for layering.</p>
-        </div>
-    </section>
-
-    <!-- Filter Bar -->
-    <div class="filter-bar">
-        <div class="container">
-            <div class="filter-controls">
-                <div class="filter-group">
-                    <span class="filter-label">Size:</span>
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="xs">XS</button>
-                    <button class="filter-btn" data-filter="s">S</button>
-                    <button class="filter-btn" data-filter="m">M</button>
-                    <button class="filter-btn" data-filter="l">L</button>
-                    <button class="filter-btn" data-filter="xl">XL</button>
-                    <button class="filter-btn" data-filter="xxl">XXL</button>
-                </div>
-                <div class="filter-group">
-                    <span class="filter-label">Sort:</span>
-                    <button class="filter-btn active" data-filter="newest">Newest</button>
-                    <button class="filter-btn" data-filter="price-low">Price: Low to High</button>
-                    <button class="filter-btn" data-filter="price-high">Price: High to Low</button>
-                </div>
-            </div>
-        </div>
+    
+    <!-- YOU MAY ALSO LIKE -->
+    <div class="also-like">
+      <div class="also-like-title">— You May Also Like —</div>
+      <div class="also-like-grid" id="also-like-grid">
+        <!-- Populated by JS -->
+      </div>
     </div>
+    
+  </main>
 
-    <!-- Product Grid -->
-    <section class="section">
-        <div class="container">
-            <div class="product-grid-shop">
-                
-                <!-- Product 1: Libation -->
-                <div class="product-card" data-product="libation">
-                    <a href="product-libation.html" class="product-link">
-                        <div class="product-image">
-                            <img src="Pictures/35_Product_FrontView.png" alt="Libation rain jacket - warm yellows, deep reds, forest greens in celebration-inspired geometric pattern" style="width: 100%; height: 100%; object-fit: cover;">
-                            <button class="wishlist-heart" data-product-id="libation" aria-label="Add to wishlist">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                                </svg>
-                            </button>
-                            <button class="quick-view-btn"
-                                    data-product-name="Libation"
-                                    data-product-price="$185 CAD"
-                                    data-product-image="Pictures/35_Product_FrontView.png"
-                                    data-product-description="A celebration print inspired by shared drinks, rhythm, and late-night stories. Waterproof shell with taped seams and adjustable hood."
-                                    data-product-link="product-libation.html">
-                                Quick View
-                            </button>
-                            <span class="product-badge new">New Drop</span>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-name">Libation</h3>
-                            <p class="product-price">$185 CAD</p>
-                            <p class="product-sizes">In stock: XS - XXL</p>
-                            <p style="font-size: 14px; color: rgba(245,245,247,0.7); margin-top: 8px;">A celebration print inspired by shared drinks, rhythm, and late-night stories.</p>
-                        </div>
-                    </a>
-                    <a href="product-libation.html" class="btn btn-secondary btn-small" style="width: 100%; margin-top: 12px;">View Details</a>
-                </div>
-
-                <!-- Product 2: Market Circuit -->
-                <div class="product-card" data-product="market-circuit">
-                    <div class="product-link">
-                        <div class="product-image">
-                            <img src="Pictures/35_Product_FrontView.png" alt="Market Circuit rain jacket - electric blue, bright green with coin and cowrie motifs and sharp geometric lines" style="width: 100%; height: 100%; object-fit: cover;">
-                            <button class="wishlist-heart" data-product-id="market-circuit" aria-label="Add to wishlist">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                                </svg>
-                            </button>
-                            <span class="product-badge coming-soon">Coming Soon</span>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-name">Market Circuit</h3>
-                            <p class="product-price">$185 CAD</p>
-                            <p class="product-sizes">Coming Soon: XS - XXL</p>
-                            <p style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">Electric blue and green, coin and cowrie motifs that feel like a night market in neon.</p>
-                        </div>
-                    </div>
-                    <button class="btn btn-notify btn-small" data-product="Market Circuit" style="width: 100%; margin-top: 12px;">Notify Me</button>
-                </div>
-
-                <!-- Product 3: Stormwave -->
-                <div class="product-card" data-product="stormwave">
-                    <div class="product-link">
-                        <div class="product-image">
-                            <img src="Pictures/35_Product_FrontView.png" alt="Stormwave rain jacket - kinetic wave of reds, blues, greens inspired by street murals and real storms" style="width: 100%; height: 100%; object-fit: cover;">
-                            <button class="wishlist-heart" data-product-id="stormwave" aria-label="Add to wishlist">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                                </svg>
-                            </button>
-                            <span class="product-badge coming-soon">Coming Soon</span>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-name">Stormwave</h3>
-                            <p class="product-price">$185 CAD</p>
-                            <p class="product-sizes">Coming Soon: XS - XXL</p>
-                            <p style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">A kinetic wave of reds, blues, and greens, inspired by street murals and the mess of a real storm.</p>
-                        </div>
-                    </div>
-                    <button class="btn btn-notify btn-small" data-product="Stormwave" style="width: 100%; margin-top: 12px;">Notify Me</button>
-                </div>
-
-                <!-- Product 4: Transport -->
-                <div class="product-card" data-product="transport">
-                    <a href="#" class="product-link">
-                        <div class="product-image">
-                            <img src="Pictures/35_Product_FrontView.png" alt="Transport rain jacket - vintage automobile designs with bold reds, yellows, and blues in retro style" style="width: 100%; height: 100%; object-fit: cover;">
-                            <button class="wishlist-heart" data-product-id="transport" aria-label="Add to wishlist">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                                </svg>
-                            </button>
-                            <button class="quick-view-btn"
-                                    data-product-name="Transport"
-                                    data-product-price="$185 CAD"
-                                    data-product-image="Pictures/35_Product_FrontView.png"
-                                    data-product-description="Vintage automobile motifs celebrating city transit and motion. Waterproof shell with taped seams and adjustable hood."
-                                    data-product-link="#">
-                                Quick View
-                            </button>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-name">Transport</h3>
-                            <p class="product-price">$185 CAD</p>
-                            <p class="product-sizes">In stock: XS - XXL</p>
-                            <p style="font-size: 14px; color: rgba(245,245,247,0.7); margin-top: 8px;">Vintage automobile motifs celebrating city transit and motion.</p>
-                        </div>
-                    </a>
-                    <a href="#" class="btn btn-secondary btn-small" style="width: 100%; margin-top: 12px;">View Details</a>
-                </div>
-
-                <!-- Product 5: Sanitation -->
-                <div class="product-card" data-product="sanitation">
-                    <a href="#" class="product-link">
-                        <div class="product-image">
-                            <img src="Pictures/35_Product_FrontView.png" alt="Sanitation rain jacket - clean geometric blocks in fresh blues, whites, and greys for minimalist aesthetic" style="width: 100%; height: 100%; object-fit: cover;">
-                            <button class="wishlist-heart" data-product-id="sanitation" aria-label="Add to wishlist">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                                </svg>
-                            </button>
-                            <button class="quick-view-btn"
-                                    data-product-name="Sanitation"
-                                    data-product-price="$185 CAD"
-                                    data-product-image="Pictures/35_Product_FrontView.png"
-                                    data-product-description="Clean geometric blocks for those who want bold but minimal. Waterproof shell with taped seams and adjustable hood."
-                                    data-product-link="#">
-                                Quick View
-                            </button>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-name">Sanitation</h3>
-                            <p class="product-price">$185 CAD</p>
-                            <p class="product-sizes">In stock: XS - XXL</p>
-                            <p style="font-size: 14px; color: rgba(245,245,247,0.7); margin-top: 8px;">Clean geometric blocks for those who want bold but minimal.</p>
-                        </div>
-                    </a>
-                    <a href="#" class="btn btn-secondary btn-small" style="width: 100%; margin-top: 12px;">View Details</a>
-                </div>
-
-                <!-- Product 6: Urban Rain (Example placeholder) -->
-                <div class="product-card" data-product="urban-rain">
-                    <a href="#" class="product-link">
-                        <div class="product-image">
-                            <img src="Pictures/35_Product_FrontView.png" alt="Urban Rain jacket - mixed pattern with city-inspired motifs in cool greys, blues, and pops of yellow" style="width: 100%; height: 100%; object-fit: cover;">
-                            <button class="wishlist-heart" data-product-id="urban-rain" aria-label="Add to wishlist">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                                </svg>
-                            </button>
-                            <button class="quick-view-btn"
-                                    data-product-name="Urban Rain"
-                                    data-product-price="$185 CAD"
-                                    data-product-image="Pictures/35_Product_FrontView.png"
-                                    data-product-description="City-inspired patterns for everyday wet weather. Waterproof shell with taped seams and adjustable hood."
-                                    data-product-link="#">
-                                Quick View
-                            </button>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-name">Urban Rain</h3>
-                            <p class="product-price">$185 CAD</p>
-                            <p class="product-sizes">Few left: M, L, XL</p>
-                            <p style="font-size: 14px; color: rgba(245,245,247,0.7); margin-top: 8px;">City-inspired patterns for everyday wet weather.</p>
-                        </div>
-                    </a>
-                    <a href="#" class="btn btn-secondary btn-small" style="width: 100%; margin-top: 12px;">View Details</a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Buy Section -->
-    <section class="section section-alt">
-        <div class="container text-center">
-            <h2>Why Hogan's Alley?</h2>
-            <div class="feature-blocks" style="max-width: 900px; margin: 0 auto;">
-                <div class="feature-block">
-                    <h4>Actually Waterproof</h4>
-                    <p>10K rated shells with taped seams. These aren't "fashion rain jackets." They're built for hours in real sideways rain.</p>
-                </div>
-                <div class="feature-block">
-                    <h4>Art, Not Logos</h4>
-                    <p>Every print starts as an original painting. You're wearing a piece of artwork, not another brand billboard.</p>
-                </div>
-                <div class="feature-block">
-                    <h4>Streetwear Fit</h4>
-                    <p>Designed to layer over hoodies and crewnecks. Unisex sizing that actually works for everyone.</p>
-                </div>
-                <div class="feature-block">
-                    <h4>Made for Grey Cities</h4>
-                    <p>Tested in Vancouver, Seattle, London—places where rain isn't an event, it's a season.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="section newsletter-section">
-        <div class="container">
-            <div class="newsletter-box">
-                <h3>Get early access to new drops</h3>
-                <p>Sign up for launch notifications, behind-the-scenes content, and rain-season exclusives.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="your@email.com" class="form-input" required>
-                    <button type="submit" class="btn btn-primary">Sign Up</button>
-                </form>
-
-                <div class="form-message-container">
-                    <div class="form-success-message">
-                        <div class="success-checkmark">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M8 12l2.5 2.5L16 9"/>
-                            </svg>
-                        </div>
-                        <span class="form-message-text">Thanks! Check your inbox for confirmation.</span>
-                    </div>
-
-                    <div class="form-error-message">
-                        <div class="error-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 8v4M12 16h.01"/>
-                            </svg>
-                        </div>
-                        <span class="form-message-text">Something went wrong. Please try again.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">HOGAN'S ALLEY</div>
-                    <p class="footer-tagline">Bold rainwear for grey cities.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Shop</h4>
-                    <ul>
-                        <li><a href="shop.html">All Jackets</a></li>
-                        <li><a href="shop.html#new">New Drops</a></li>
-                        <li><a href="kids.html">Kids (Coming Soon)</a></li>
-                        <li><a href="#">Gift Cards</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>About</h4>
-                    <ul>
-                        <li><a href="story.html">Our Story</a></li>
-                        <li><a href="story.html#patterns">Pattern Stories</a></li>
-                        <li><a href="care.html">Care Guide</a></li>
-                        <li><a href="lookbook.html">Lookbook</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="#">Size Guide</a></li>
-                        <li><a href="#">Shipping Info</a></li>
-                        <li><a href="#">Returns</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <ul>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">TikTok</a></li>
-                        <li><a href="#">Newsletter</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2025 Hogan's Alley. Bold rainwear for grey cities.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Notify Me Modal -->
-    <div class="notify-modal" id="notifyModal">
-        <div class="notify-modal-backdrop"></div>
-        <div class="notify-modal-content">
-            <button class="notify-modal-close" aria-label="Close modal">&times;</button>
-            <div class="notify-modal-body">
-                <h3>Get notified when it drops</h3>
-                <p>We'll send you an email as soon as this print is available.</p>
-
-                <form class="notify-form" id="notifyForm">
-                    <div class="form-group">
-                        <label for="notifyEmail">Email Address</label>
-                        <input type="email" id="notifyEmail" class="form-input" placeholder="your@email.com" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Which print interests you?</label>
-                        <div class="radio-group">
-                            <label class="radio-label">
-                                <input type="radio" name="product" value="Market Circuit" required>
-                                <span>Market Circuit</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="product" value="Stormwave" required>
-                                <span>Stormwave</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-submit">Notify Me</button>
-                </form>
-
-                <div class="notify-success" id="notifySuccess">
-                    <div class="success-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3">
-                            <circle cx="24" cy="24" r="22"/>
-                            <path d="M14 24l8 8 12-16"/>
-                        </svg>
-                    </div>
-                    <h4>Thanks! We'll email you when <span id="selectedProduct"></span> drops.</h4>
-                    <p>Keep an eye on your inbox.</p>
-                </div>
-            </div>
-        </div>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <h4>Shop</h4>
+        <a href="collections/libation.html">Libation</a>
+        <a href="collections/money.html">Money</a>
+        <a href="collections/sanitation.html">Sanitation</a>
+        <a href="collections/transport.html">Transport</a>
+      </div>
+      <div>
+        <h4>Story</h4>
+        <a href="story.html">About</a>
+        <a href="lookbook.html">Lookbook</a>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <a href="sizing.html">Size Guide</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <a href="#">Instagram</a>
+        <a href="#">Newsletter</a>
+      </div>
     </div>
-
-    <!-- Quick View Modal -->
-    <div class="quick-view-modal" id="quickViewModal">
-        <div class="quick-view-backdrop"></div>
-        <div class="quick-view-content">
-            <button class="quick-view-close" aria-label="Close modal">&times;</button>
-            <div class="quick-view-body">
-                <div class="quick-view-image-container">
-                    <img id="quickViewImage" src="" alt="">
-                </div>
-                <div class="quick-view-details">
-                    <h3 class="quick-view-product-name" id="quickViewProductName"></h3>
-                    <p class="quick-view-price" id="quickViewPrice"></p>
-                    <p class="quick-view-description" id="quickViewDescription"></p>
-
-                    <div class="quick-view-size-selector">
-                        <label class="quick-view-size-label">Select Size</label>
-                        <div class="size-options">
-                            <button class="size-btn" data-size="XS">XS</button>
-                            <button class="size-btn" data-size="S">S</button>
-                            <button class="size-btn" data-size="M">M</button>
-                            <button class="size-btn" data-size="L">L</button>
-                            <button class="size-btn" data-size="XL">XL</button>
-                            <button class="size-btn" data-size="XXL">XXL</button>
-                        </div>
-                    </div>
-
-                    <div class="quick-view-actions">
-                        <button class="quick-view-add-to-bag" id="quickViewAddToBag">Add to Bag</button>
-                        <a href="#" class="quick-view-full-details" id="quickViewFullDetails">Full Details</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="footer-bottom">
+      <span>© 2026 Hogan's Alley. All rights reserved.</span>
+      <span class="footer-flag">
+        <svg width="20" height="12" viewBox="0 0 20 12">
+          <rect fill="#FF0000" width="5" height="12"/>
+          <rect fill="#FFFFFF" x="5" width="10" height="12"/>
+          <rect fill="#FF0000" x="15" width="5" height="12"/>
+          <path fill="#FF0000" d="M10 2L8.5 5H7L8 6.5L7.5 8.5L10 7L12.5 8.5L12 6.5L13 5H11.5L10 2Z"/>
+        </svg>
+        Made in Canada
+      </span>
     </div>
+  </footer>
 
-    <script src="animations.js"></script>
+  <script>
+    // =====================
+    // CORRECT GITHUB IMAGE BASE URL
+    // =====================
+    const BASE = 'https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/';
+    
+    // Helper to encode filenames with spaces
+    function img(filename) {
+      return BASE + encodeURIComponent(filename);
+    }
+    
+    // =====================
+    // PRODUCT DATA - Based on MDs
+    // =====================
+    const prints = {
+      libation: {
+        name: "Libation",
+        tagline: '"Celebration & Abundance"',
+        description: "Mid-thigh length waterproof parka featuring our signature Libation print — vibrant reds, yellows, and greens with calabash gourds and swirling organic patterns celebrating abundance and offering. Each jacket starts as an original painting before being transferred to technical waterproof fabric.",
+        link: "/collections/libation",
+        // Libation = red/yellow/green calabash pattern
+        // L3 (Black woman), L1 (South Asian woman, premium London), V4 (Asian man), S1
+        gallery: [
+          { src: img('L3 Borough Market Browse.png'), label: 'London' },
+          { src: img('L1 Southbank Morning Commute.png'), label: 'Southbank' },
+          { src: img('V4 Granville Island - 1.png'), label: 'Vancouver' },
+          { src: img('S1 Capitol Hill Coffee Run.png'), label: 'Seattle' },
+          { src: img('Fabric Detail Shot - Libation.png'), label: 'Fabric' },
+          { src: img('DETAIL-1 Fleece Lining Interior - Libation.png'), label: 'Interior' },
+          { src: img('DETAIL-2 Hood with Drawcord System - Libation.png'), label: 'Hood' },
+          { src: img('DETAIL-3 Zipper and Storm Flap - Libation.png'), label: 'Zipper' }
+        ],
+        swatch: img('Fabric Detail Shot - Libation.png')
+      },
+      money: {
+        name: "Money",
+        tagline: '"Currency & Exchange"',
+        description: "Mid-thigh length waterproof parka featuring our Money print — royal blue, emerald green, and gold with cowrie shells, currency symbols, and geometric patterns exploring value and exchange. Each jacket starts as an original painting before being transferred to technical waterproof fabric.",
+        link: "/collections/money",
+        // Money = blue/green/gold cowrie pattern
+        // V-HERO (women), L2 (white man), L5 (mixed race woman), S4 (South Asian man)
+        gallery: [
+          { src: img('V-HERO-1 Vancouver Art Gallery Plaza - 1.png'), label: 'Hero' },
+          { src: img('VHERO2 Coal Harbour Seawall - 1.png'), label: 'Seawall' },
+          { src: img('L2 Underground Platform.png'), label: 'London' },
+          { src: img('S4 South Lake Union Tech Walk.png'), label: 'Seattle' },
+          { src: img('Fabric Detail Shot - Money.png'), label: 'Fabric' },
+          { src: img('DETAIL-1 Fleece Lining Interior - Money.png'), label: 'Interior' },
+          { src: img('DETAIL-2 Hood with Drawcord System - Money.png'), label: 'Hood' },
+          { src: img('DETAIL-3 Zipper and Storm Flap - Money.png'), label: 'Zipper' }
+        ],
+        swatch: img('Fabric Detail Shot - Money.png')
+      },
+      sanitation: {
+        name: "Sanitation",
+        tagline: '"Urban Infrastructure"',
+        description: "Mid-thigh length waterproof parka featuring our Sanitation print — vibrant blues, reds, and greens with brushes, bins, and city maintenance imagery celebrating the unsung heroes who keep our cities running. Each jacket starts as an original painting before being transferred to technical waterproof fabric.",
+        link: "/collections/sanitation",
+        // Gallery: SAN- prefixed shots, Detail, Lining
+        gallery: [
+          { src: img('SAN-L1 Early Morning Street Sweep - 1.png'), label: 'London' },
+          { src: img('SAN-L2 Barbican Brutalist -1.png'), label: 'Barbican' },
+          { src: img('SAN-S1 Industrial SoDo District - 1.png'), label: 'Seattle' },
+          { src: img('SAN-V1 Shipyard District Morning.png'), label: 'Vancouver' },
+          { src: img('Fabric Detail Shot - Sanitation.png'), label: 'Fabric' },
+          { src: img('DETAIL-1 Fleece Lining Interior - Sanitation.png'), label: 'Interior' },
+          { src: img('DETAIL-2 Hood with Drawcord System - Sanitation.png'), label: 'Hood' },
+          { src: img('DETAIL-3 Zipper and Storm Flap - Sanitation.png'), label: 'Zipper' }
+        ],
+        swatch: img('Fabric Detail Shot - Sanitation.png')
+      },
+      transport: {
+        name: "Transport",
+        tagline: '"Movement & Journey"',
+        description: "Mid-thigh length waterproof parka featuring our Transport print — warm oranges, reds, and teals with vintage automobiles and road elements celebrating movement and journey. Each jacket starts as an original painting before being transferred to technical waterproof fabric.",
+        link: "/collections/transport",
+        // Gallery: Lifestyle shots where jacket=Transport, Detail, Lining
+        gallery: [
+          { src: img('L4 Pub Arrival — Two Friends.png'), label: 'London' },
+          { src: img('P1 Hawthorne Bridge Bike.png'), label: 'Portland' },
+          { src: img('S3 Ferry Commute.png'), label: 'Seattle' },
+          { src: img('V1 Stanley Park Seawall.png'), label: 'Vancouver' },
+          { src: img('Fabric Detail Shot - Transportaion.png'), label: 'Fabric' },
+          { src: img('DETAIL-1 Fleece Lining Interior - Transportation.png'), label: 'Interior' },
+          { src: img('DETAIL-2 Hood with Drawcord System - Transportation.png'), label: 'Hood' },
+          { src: img('DETAIL-3 Zipper and Storm Flap - Transportation.png'), label: 'Zipper' }
+        ],
+        swatch: img('Fabric Detail Shot - Transportaion.png')
+      }
+    };
+    
+    let currentPrint = 'money';
+    let currentSize = 'M';
+    let currentImageIndex = 0;
+    
+    // =====================
+    // INITIALIZE
+    // =====================
+    function init() {
+      renderSwatches();
+      selectPrint('money');
+      setupSizeButtons();
+      setupAddToCart();
+    }
+    
+    // =====================
+    // RENDER SWATCHES
+    // =====================
+    function renderSwatches() {
+      const container = document.getElementById('print-swatches');
+      container.innerHTML = Object.keys(prints).map(key => {
+        const p = prints[key];
+        return `
+          <button class="swatch ${key === currentPrint ? 'active' : ''}" data-print="${key}" title="${p.name}">
+            <img src="${p.swatch}" alt="${p.name}" onerror="this.style.background='#ddd'">
+            <span class="swatch-check">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+            </span>
+          </button>
+        `;
+      }).join('');
+      
+      // Add click handlers
+      container.querySelectorAll('.swatch').forEach(swatch => {
+        swatch.addEventListener('click', () => selectPrint(swatch.dataset.print));
+      });
+    }
+    
+    // =====================
+    // SELECT PRINT
+    // =====================
+    function selectPrint(print) {
+      currentPrint = print;
+      const data = prints[print];
+      
+      // Update swatch active state
+      document.querySelectorAll('.swatch').forEach(s => {
+        s.classList.toggle('active', s.dataset.print === print);
+      });
+      
+      // Update text content
+      document.getElementById('collection-label').textContent = data.name + ' Collection';
+      document.getElementById('print-name').textContent = data.name;
+      document.getElementById('print-tagline').textContent = data.tagline;
+      document.getElementById('print-link').href = data.link;
+      document.getElementById('product-description').textContent = data.description;
+      document.getElementById('breadcrumb-print').textContent = data.name;
+      
+      // Render gallery
+      renderGallery(data.gallery);
+      
+      // Update "You may also like"
+      updateAlsoLike(print);
+    }
+    
+    // =====================
+    // RENDER GALLERY
+    // =====================
+    function renderGallery(gallery) {
+      const thumbsContainer = document.getElementById('thumbs');
+      
+      thumbsContainer.innerHTML = gallery.map((img, i) => `
+        <button class="thumb ${i === 0 ? 'active' : ''}" data-index="${i}" data-src="${img.src}">
+          <img src="${img.src}" alt="${img.label}" onerror="this.style.background='#ddd'">
+          ${img.label ? `<span class="thumb-label">${img.label}</span>` : ''}
+        </button>
+      `).join('');
+      
+      // Set main image
+      document.getElementById('main-image').src = gallery[0].src;
+      currentImageIndex = 0;
+      
+      // Add click handlers
+      thumbsContainer.querySelectorAll('.thumb').forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          const index = parseInt(thumb.dataset.index);
+          currentImageIndex = index;
+          
+          document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+          
+          document.getElementById('main-image').src = thumb.dataset.src;
+        });
+      });
+    }
+    
+    // =====================
+    // UPDATE ALSO LIKE
+    // =====================
+    function updateAlsoLike(currentPrint) {
+      const otherPrints = Object.keys(prints).filter(p => p !== currentPrint);
+      const grid = document.getElementById('also-like-grid');
+      
+      grid.innerHTML = otherPrints.map(p => {
+        const data = prints[p];
+        return `
+          <a href="#" class="also-like-card" onclick="selectPrint('${p}'); window.scrollTo(0,0); return false;">
+            <img src="${data.gallery[0].src}" alt="${data.name} Collection" onerror="this.style.background='#ddd'">
+            <h4>${data.name}</h4>
+            <p>$395 CAD</p>
+          </a>
+        `;
+      }).join('');
+    }
+    
+    // =====================
+    // SIZE BUTTONS
+    // =====================
+    function setupSizeButtons() {
+      document.querySelectorAll('.size-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          currentSize = btn.dataset.size;
+          document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        });
+      });
+    }
+    
+    // =====================
+    // ACCORDION
+    // =====================
+    function toggleAccordion(id) {
+      const item = document.getElementById('accordion-' + id);
+      const wasOpen = item.classList.contains('open');
+      
+      document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+      
+      if (!wasOpen) {
+        item.classList.add('open');
+      }
+    }
+    
+    // =====================
+    // ADD TO CART
+    // =====================
+    function setupAddToCart() {
+      document.getElementById('add-to-cart').addEventListener('click', () => {
+        const btn = document.getElementById('add-to-cart');
+        btn.textContent = 'Added to Cart ✓';
+        btn.style.background = '#2E7D32';
+        
+        setTimeout(() => {
+          btn.textContent = 'Add to Cart — $395 CAD';
+          btn.style.background = '';
+        }, 2000);
+      });
+    }
+    
+    // Initialize on load
+    init();
+  </script>
+
 </body>
 </html>
