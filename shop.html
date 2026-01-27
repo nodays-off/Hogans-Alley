@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 
-  <!-- Preconnect to GitHub for faster image loading -->
-  <link rel="preconnect" href="https://raw.githubusercontent.com">
+  <!-- Preconnect to Cloudinary CDN for faster image loading -->
+  <link rel="preconnect" href="https://res.cloudinary.com">
   
   <style>
     :root {
@@ -783,13 +783,20 @@
 
   <script>
     // =====================
-    // CORRECT GITHUB IMAGE BASE URL
+    // CLOUDINARY CDN + GITHUB IMAGE BASE URL
     // =====================
+    const CLOUDINARY = 'https://res.cloudinary.com/hogansalley/image/fetch/f_auto,q_auto';
     const BASE = 'https://raw.githubusercontent.com/nodays-off/Hogans-Alley/master/Pictures/Pictures/';
-    
-    // Helper to encode filenames with spaces
-    function img(filename) {
-      return BASE + encodeURIComponent(filename);
+
+    // Helper to create Cloudinary-optimized URLs (auto WebP, quality optimization)
+    function img(filename, width = 800) {
+      const rawUrl = BASE + encodeURIComponent(filename);
+      return `${CLOUDINARY},w_${width}/${rawUrl}`;
+    }
+
+    // Smaller version for thumbnails
+    function thumb(filename) {
+      return img(filename, 160);
     }
     
     // =====================
@@ -814,7 +821,7 @@
           { src: img('DETAIL-3 Zipper and Storm Flap - Libation.png'), label: 'Zipper' },
           { src: img('DETAIL-10 Inside Patch Pocket - Libation.png'), label: 'Pocket' }
         ],
-        swatch: img('Fabric Detail Shot - Libation.png')
+        swatch: thumb('Fabric Detail Shot - Libation.png')
       },
       money: {
         name: "Money",
@@ -834,7 +841,7 @@
           { src: img('DETAIL-3 Zipper and Storm Flap - Money.png'), label: 'Zipper' },
           { src: img('DETAIL-10 Inside Patch Pocket - Money.png'), label: 'Pocket' }
         ],
-        swatch: img('Fabric Detail Shot - Money.png')
+        swatch: thumb('Fabric Detail Shot - Money.png')
       },
       sanitation: {
         name: "Sanitation",
@@ -853,7 +860,7 @@
           { src: img('DETAIL-3 Zipper and Storm Flap - Sanitation.png'), label: 'Zipper' },
           { src: img('DETAIL-10 Inside Patch Pocket - Sanitation.png'), label: 'Pocket' }
         ],
-        swatch: img('Fabric Detail Shot - Sanitation.png')
+        swatch: thumb('Fabric Detail Shot - Sanitation.png')
       },
       transport: {
         name: "Transport",
@@ -872,7 +879,7 @@
           { src: img('DETAIL-3 Zipper and Storm Flap - Transportation.png'), label: 'Zipper' },
           { src: img('DETAIL-10 Inside Patch Pocket - Transportation.png'), label: 'Pocket' }
         ],
-        swatch: img('Fabric Detail Shot - Transportaion.png')
+        swatch: thumb('Fabric Detail Shot - Transportaion.png')
       }
     };
     
@@ -945,29 +952,34 @@
     // =====================
     // RENDER GALLERY
     // =====================
+    // Helper to convert full-size URL to thumbnail
+    function toThumbUrl(fullUrl) {
+      return fullUrl.replace('w_800', 'w_160');
+    }
+
     function renderGallery(gallery) {
       const thumbsContainer = document.getElementById('thumbs');
-      
+
       thumbsContainer.innerHTML = gallery.map((img, i) => `
         <button class="thumb ${i === 0 ? 'active' : ''}" data-index="${i}" data-src="${img.src}">
-          <img src="${img.src}" alt="${img.label}" onerror="this.style.background='#ddd'">
+          <img src="${toThumbUrl(img.src)}" alt="${img.label}" onerror="this.style.background='#ddd'" loading="lazy">
           ${img.label ? `<span class="thumb-label">${img.label}</span>` : ''}
         </button>
       `).join('');
-      
+
       // Set main image
       document.getElementById('main-image').src = gallery[0].src;
       currentImageIndex = 0;
-      
+
       // Add click handlers
       thumbsContainer.querySelectorAll('.thumb').forEach(thumb => {
         thumb.addEventListener('click', () => {
           const index = parseInt(thumb.dataset.index);
           currentImageIndex = index;
-          
+
           document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
           thumb.classList.add('active');
-          
+
           document.getElementById('main-image').src = thumb.dataset.src;
         });
       });
@@ -979,12 +991,17 @@
     function updateAlsoLike(currentPrint) {
       const otherPrints = Object.keys(prints).filter(p => p !== currentPrint);
       const grid = document.getElementById('also-like-grid');
-      
+
+      // Use smaller images for "also like" cards (w_400 instead of w_800)
+      function toCardUrl(fullUrl) {
+        return fullUrl.replace('w_800', 'w_400');
+      }
+
       grid.innerHTML = otherPrints.map(p => {
         const data = prints[p];
         return `
           <a href="#" class="also-like-card" onclick="selectPrint('${p}'); window.scrollTo(0,0); return false;">
-            <img src="${data.gallery[0].src}" alt="${data.name} Collection" onerror="this.style.background='#ddd'">
+            <img src="${toCardUrl(data.gallery[0].src)}" alt="${data.name} Collection" onerror="this.style.background='#ddd'" loading="lazy">
             <h4>${data.name}</h4>
             <p>$395 CAD</p>
           </a>
