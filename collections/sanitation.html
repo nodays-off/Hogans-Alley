@@ -111,6 +111,21 @@
     .cta .subhead { margin-bottom: var(--space-xs); } .cta h2 { margin-bottom: var(--space-md); }
     .btn { display: inline-block; padding: 1rem 3rem; background: var(--color-black); color: var(--color-white); text-decoration: none; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; transition: background 0.3s ease; }
     .btn:hover { background: var(--color-text-secondary); }
+
+    /* Purchase Section */
+    .purchase-section { background: var(--color-warm-white); padding: var(--space-xl) var(--space-lg); }
+    .purchase-section-inner { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); align-items: start; }
+    .purchase-image { aspect-ratio: 1; overflow: hidden; }
+    .purchase-image img { width: 100%; height: 100%; object-fit: cover; }
+    .purchase-details { padding: var(--space-md) 0; }
+    .purchase-details .subhead { margin-bottom: var(--space-xs); }
+    .purchase-details h2 { margin-bottom: var(--space-sm); }
+    .purchase-details > p { color: var(--color-text-secondary); margin-bottom: var(--space-md); }
+    @media (max-width: 768px) {
+      .purchase-section { padding: var(--space-lg) var(--space-sm); }
+      .purchase-section-inner { grid-template-columns: 1fr; gap: var(--space-md); }
+      .purchase-image { aspect-ratio: 4/3; }
+    }
     
     .other-collections { padding: var(--space-xl) var(--space-lg); background: var(--color-warm-white); }
     .other-collections-header { text-align: center; margin-bottom: var(--space-lg); }
@@ -141,12 +156,22 @@
 
   <nav class="nav">
     <a href="../index.html" class="nav-logo">Hogan's Alley</a>
-    <ul class="nav-links">
-      <li><a href="../shop.html">Shop</a></li>
-      <li><a href="../story.html">Story</a></li>
-      <li><a href="../lookbook.html">Lookbook</a></li>
-      <li><a href="../faq.html">FAQ</a></li>
-    </ul>
+    <div class="nav-actions">
+      <ul class="nav-links">
+        <li><a href="../shop.html">Shop</a></li>
+        <li><a href="../story.html">Story</a></li>
+        <li><a href="../lookbook.html">Lookbook</a></li>
+        <li><a href="../faq.html">FAQ</a></li>
+      </ul>
+      <button class="cart-toggle" aria-label="Open cart" onclick="window.openCart && window.openCart()">
+        <svg class="cart-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 01-8 0"></path>
+        </svg>
+        <span class="cart-badge" id="cart-badge">0</span>
+      </button>
+    </div>
   </nav>
 
   <section class="hero">
@@ -225,16 +250,6 @@
         <p>Inside patch pocket for secure storage</p>
       </div>
       <div class="detail-card">
-        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-1%20Fleece%20Lining%20Interior%20-%20Sanitation.png" alt="Sanitation fleece lining interior">
-        <h3>The Interior</h3>
-        <p>320gsm brushed fleece lining for warmth</p>
-      </div>
-      <div class="detail-card">
-        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-6%20Cuff%20Detail%20-%20Sanitation.png" alt="Sanitation cuff detail">
-        <h3>The Cuff</h3>
-        <p>Elasticated cuff with clean finish</p>
-      </div>
-      <div class="detail-card">
         <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-8%20Made%20in%20Vancouver%20Label%20-%20Sanitation.png" alt="Sanitation made in Vancouver label">
         <h3>The Label</h3>
         <p>100% Canadian made in Vancouver</p>
@@ -258,6 +273,30 @@
         <div class="spec-group"><h3>Lining</h3><ul><li>100% Recycled Polyester fleece-back</li><li>320gsm brushed fleece for warmth</li><li>Matte, soft hand feel throughout</li><li>FSC certified materials</li></ul></div>
         <div class="spec-group"><h3>Features</h3><ul><li>Fully taped seams</li><li>45" adjustable hood drawcord</li><li>Deep fleece-lined pockets</li><li>Adjustable hem drawcord</li></ul></div>
         <div class="spec-group"><h3>Provenance</h3><ul><li>Designed in Vancouver, BC</li><li>Cut and sewn in Vancouver</li><li>KenDor Textiles (Delta, BC)</li><li>100% Canadian made</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">Purchase</div>
+
+  <!-- Product Purchase Section with data attributes for e-commerce -->
+  <section class="purchase-section fade-in"
+    data-product-id="sanitation-jacket"
+    data-product-name="Sanitation Rain Parka"
+    data-product-collection="Sanitation"
+    data-product-price="395"
+    data-product-image="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Sanitation.png">
+    <div class="purchase-section-inner">
+      <div class="purchase-image">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Sanitation.png" alt="Sanitation Rain Parka fabric detail">
+      </div>
+      <div class="purchase-details">
+        <p class="subhead">Sanitation Collection</p>
+        <h2>Sanitation Rain Parka</h2>
+        <p>Premium rain jacket featuring the Sanitation broom sweep print. 100% Canadian made in Vancouver.</p>
+
+        <!-- Size selector, quantity selector, and add to cart will be rendered by product.js -->
+        <div class="product-purchase"></div>
       </div>
     </div>
   </section>
@@ -300,10 +339,17 @@
     </div>
   </footer>
 
+  <!-- Intersection Observer for fade-in animations -->
   <script>
     const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   </script>
+
+  <!-- E-commerce Scripts -->
+  <script src="/js/cart.js"></script>
+  <script src="/js/inventory.js"></script>
+  <script src="/js/cart-drawer.js"></script>
+  <script src="/js/product.js"></script>
 
 </body>
 </html>
