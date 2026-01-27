@@ -4,13 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Money Collection — Hogan's Alley</title>
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 
   <!-- Preconnect to Statically CDN for faster image loading -->
   <link rel="preconnect" href="https://cdn.statically.io">
+
+  <!-- E-commerce Component Styles -->
+  <link rel="stylesheet" href="/css/cart-drawer.css">
+  <link rel="stylesheet" href="/css/components.css">
 
   <style>
     :root {
@@ -36,23 +40,24 @@
     h2 { font-size: clamp(1.75rem, 4vw, 3rem); }
     h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); }
     .subhead { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-accent); }
-    
+
     .nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem var(--space-lg); background: var(--color-white); border-bottom: 1px solid var(--color-border); }
     .nav-logo { font-family: var(--font-headline); font-size: 1.5rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--color-black); }
+    .nav-actions { display: flex; align-items: center; gap: var(--space-md); }
     .nav-links { display: flex; gap: var(--space-md); list-style: none; }
     .nav-links a { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: var(--color-text-secondary); transition: color 0.2s ease; }
     .nav-links a:hover { color: var(--color-black); }
-    @media (max-width: 768px) { .nav { padding: 1rem var(--space-sm); } .nav-links { gap: var(--space-sm); } .nav-links a { font-size: 0.625rem; } }
-    
+    @media (max-width: 768px) { .nav { padding: 1rem var(--space-sm); } .nav-links { gap: var(--space-sm); } .nav-links a { font-size: 0.625rem; } .nav-actions { gap: var(--space-sm); } }
+
     @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
     .animate-fade-up { animation: fadeUp 0.8s ease forwards; }
     .delay-1 { animation-delay: 0.1s; opacity: 0; } .delay-2 { animation-delay: 0.2s; opacity: 0; }
-    
+
     .section-divider { text-align: center; padding: var(--space-lg) 0; font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-text-muted); }
     .section-divider::before, .section-divider::after { content: '—'; margin: 0 var(--space-sm); }
-    
+
     .hero { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
     .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.8) 0%, rgba(10,10,10,0.3) 40%, transparent 70%); }
@@ -61,11 +66,11 @@
     .hero-content h1 { margin-bottom: var(--space-sm); }
     .hero-content p { max-width: 550px; font-size: 1.0625rem; color: rgba(255,255,255,0.85); line-height: 1.7; }
     @media (max-width: 768px) { .hero-content { padding: var(--space-lg) var(--space-sm); } }
-    
+
     .intro { max-width: 800px; margin: 0 auto; padding: var(--space-xl) var(--space-lg); text-align: center; }
     .intro .subhead { margin-bottom: var(--space-sm); } .intro h2 { margin-bottom: var(--space-md); }
     .intro p { color: var(--color-text-secondary); font-size: 1.0625rem; line-height: 1.8; }
-    
+
     .editorial { display: grid; grid-template-columns: 1fr 1fr; min-height: 500px; }
     .editorial.reverse { direction: rtl; } .editorial.reverse > * { direction: ltr; }
     .editorial-image { position: relative; overflow: hidden; }
@@ -77,10 +82,10 @@
     .editorial-text p { color: var(--color-text-secondary); max-width: 450px; line-height: 1.8; }
     .editorial-text p + p { margin-top: var(--space-sm); }
     @media (max-width: 900px) { .editorial { grid-template-columns: 1fr; } .editorial.reverse { direction: ltr; } .editorial-image { aspect-ratio: 16/9; } .editorial-text { padding: var(--space-lg) var(--space-sm); } }
-    
+
     .full-image { width: 100%; aspect-ratio: 2/1; overflow: hidden; }
     .full-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
-    
+
     .details { padding: var(--space-xl) var(--space-lg); max-width: 1200px; margin: 0 auto; }
     .details-header { text-align: center; margin-bottom: var(--space-lg); }
     .details-header .subhead { margin-bottom: var(--space-xs); }
@@ -91,7 +96,7 @@
     .detail-card h3 { font-size: 1.125rem; margin-bottom: var(--space-xs); }
     .detail-card p { font-size: 0.875rem; color: var(--color-text-muted); }
     @media (max-width: 768px) { .details { padding: var(--space-lg) var(--space-sm); } .details-grid { grid-template-columns: 1fr; gap: var(--space-lg); } }
-    
+
     .specs { background: var(--color-black); color: var(--color-white); padding: var(--space-xl) var(--space-lg); }
     .specs-inner { max-width: 1000px; margin: 0 auto; }
     .specs .subhead { color: var(--color-accent); margin-bottom: var(--space-xs); }
@@ -101,12 +106,27 @@
     .spec-group ul { list-style: none; }
     .spec-group li { padding: var(--space-xs) 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.9375rem; color: rgba(255,255,255,0.75); }
     @media (max-width: 768px) { .specs { padding: var(--space-lg) var(--space-sm); } .specs-grid { grid-template-columns: 1fr; } }
-    
+
+    /* Purchase Section */
+    .purchase-section { background: var(--color-warm-white); padding: var(--space-xl) var(--space-lg); }
+    .purchase-section-inner { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); align-items: start; }
+    .purchase-image { aspect-ratio: 1; overflow: hidden; }
+    .purchase-image img { width: 100%; height: 100%; object-fit: cover; }
+    .purchase-details { padding: var(--space-md) 0; }
+    .purchase-details .subhead { margin-bottom: var(--space-xs); }
+    .purchase-details h2 { margin-bottom: var(--space-sm); }
+    .purchase-details > p { color: var(--color-text-secondary); margin-bottom: var(--space-md); }
+    @media (max-width: 768px) {
+      .purchase-section { padding: var(--space-lg) var(--space-sm); }
+      .purchase-section-inner { grid-template-columns: 1fr; gap: var(--space-md); }
+      .purchase-image { aspect-ratio: 4/3; }
+    }
+
     .cta { padding: var(--space-xl) var(--space-lg); text-align: center; }
     .cta .subhead { margin-bottom: var(--space-xs); } .cta h2 { margin-bottom: var(--space-md); }
     .btn { display: inline-block; padding: 1rem 3rem; background: var(--color-black); color: var(--color-white); text-decoration: none; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; transition: background 0.3s ease; }
     .btn:hover { background: var(--color-text-secondary); }
-    
+
     .other-collections { padding: var(--space-xl) var(--space-lg); background: var(--color-warm-white); }
     .other-collections-header { text-align: center; margin-bottom: var(--space-lg); }
     .other-collections-header .subhead { margin-bottom: var(--space-xs); }
@@ -117,7 +137,7 @@
     .collection-card h3 { margin-bottom: var(--space-xs); }
     .collection-card p { font-size: 0.875rem; color: var(--color-text-muted); }
     @media (max-width: 900px) { .other-collections { padding: var(--space-lg) var(--space-sm); } .collections-grid { grid-template-columns: 1fr; } }
-    
+
     .footer { padding: var(--space-xl) var(--space-lg) var(--space-lg); background: var(--color-black); color: var(--color-white); }
     .footer-inner { max-width: 1400px; margin: 0 auto; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--space-lg); margin-bottom: var(--space-lg); }
@@ -136,12 +156,22 @@
 
   <nav class="nav">
     <a href="../index.html" class="nav-logo">Hogan's Alley</a>
-    <ul class="nav-links">
-      <li><a href="../shop.html">Shop</a></li>
-      <li><a href="../story.html">Story</a></li>
-      <li><a href="../lookbook.html">Lookbook</a></li>
-      <li><a href="../faq.html">FAQ</a></li>
-    </ul>
+    <div class="nav-actions">
+      <ul class="nav-links">
+        <li><a href="../shop.html">Shop</a></li>
+        <li><a href="../story.html">Story</a></li>
+        <li><a href="../lookbook.html">Lookbook</a></li>
+        <li><a href="../faq.html">FAQ</a></li>
+      </ul>
+      <button class="cart-toggle" aria-label="Open cart" onclick="window.openCart && window.openCart()">
+        <svg class="cart-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 01-8 0"></path>
+        </svg>
+        <span class="cart-badge" id="cart-badge">0</span>
+      </button>
+    </div>
   </nav>
 
   <section class="hero">
@@ -219,6 +249,11 @@
         <h3>The Pocket</h3>
         <p>Inside patch pocket for secure storage</p>
       </div>
+      <div class="detail-card">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-1%20Fleece%20Lining%20Interior%20-%20Money.png" alt="Money fleece lining interior">
+        <h3>The Interior</h3>
+        <p>320gsm brushed fleece lining for warmth</p>
+      </div>
     </div>
   </section>
 
@@ -233,6 +268,30 @@
         <div class="spec-group"><h3>Lining</h3><ul><li>100% Recycled Polyester fleece-back</li><li>320gsm brushed fleece for warmth</li><li>Matte, soft hand feel throughout</li><li>FSC certified materials</li></ul></div>
         <div class="spec-group"><h3>Features</h3><ul><li>Fully taped seams</li><li>45" adjustable hood drawcord</li><li>Deep fleece-lined pockets</li><li>Adjustable hem drawcord</li></ul></div>
         <div class="spec-group"><h3>Provenance</h3><ul><li>Designed in Vancouver, BC</li><li>Cut and sewn in Vancouver</li><li>KenDor Textiles (Delta, BC)</li><li>100% Canadian made</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">Purchase</div>
+
+  <!-- Product Purchase Section with data attributes for e-commerce -->
+  <section class="purchase-section fade-in"
+    data-product-id="money-jacket"
+    data-product-name="Money Rain Parka"
+    data-product-collection="Money"
+    data-product-price="395"
+    data-product-image="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Money.png">
+    <div class="purchase-section-inner">
+      <div class="purchase-image">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Money.png" alt="Money Rain Parka fabric detail">
+      </div>
+      <div class="purchase-details">
+        <p class="subhead">Money Collection</p>
+        <h2>Money Rain Parka</h2>
+        <p>Premium rain jacket featuring the Money cowrie shell print. 100% Canadian made in Vancouver.</p>
+
+        <!-- Size selector, quantity selector, and add to cart will be rendered by product.js -->
+        <div class="product-purchase"></div>
       </div>
     </div>
   </section>
@@ -275,10 +334,17 @@
     </div>
   </footer>
 
+  <!-- Intersection Observer for fade-in animations -->
   <script>
     const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   </script>
+
+  <!-- E-commerce Scripts -->
+  <script src="/js/cart.js"></script>
+  <script src="/js/inventory.js"></script>
+  <script src="/js/cart-drawer.js"></script>
+  <script src="/js/product.js"></script>
 
 </body>
 </html>
