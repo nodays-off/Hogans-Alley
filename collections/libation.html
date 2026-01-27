@@ -12,6 +12,10 @@
   <!-- Preconnect to Statically CDN for faster image loading -->
   <link rel="preconnect" href="https://cdn.statically.io">
 
+  <!-- E-commerce Component Styles -->
+  <link rel="stylesheet" href="/css/cart-drawer.css">
+  <link rel="stylesheet" href="/css/components.css">
+
   <style>
     :root {
       --color-black: #0A0A0A;
@@ -106,6 +110,8 @@
     }
     
     .nav-links a:hover { color: var(--color-black); }
+    .nav-actions { display: flex; align-items: center; gap: var(--space-md); }
+    @media (max-width: 768px) { .nav-actions { gap: var(--space-sm); } }
     
     @media (max-width: 768px) {
       .nav { padding: 1rem var(--space-sm); }
@@ -408,6 +414,21 @@
     }
     
     .btn:hover { background: var(--color-text-secondary); }
+
+    /* Purchase Section */
+    .purchase-section { background: var(--color-warm-white); padding: var(--space-xl) var(--space-lg); }
+    .purchase-section-inner { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); align-items: start; }
+    .purchase-image { aspect-ratio: 1; overflow: hidden; }
+    .purchase-image img { width: 100%; height: 100%; object-fit: cover; }
+    .purchase-details { padding: var(--space-md) 0; }
+    .purchase-details .subhead { margin-bottom: var(--space-xs); }
+    .purchase-details h2 { margin-bottom: var(--space-sm); }
+    .purchase-details > p { color: var(--color-text-secondary); margin-bottom: var(--space-md); }
+    @media (max-width: 768px) {
+      .purchase-section { padding: var(--space-lg) var(--space-sm); }
+      .purchase-section-inner { grid-template-columns: 1fr; gap: var(--space-md); }
+      .purchase-image { aspect-ratio: 4/3; }
+    }
     
     /* OTHER COLLECTIONS */
     .other-collections {
@@ -530,12 +551,22 @@
 
   <nav class="nav">
     <a href="../index.html" class="nav-logo">Hogan's Alley</a>
-    <ul class="nav-links">
-      <li><a href="../shop.html">Shop</a></li>
-      <li><a href="../story.html">Story</a></li>
-      <li><a href="../lookbook.html">Lookbook</a></li>
-      <li><a href="../faq.html">FAQ</a></li>
-    </ul>
+    <div class="nav-actions">
+      <ul class="nav-links">
+        <li><a href="../shop.html">Shop</a></li>
+        <li><a href="../story.html">Story</a></li>
+        <li><a href="../lookbook.html">Lookbook</a></li>
+        <li><a href="../faq.html">FAQ</a></li>
+      </ul>
+      <button class="cart-toggle" aria-label="Open cart" onclick="window.openCart && window.openCart()">
+        <svg class="cart-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 01-8 0"></path>
+        </svg>
+        <span class="cart-badge" id="cart-badge">0</span>
+      </button>
+    </div>
   </nav>
 
   <section class="hero">
@@ -618,6 +649,21 @@
         <h3>The Interior</h3>
         <p>320gsm brushed fleece lining for warmth</p>
       </div>
+      <div class="detail-card">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-6%20Cuff%20Detail%20-%20Libation.png" alt="Libation cuff detail">
+        <h3>The Cuff</h3>
+        <p>Elasticated cuff with clean finish</p>
+      </div>
+      <div class="detail-card">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-8%20Made%20in%20Vancouver%20Label%20-%20Libation.png" alt="Libation made in Vancouver label">
+        <h3>The Label</h3>
+        <p>100% Canadian made in Vancouver</p>
+      </div>
+      <div class="detail-card">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-4%20Hand%20in%20Pocket%20-%20Libation.png" alt="Libation hand in pocket">
+        <h3>The Fit</h3>
+        <p>Deep fleece-lined hand pockets</p>
+      </div>
     </div>
   </section>
 
@@ -664,6 +710,30 @@
             <li>100% Canadian made</li>
           </ul>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">Purchase</div>
+
+  <!-- Product Purchase Section with data attributes for e-commerce -->
+  <section class="purchase-section fade-in"
+    data-product-id="libation-jacket"
+    data-product-name="Libation Rain Parka"
+    data-product-collection="Libation"
+    data-product-price="395"
+    data-product-image="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Libation.png">
+    <div class="purchase-section-inner">
+      <div class="purchase-image">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Libation.png" alt="Libation Rain Parka fabric detail">
+      </div>
+      <div class="purchase-details">
+        <p class="subhead">Libation Collection</p>
+        <h2>Libation Rain Parka</h2>
+        <p>Premium rain jacket featuring the Libation calabash gourd print. 100% Canadian made in Vancouver.</p>
+
+        <!-- Size selector, quantity selector, and add to cart will be rendered by product.js -->
+        <div class="product-purchase"></div>
       </div>
     </div>
   </section>
@@ -735,6 +805,7 @@
     </div>
   </footer>
 
+  <!-- Intersection Observer for fade-in animations -->
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -743,6 +814,12 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   </script>
+
+  <!-- E-commerce Scripts -->
+  <script src="/js/cart.js"></script>
+  <script src="/js/inventory.js"></script>
+  <script src="/js/cart-drawer.js"></script>
+  <script src="/js/product.js"></script>
 
 </body>
 </html>

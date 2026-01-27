@@ -12,6 +12,10 @@
   <!-- Preconnect to Statically CDN for faster image loading -->
   <link rel="preconnect" href="https://cdn.statically.io">
 
+  <!-- E-commerce Component Styles -->
+  <link rel="stylesheet" href="/css/cart-drawer.css">
+  <link rel="stylesheet" href="/css/components.css">
+
   <style>
     :root {
       --color-black: #0A0A0A;
@@ -42,7 +46,8 @@
     .nav-links { display: flex; gap: var(--space-md); list-style: none; }
     .nav-links a { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: var(--color-text-secondary); transition: color 0.2s ease; }
     .nav-links a:hover { color: var(--color-black); }
-    @media (max-width: 768px) { .nav { padding: 1rem var(--space-sm); } .nav-links { gap: var(--space-sm); } .nav-links a { font-size: 0.625rem; } }
+    .nav-actions { display: flex; align-items: center; gap: var(--space-md); }
+    @media (max-width: 768px) { .nav { padding: 1rem var(--space-sm); } .nav-links { gap: var(--space-sm); } .nav-links a { font-size: 0.625rem; } .nav-actions { gap: var(--space-sm); } }
     
     @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
@@ -223,6 +228,21 @@
         <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-1%20Fleece%20Lining%20Interior%20-%20Sanitation.png" alt="Sanitation fleece lining interior">
         <h3>The Interior</h3>
         <p>320gsm brushed fleece lining for warmth</p>
+      </div>
+      <div class="detail-card">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-6%20Cuff%20Detail%20-%20Sanitation.png" alt="Sanitation cuff detail">
+        <h3>The Cuff</h3>
+        <p>Elasticated cuff with clean finish</p>
+      </div>
+      <div class="detail-card">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-8%20Made%20in%20Vancouver%20Label%20-%20Sanitation.png" alt="Sanitation made in Vancouver label">
+        <h3>The Label</h3>
+        <p>100% Canadian made in Vancouver</p>
+      </div>
+      <div class="detail-card">
+        <img src="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/DETAIL-4%20Hand%20in%20Pocket%20-%20Sanitation.png" alt="Sanitation hand in pocket">
+        <h3>The Fit</h3>
+        <p>Deep fleece-lined hand pockets</p>
       </div>
     </div>
   </section>
