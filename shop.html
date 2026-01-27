@@ -11,7 +11,11 @@
 
   <!-- Preconnect to Statically CDN for faster image loading -->
   <link rel="preconnect" href="https://cdn.statically.io">
-  
+
+  <!-- E-commerce Component Styles -->
+  <link rel="stylesheet" href="/css/cart-drawer.css">
+  <link rel="stylesheet" href="/css/components.css">
+
   <style>
     :root {
       --color-black: #0A0A0A;
@@ -86,6 +90,7 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--color-black); }
+    .nav-actions { display: flex; align-items: center; gap: var(--space-md); }
     
     /* BREADCRUMB */
     .breadcrumb {
@@ -528,18 +533,22 @@
   <!-- NAVIGATION -->
   <nav class="nav">
     <a href="index.html" class="nav-logo">Hogan's Alley</a>
-    <ul class="nav-links">
-      <li><a href="shop.html">Shop</a></li>
-      <li><a href="story.html">Story</a></li>
-      <li><a href="lookbook.html">Lookbook</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a href="/cart" style="display: flex; align-items: center; gap: 0.25rem;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M6 6h15l-1.5 9h-12z M9 21a1 1 0 100-2 1 1 0 000 2z M18 21a1 1 0 100-2 1 1 0 000 2z"/>
+    <div class="nav-actions">
+      <ul class="nav-links">
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="story.html">Story</a></li>
+        <li><a href="lookbook.html">Lookbook</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+      <button class="cart-toggle" aria-label="Open cart" onclick="window.openCart && window.openCart()">
+        <svg class="cart-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 01-8 0"></path>
         </svg>
-        Bag (0)
-      </a></li>
-    </ul>
+        <span class="cart-badge" id="cart-badge">0</span>
+      </button>
+    </div>
   </nav>
 
   <!-- BREADCRUMB -->
@@ -1043,6 +1052,10 @@
     // Initialize on load
     init();
   </script>
+
+  <!-- E-commerce Scripts -->
+  <script src="/js/cart.js"></script>
+  <script src="/js/cart-drawer.js"></script>
 
 </body>
 </html>

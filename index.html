@@ -15,7 +15,11 @@
 
   <!-- Preload hero image via Cloudinary (auto WebP, optimized) -->
   <link rel="preload" as="image" href="https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/VHERO2%20Coal%20Harbour%20Seawall%20-%201.png">
-  
+
+  <!-- E-commerce Component Styles -->
+  <link rel="stylesheet" href="/css/cart-drawer.css">
+  <link rel="stylesheet" href="/css/components.css">
+
   <style>
     /* ============================================
        CSS VARIABLES — PREMIUM PALETTE
@@ -153,6 +157,12 @@
     
     .nav-links a:hover {
       color: var(--color-black);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
     }
     
     /* ============================================
@@ -768,12 +778,22 @@
   <!-- NAVIGATION -->
   <nav class="nav">
     <a href="index.html" class="nav-logo">Hogan's Alley</a>
-    <ul class="nav-links">
-      <li><a href="shop.html">Shop</a></li>
-      <li><a href="story.html">Story</a></li>
-      <li><a href="lookbook.html">Lookbook</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-    </ul>
+    <div class="nav-actions">
+      <ul class="nav-links">
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="story.html">Story</a></li>
+        <li><a href="lookbook.html">Lookbook</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+      <button class="cart-toggle" aria-label="Open cart" onclick="window.openCart && window.openCart()">
+        <svg class="cart-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 01-8 0"></path>
+        </svg>
+        <span class="cart-badge" id="cart-badge">0</span>
+      </button>
+    </div>
   </nav>
 
   <!-- HERO — COAL HARBOUR VANCOUVER -->
@@ -1058,6 +1078,10 @@
       });
     });
   </script>
+
+  <!-- E-commerce Scripts -->
+  <script src="/js/cart.js"></script>
+  <script src="/js/cart-drawer.js"></script>
 
 </body>
 </html>

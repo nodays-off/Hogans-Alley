@@ -1,0 +1,34 @@
+# Netlify Configuration for Hogan's Alley E-commerce Site
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Directory containing serverless functions
+  functions = "netlify/functions"
+  # Publish directory (root for static HTML/CSS/JS site)
+  publish = "."
+
+[functions]
+  # Use esbuild for faster builds and smaller bundles
+  node_bundler = "esbuild"
+
+# API Redirects - proxy /api/* to serverless functions
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# CORS Headers for API endpoints
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type"
+
+# Also set headers for direct function access (optional fallback)
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type"

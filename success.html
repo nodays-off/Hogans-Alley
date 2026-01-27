@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed | Hogan's Alley</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <!-- E-commerce Component Styles -->
+  <link rel="stylesheet" href="/css/cart-drawer.css">
+  <link rel="stylesheet" href="/css/components.css">
+
+  <style>
+    :root {
+      --color-black: #0A0A0A;
+      --color-white: #FAFAF9;
+      --color-warm-white: #F5F4F2;
+      --color-accent: #C4A962;
+      --color-text-primary: #0A0A0A;
+      --color-text-secondary: #4A4A4A;
+      --color-text-muted: #8A8A8A;
+      --color-border: #E5E5E3;
+      --color-success: #2E7D32;
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 6rem;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-text-primary);
+      background: var(--color-white);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+
+    h1, h2, h3 {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    h1 { font-size: clamp(2.5rem, 8vw, 4rem); }
+    h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+
+    .subhead {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-accent);
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem var(--space-lg);
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-black);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--space-md);
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover { color: var(--color-black); }
+
+    @media (max-width: 768px) {
+      .nav { padding: 1rem var(--space-sm); }
+      .nav-links { gap: var(--space-sm); }
+      .nav-links a { font-size: 0.625rem; }
+      .nav-actions { gap: var(--space-sm); }
+    }
+
+    /* MAIN CONTENT */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-xl) var(--space-lg);
+    }
+
+    .success-section {
+      text-align: center;
+      max-width: 600px;
+    }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto var(--space-md);
+      background: var(--color-success);
+      color: var(--color-white);
+      font-size: 2.5rem;
+      font-weight: 300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .success-section h1 {
+      margin-bottom: var(--space-sm);
+    }
+
+    .success-section .subhead {
+      display: block;
+      margin-bottom: var(--space-xs);
+    }
+
+    .success-message {
+      color: var(--color-text-secondary);
+      font-size: 1.0625rem;
+      line-height: 1.8;
+      margin-bottom: var(--space-md);
+    }
+
+    .order-details {
+      background: var(--color-warm-white);
+      padding: var(--space-md);
+      margin-bottom: var(--space-md);
+      text-align: left;
+    }
+
+    .order-details h3 {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-accent);
+      margin-bottom: var(--space-sm);
+    }
+
+    .order-details p {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .order-details p:last-child {
+      margin-bottom: 0;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 3rem;
+      background: var(--color-black);
+      color: var(--color-white);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      transition: background 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: var(--color-text-secondary);
+    }
+
+    /* NEWSLETTER SECTION */
+    .newsletter-section {
+      margin-top: var(--space-lg);
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .newsletter-section h2 {
+      margin-bottom: var(--space-sm);
+    }
+
+    .newsletter-section p {
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-md);
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .newsletter-form input[type="email"] {
+      flex: 1;
+      padding: 0.875rem 1rem;
+      border: 1px solid var(--color-border);
+      border-right: none;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      background: var(--color-white);
+    }
+
+    .newsletter-form input[type="email"]:focus {
+      outline: none;
+      border-color: var(--color-black);
+    }
+
+    .newsletter-form button {
+      padding: 0.875rem 1.5rem;
+      background: var(--color-black);
+      color: var(--color-white);
+      border: 1px solid var(--color-black);
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .newsletter-form button:hover {
+      background: var(--color-text-secondary);
+      border-color: var(--color-text-secondary);
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: var(--space-lg) var(--space-lg) var(--space-md);
+      background: var(--color-black);
+      color: var(--color-white);
+    }
+
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
+    .footer-brand h3 {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer-brand p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 280px;
+    }
+
+    .footer-links h4 {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-accent);
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer-links ul { list-style: none; }
+    .footer-links li { margin-bottom: var(--space-xs); }
+
+    .footer-links a {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover { color: var(--color-white); }
+
+    .footer-bottom {
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    @media (max-width: 900px) {
+      .footer { padding: var(--space-md) var(--space-sm); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+    }
+
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: var(--space-sm); text-align: center; }
+      main { padding: var(--space-lg) var(--space-sm); }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-form input[type="email"] { border-right: 1px solid var(--color-border); border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Hogan's Alley</a>
+    <div class="nav-actions">
+      <ul class="nav-links">
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="story.html">Story</a></li>
+        <li><a href="lookbook.html">Lookbook</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+      <button class="cart-toggle" aria-label="Open cart" onclick="window.openCart && window.openCart()">
+        <svg class="cart-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 01-8 0"></path>
+        </svg>
+        <span class="cart-badge" id="cart-badge">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="success-section">
+      <div class="success-icon">&#10003;</div>
+      <span class="subhead">Thank You</span>
+      <h1>Order Confirmed</h1>
+      <p class="success-message">
+        Your order has been received and is being prepared with care.
+        We appreciate you choosing Hogan's Alley for your rain gear.
+      </p>
+
+      <div class="order-details">
+        <h3>What Happens Next</h3>
+        <p>A confirmation email with your order details has been sent to your inbox.</p>
+        <p>Your jacket will be carefully packaged and shipped within 2-3 business days.</p>
+        <p>You will receive tracking information once your order ships.</p>
+      </div>
+
+      <a href="shop.html" class="cta-button">Continue Shopping</a>
+
+      <div class="newsletter-section">
+        <h2>Stay Connected</h2>
+        <p>Join our newsletter for new collection announcements and behind-the-scenes stories.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent = 'Subscribed!';">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Hogan's Alley</h3>
+          <p>Colour for grey days. Premium rain jackets featuring original wax-print inspired artwork, made in Vancouver.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="collections/libation.html">Libation</a></li>
+            <li><a href="collections/money.html">Money</a></li>
+            <li><a href="collections/transport.html">Transport</a></li>
+            <li><a href="collections/sanitation.html">Sanitation</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>About</h4>
+          <ul>
+            <li><a href="story.html">Our Story</a></li>
+            <li><a href="lookbook.html">Lookbook</a></li>
+            <li><a href="sizing.html">Size Guide</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Hogan's Alley. Vancouver, BC.</span>
+        <span>All artwork original. All jackets Canadian-made.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- E-commerce Scripts -->
+  <script src="/js/cart.js"></script>
+  <script src="/js/cart-drawer.js"></script>
+  <script>
+    // Clear cart after successful purchase
+    document.addEventListener('DOMContentLoaded', function() {
+      // Parse session_id from URL if needed for order lookup
+      const urlParams = new URLSearchParams(window.location.search);
+      const sessionId = urlParams.get('session_id');
+
+      // Clear the cart
+      if (window.cart) {
+        window.cart.clear();
+      }
+    });
+  </script>
+
+</body>
+</html>

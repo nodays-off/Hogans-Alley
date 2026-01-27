@@ -1,0 +1,19 @@
+{
+  "name": "hogans-alley-functions",
+  "version": "1.0.0",
+  "description": "Serverless functions for Hogan's Alley e-commerce site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'Static site - no build step required'"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "pg": "^8.17.2",
+    "stripe": "^14.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
