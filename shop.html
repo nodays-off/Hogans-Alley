@@ -75,6 +75,7 @@
       text-transform: uppercase;
       text-decoration: none;
       color: var(--color-black);
+      white-space: nowrap;
     }
     .nav-links {
       display: flex;
@@ -91,6 +92,17 @@
     }
     .nav-links a:hover { color: var(--color-black); }
     .nav-actions { display: flex; align-items: center; gap: var(--space-md); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .hamburger svg { width: 24px; height: 24px; stroke: var(--color-black); }
+    @media (max-width: 768px) {
+      .nav { padding: 1rem var(--space-sm); }
+      .nav-logo { font-size: 1.1rem; letter-spacing: 0.05em; }
+      .nav-actions { gap: var(--space-sm); }
+      .hamburger { display: block; }
+      .nav-links { position: fixed; top: 56px; left: 0; right: 0; background: var(--color-white); flex-direction: column; padding: var(--space-md); gap: var(--space-sm); border-bottom: 1px solid var(--color-border); transform: translateY(-100%); opacity: 0; pointer-events: none; transition: transform 0.3s ease, opacity 0.3s ease; }
+      .nav-links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+      .nav-links a { font-size: 1rem; padding: var(--space-xs) 0; }
+    }
     
     /* BREADCRUMB */
     .breadcrumb {
@@ -179,6 +191,26 @@
       height: 100%;
       object-fit: cover;
       object-position: center top;
+    }
+    @media (max-width: 768px) {
+      .gallery {
+        flex-direction: column;
+      }
+      .gallery-thumbs {
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+        order: 2;
+      }
+      .thumb {
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+      }
+      .gallery-main {
+        order: 1;
+        width: 100%;
+      }
     }
     .zoom-btn {
       position: absolute;
@@ -534,6 +566,13 @@
   <nav class="nav">
     <a href="index.html" class="nav-logo">Hogan's Alley</a>
     <div class="nav-actions">
+      <button class="hamburger" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
       <ul class="nav-links">
         <li><a href="shop.html">Shop</a></li>
         <li><a href="story.html">Story</a></li>

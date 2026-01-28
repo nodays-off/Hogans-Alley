@@ -138,6 +138,60 @@
       text-transform: uppercase;
       text-decoration: none;
       color: var(--color-black);
+      white-space: nowrap;
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    .hamburger svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--color-black);
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        padding: 1rem var(--space-sm);
+      }
+      .nav-logo {
+        font-size: 1.1rem;
+        letter-spacing: 0.05em;
+      }
+      .nav-actions {
+        gap: var(--space-sm);
+      }
+      .hamburger {
+        display: block;
+      }
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: var(--color-white);
+        flex-direction: column;
+        padding: var(--space-md);
+        gap: var(--space-sm);
+        border-bottom: 1px solid var(--color-border);
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+      .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .nav-links a {
+        font-size: 1rem;
+        padding: var(--space-xs) 0;
+      }
     }
     
     .nav-links {
@@ -592,6 +646,30 @@
       object-position: center top;
       transition: transform 0.3s ease;
     }
+
+    @media (max-width: 768px) {
+      .product-section {
+        padding: var(--space-md) var(--space-sm);
+      }
+      .product-gallery {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+      }
+      .gallery-thumbs {
+        flex-direction: row;
+        overflow-x: auto;
+        gap: var(--space-xs);
+        order: 2;
+      }
+      .thumb {
+        width: 60px;
+        flex-shrink: 0;
+      }
+      .gallery-main {
+        order: 1;
+        aspect-ratio: 3/4;
+      }
+    }
     
     .zoom-btn {
       position: absolute;
@@ -779,6 +857,13 @@
   <nav class="nav">
     <a href="index.html" class="nav-logo">Hogan's Alley</a>
     <div class="nav-actions">
+      <button class="hamburger" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
       <ul class="nav-links">
         <li><a href="shop.html">Shop</a></li>
         <li><a href="story.html">Story</a></li>
