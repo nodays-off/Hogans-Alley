@@ -237,6 +237,13 @@ class CartDrawer {
     document.body.classList.add('cart-open');
     this.isOpen = true;
 
+    // Track cart view
+    if (window.hogansAnalytics && window.cart) {
+      const items = window.cart.items || [];
+      const total = window.cart.getSubtotal();
+      window.hogansAnalytics.trackViewCart(items, total);
+    }
+
     // Focus the close button for accessibility
     const closeButton = this.drawer.querySelector('.cart-drawer__close');
     if (closeButton) {
@@ -406,6 +413,12 @@ class CartDrawer {
         currency: item.currency,
         image: item.image
       }));
+
+      // Track begin checkout
+      if (window.hogansAnalytics) {
+        const total = window.cart.getSubtotal();
+        window.hogansAnalytics.trackBeginCheckout(items, total);
+      }
 
       // Build success and cancel URLs with session ID placeholder
       const baseUrl = window.location.origin;

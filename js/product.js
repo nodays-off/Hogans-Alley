@@ -96,6 +96,16 @@
     // Bind event handlers
     bindEvents();
 
+    // Track product view
+    if (window.hogansAnalytics) {
+      window.hogansAnalytics.trackViewItem({
+        id: state.productId,
+        name: state.productName,
+        collection: state.productCollection,
+        price: state.productPrice
+      });
+    }
+
     // Fetch inventory data
     fetchAndDisplayInventory(state.productId);
   }
@@ -507,6 +517,16 @@
     });
 
     if (result.success) {
+      // Track add to cart event
+      if (window.hogansAnalytics) {
+        window.hogansAnalytics.trackAddToCart({
+          id: state.productId,
+          name: state.productName,
+          collection: state.productCollection,
+          price: state.productPrice
+        }, state.selectedSize, state.selectedQuantity);
+      }
+
       // Show success state
       showAddedState();
     } else {

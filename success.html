@@ -432,15 +432,47 @@
     </div>
   </footer>
 
+  <!-- Analytics (GA4 + Google Ads) -->
+  <script src="/js/analytics.js"></script>
+
   <!-- E-commerce Scripts -->
   <script src="/js/cart.js"></script>
   <script src="/js/cart-drawer.js"></script>
   <script>
-    // Clear cart after successful purchase
+    // Track purchase and clear cart
     document.addEventListener('DOMContentLoaded', function() {
-      // Parse session_id from URL if needed for order lookup
       const urlParams = new URLSearchParams(window.location.search);
       const sessionId = urlParams.get('session_id');
+
+      // Track purchase conversion (Google Ads + GA4)
+      if (sessionId && window.hogansAnalytics) {
+        // Estimate value from localStorage before clearing
+        // (In production, you'd fetch actual order details from your backend)
+        const cartData = localStorage.getItem('hogans_cart');
+        let total = 395; // Default to single item
+        let items = [];
+
+        if (cartData) {
+          try {
+            const cart = JSON.parse(cartData);
+            if (cart.items && cart.items.length > 0) {
+              total = cart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+              items = cart.items.map(item => ({
+                item_id: item.productId,
+                item_name: item.name,
+                item_variant: item.size,
+                price: item.price,
+                quantity: item.quantity
+              }));
+            }
+          } catch (e) {
+            console.error('Error parsing cart:', e);
+          }
+        }
+
+        // Fire purchase event
+        window.hogansAnalytics.trackPurchase(sessionId, total, items);
+      }
 
       // Clear the cart
       if (window.cart) {
