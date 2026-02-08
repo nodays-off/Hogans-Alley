@@ -9,14 +9,16 @@
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 
-// Initialize Stripe with secret key
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
-// Initialize Supabase client with service role key for inventory access
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+// Lazy-initialize clients (env vars may not be available at module load)
+let _stripe, _supabase;
+function getStripe() {
+  if (!_stripe) _stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+  return _stripe;
+}
+function getSupabase() {
+  if (!_supabase) _supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
+  return _supabase;
+}
 
 /**
  * CORS headers for API responses
@@ -141,7 +143,7 @@ const validateRequest = (body) => {
  * @returns {Promise<object|null>} Product data or null if not found
  */
 const fetchProduct = async (slug) => {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('products')
     .select('*')
     .eq('slug', slug)
@@ -163,7 +165,7 @@ const fetchProduct = async (slug) => {
  * @returns {Promise<{ available: boolean, currentStock?: number }>}
  */
 const checkInventory = async (productId, size, requestedQuantity) => {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('inventory')
     .select('quantity')
     .eq('product_id', productId)
@@ -314,7 +316,7 @@ export const handler = async (event) => {
     }
 
     // Create Stripe Checkout session
-    const session = await stripe.checkout.sessions.create({
+    const session = await getStripe().checkout.sessions.create({
       mode: 'payment',
       line_items: lineItems,
       success_url: successUrl,

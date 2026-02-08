@@ -9,14 +9,16 @@
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 
-// Initialize Stripe with secret key
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
-// Initialize Supabase client with service role key for database operations
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+// Lazy-initialize clients (env vars may not be available at module load)
+let _stripe, _supabase;
+function getStripe() {
+  if (!_stripe) _stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+  return _stripe;
+}
+function getSupabase() {
+  if (!_supabase) _supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
+  return _supabase;
+}
 
 /**
  * Response headers
@@ -46,7 +48,7 @@ const jsonResponse = (statusCode, body) => ({
  */
 const decrementInventory = async (productId, size, quantity) => {
   try {
-    const { data, error } = await supabase.rpc('decrement_inventory', {
+    const { data, error } = await getSupabase().rpc('decrement_inventory', {
       p_product_id: productId,
       p_size: size,
       p_quantity: quantity
@@ -87,7 +89,7 @@ const createOrderRecord = async (session, items) => {
       paid_at: new Date().toISOString()
     };
 
-    const { data, error } = await supabase
+    const { data, error } = await getSupabase()
       .from('orders')
       .insert(orderData)
       .select('id')
@@ -200,7 +202,7 @@ export const handler = async (event) => {
   // Verify the webhook signature and construct the event
   let stripeEvent;
   try {
-    stripeEvent = stripe.webhooks.constructEvent(
+    stripeEvent = getStripe().webhooks.constructEvent(
       event.body,
       signature,
       webhookSecret

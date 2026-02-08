@@ -8,11 +8,17 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_ANON_KEY
-);
+// Lazy-initialize Supabase client (env vars may not be available at module load)
+let _supabase;
+function getSupabase() {
+  if (!_supabase) {
+    _supabase = createClient(
+      process.env.SUPABASE_URL,
+      process.env.SUPABASE_ANON_KEY
+    );
+  }
+  return _supabase;
+}
 
 /**
  * Valid sizes for inventory lookup
@@ -111,6 +117,8 @@ export const handler = async (event) => {
   const slug = productId.trim();
 
   try {
+    const supabase = getSupabase();
+
     // Query product by slug
     const { data: product, error: productError } = await supabase
       .from('products')

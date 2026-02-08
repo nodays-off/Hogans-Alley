@@ -5,11 +5,12 @@
 
 const { createClient } = require('@supabase/supabase-js');
 
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_KEY
-);
+// Lazy-initialize Supabase client (env vars may not be available at module load)
+let _supabase;
+function getSupabase() {
+  if (!_supabase) _supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
+  return _supabase;
+}
 
 exports.handler = async (event) => {
   // CORS headers
@@ -56,7 +57,7 @@ exports.handler = async (event) => {
     }
 
     // Insert into waitlist (ON CONFLICT DO NOTHING handles duplicates)
-    const { data, error } = await supabase
+    const { data, error } = await getSupabase()
       .from('waitlist')
       .insert({
         email: email.toLowerCase().trim(),
@@ -89,7 +90,7 @@ exports.handler = async (event) => {
     }
 
     // Get waitlist count
-    const { data: countData } = await supabase
+    const { data: countData } = await getSupabase()
       .rpc('get_waitlist_count', {
         p_product_id: productId,
         p_size: size,
