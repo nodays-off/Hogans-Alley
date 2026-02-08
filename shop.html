@@ -348,6 +348,17 @@
       color: white;
       border-color: var(--color-black);
     }
+    .size-btn.sold-out {
+      background: transparent;
+      color: var(--color-text-muted);
+      border-color: var(--color-border);
+      text-decoration: line-through;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+    .size-btn.sold-out:hover {
+      border-color: var(--color-border);
+    }
     
     .size-guide-link {
       font-size: 0.75rem;
@@ -559,6 +570,9 @@
       gap: 0.5rem;
     }
   </style>
+
+  <!-- Waitlist CSS -->
+  <link rel="stylesheet" href="/css/waitlist.css">
 </head>
 <body>
 
@@ -652,17 +666,19 @@
           <button class="size-btn" data-size="XXL">XXL</button>
         </div>
         
-        <!-- ADD TO CART -->
-        <button class="add-to-cart" id="add-to-cart">
-          Add to Cart — $395 CAD
-        </button>
-        
-        <p class="shipping-note">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-          Free shipping across Canada. 30-day returns.
-        </p>
+        <!-- ADD TO CART / WAITLIST CONTAINER -->
+        <div id="add-to-cart-container">
+          <button class="add-to-cart" id="add-to-cart">
+            Add to Cart — $395 CAD
+          </button>
+
+          <p class="shipping-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+            Free shipping across Canada. 30-day returns.
+          </p>
+        </div>
         
         <!-- ACCORDION DETAILS -->
         <div class="accordion">
@@ -932,7 +948,8 @@
     let currentPrint = 'money';
     let currentSize = 'M';
     let currentImageIndex = 0;
-    
+    let inventoryCache = {}; // Cache inventory data by print
+
     // =====================
     // INITIALIZE
     // =====================
@@ -940,7 +957,131 @@
       renderSwatches();
       selectPrint('money');
       setupSizeButtons();
-      setupAddToCart();
+
+      // Set up initial add to cart handler
+      const btn = document.getElementById('add-to-cart');
+      if (btn) {
+        btn.addEventListener('click', handleAddToCart);
+      }
+    }
+
+    // =====================
+    // FETCH INVENTORY FOR PRINT
+    // =====================
+    async function fetchInventoryForPrint(print) {
+      // Product slugs follow pattern: {print}-jacket
+      const productId = `${print}-jacket`;
+
+      try {
+        const data = await window.inventoryManager.fetchInventory(productId);
+        inventoryCache[print] = data;
+        return data;
+      } catch (error) {
+        console.error(`Failed to fetch inventory for ${print}:`, error);
+        // Return empty inventory on error
+        return {
+          inventory: {},
+          totalAvailable: 0
+        };
+      }
+    }
+
+    // =====================
+    // UPDATE SIZE BUTTONS WITH INVENTORY
+    // =====================
+    function updateSizeButtonsWithInventory(inventoryData) {
+      const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+
+      sizes.forEach(size => {
+        const btn = document.querySelector(`.size-btn[data-size="${size}"]`);
+        if (!btn) return;
+
+        const sizeInventory = inventoryData.inventory[size];
+        const quantity = sizeInventory ? sizeInventory.quantity : 0;
+
+        if (quantity === 0) {
+          // Mark as sold out
+          btn.classList.add('sold-out');
+          btn.disabled = true;
+        } else {
+          // Available
+          btn.classList.remove('sold-out');
+          btn.disabled = false;
+        }
+      });
+
+      // Update add to cart area based on currently selected size
+      updateAddToCartArea();
+    }
+
+    // =====================
+    // UPDATE ADD TO CART AREA
+    // =====================
+    function updateAddToCartArea() {
+      const container = document.getElementById('add-to-cart-container');
+      if (!container) return;
+
+      const inventoryData = inventoryCache[currentPrint];
+      if (!inventoryData) return;
+
+      const sizeInventory = inventoryData.inventory[currentSize];
+      const quantity = sizeInventory ? sizeInventory.quantity : 0;
+
+      if (quantity === 0) {
+        // Show waitlist form
+        // Use the database UUID (id) from inventory data
+        const productUUID = inventoryData.id;
+        if (window.waitlistManager && productUUID) {
+          window.waitlistManager.renderWaitlistForm(
+            productUUID,
+            currentSize,
+            container
+          );
+        } else {
+          // Fallback if waitlist not available
+          container.innerHTML = `
+            <div class="waitlist-form">
+              <p class="sold-out-message">Sold Out</p>
+              <p class="waitlist-subtitle">This size is currently sold out.</p>
+            </div>
+          `;
+        }
+      } else {
+        // Show regular add to cart button
+        container.innerHTML = `
+          <button class="add-to-cart" id="add-to-cart">
+            Add to Cart — $395 CAD
+          </button>
+          <p class="shipping-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+            Free shipping across Canada. 30-day returns.
+          </p>
+        `;
+
+        // Re-attach click handler
+        const btn = document.getElementById('add-to-cart');
+        if (btn) {
+          btn.addEventListener('click', handleAddToCart);
+        }
+      }
+    }
+
+    // =====================
+    // HANDLE ADD TO CART
+    // =====================
+    function handleAddToCart() {
+      const btn = document.getElementById('add-to-cart');
+      if (!btn) return;
+
+      btn.textContent = 'Added to Cart ✓';
+      btn.style.background = '#2E7D32';
+
+      setTimeout(() => {
+        btn.textContent = 'Add to Cart — $395 CAD';
+        btn.style.background = '';
+      }, 2000);
     }
     
     // =====================
@@ -971,15 +1112,15 @@
     // =====================
     // SELECT PRINT
     // =====================
-    function selectPrint(print) {
+    async function selectPrint(print) {
       currentPrint = print;
       const data = prints[print];
-      
+
       // Update swatch active state
       document.querySelectorAll('.swatch').forEach(s => {
         s.classList.toggle('active', s.dataset.print === print);
       });
-      
+
       // Update text content
       document.getElementById('collection-label').textContent = data.name + ' Collection';
       document.getElementById('print-name').textContent = data.name;
@@ -987,12 +1128,18 @@
       document.getElementById('print-link').href = data.link;
       document.getElementById('product-description').textContent = data.description;
       document.getElementById('breadcrumb-print').textContent = data.name;
-      
+
       // Render gallery
       renderGallery(data.gallery);
-      
+
       // Update "You may also like"
       updateAlsoLike(print);
+
+      // Fetch and update inventory
+      if (window.inventoryManager) {
+        const inventoryData = await fetchInventoryForPrint(print);
+        updateSizeButtonsWithInventory(inventoryData);
+      }
     }
     
     // =====================
@@ -1051,9 +1198,17 @@
     function setupSizeButtons() {
       document.querySelectorAll('.size-btn').forEach(btn => {
         btn.addEventListener('click', () => {
+          // Don't allow selection of sold-out sizes
+          if (btn.classList.contains('sold-out')) {
+            return;
+          }
+
           currentSize = btn.dataset.size;
           document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
+
+          // Update add to cart area based on new size selection
+          updateAddToCartArea();
         });
       });
     }
@@ -1064,28 +1219,12 @@
     function toggleAccordion(id) {
       const item = document.getElementById('accordion-' + id);
       const wasOpen = item.classList.contains('open');
-      
+
       document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
-      
+
       if (!wasOpen) {
         item.classList.add('open');
       }
-    }
-    
-    // =====================
-    // ADD TO CART
-    // =====================
-    function setupAddToCart() {
-      document.getElementById('add-to-cart').addEventListener('click', () => {
-        const btn = document.getElementById('add-to-cart');
-        btn.textContent = 'Added to Cart ✓';
-        btn.style.background = '#2E7D32';
-        
-        setTimeout(() => {
-          btn.textContent = 'Add to Cart — $395 CAD';
-          btn.style.background = '';
-        }, 2000);
-      });
     }
     
     // Initialize on load
@@ -1098,6 +1237,12 @@
   <!-- E-commerce Scripts -->
   <script src="/js/cart.js"></script>
   <script src="/js/cart-drawer.js"></script>
+
+  <!-- Inventory Manager -->
+  <script src="/js/inventory.js"></script>
+
+  <!-- Waitlist Module -->
+  <script type="module" src="/js/waitlist.js"></script>
 
 </body>
 </html>

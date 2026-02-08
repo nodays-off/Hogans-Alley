@@ -185,7 +185,8 @@ export const handler = async (event) => {
 
     // Build response data
     const responseData = {
-      productId: product.slug,
+      id: product.id, // Database UUID (for waitlist signup)
+      productId: product.slug, // Product slug
       name: product.name,
       collection: product.collection,
       price: product.price,
