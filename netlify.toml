@@ -7,13 +7,6 @@
   # Publish directory (root for static HTML/CSS/JS site)
   publish = "."
 
-# Image Optimization - Automatically compress and serve WebP
-[images]
-  # Enable automatic image optimization
-  remote_images = ["https://**"]
-  # Max age for cached images (1 year)
-  max_age = 31536000
-
 [functions]
   # Use esbuild for faster builds and smaller bundles
   node_bundler = "esbuild"
