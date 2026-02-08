@@ -15,8 +15,7 @@ function getSupabase() {
     const url = process.env.SUPABASE_URL;
     const key = process.env.SUPABASE_ANON_KEY;
     if (!url || !key) {
-      const envKeys = Object.keys(process.env).filter(k => k.includes('SUPA') || k.includes('STRIPE')).join(', ');
-      throw new Error(`Missing env vars. SUPABASE_URL=${url ? 'set' : 'missing'}, SUPABASE_ANON_KEY=${key ? 'set' : 'missing'}. Related keys: ${envKeys || 'none'}`);
+      throw new Error('Missing Supabase environment variables');
     }
     _supabase = createClient(url, key);
   }

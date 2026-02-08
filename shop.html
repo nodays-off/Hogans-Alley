@@ -1173,12 +1173,19 @@
       updateAlsoLike(print);
 
       // Fetch and update inventory (deferred, non-blocking)
-      setTimeout(async () => {
+      // Use DOMContentLoaded to ensure deferred inventory.js has loaded;
+      // for swatch clicks after page load, run immediately.
+      const loadInventory = async () => {
         if (window.inventoryManager) {
           const inventoryData = await fetchInventoryForPrint(print);
           updateSizeButtonsWithInventory(inventoryData);
         }
-      }, 0);
+      };
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadInventory, { once: true });
+      } else {
+        loadInventory();
+      }
     }
     
     // =====================
