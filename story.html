@@ -721,6 +721,96 @@
         text-align: center;
       }
     }
+
+    /* ============================================
+       COLLECTIONS GALLERY
+    ============================================ */
+    .collections-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    @media (max-width: 900px) {
+      .collections-gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .collection-item {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .collection-item:hover {
+      transform: translateY(-4px);
+    }
+
+    .collection-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .collection-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .collection-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.7) 50%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: var(--space-md);
+      color: var(--color-white);
+    }
+
+    .collection-name {
+      font-family: var(--font-headline);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 500;
+      margin-bottom: var(--space-xs);
+    }
+
+    .collection-tagline {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+    }
+
+    .collection-desc {
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: var(--space-sm);
+    }
+
+    .collection-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      text-decoration: none;
+      transition: gap 0.2s ease;
+    }
+
+    .collection-link:hover {
+      gap: var(--space-sm);
+    }
   </style>
 </head>
 <body>
@@ -886,33 +976,45 @@
       <h2>Stories Behind the Prints</h2>
       <p>Each print collection tells a story — drawing on African heritage, urban life, and shared rituals. Explore the inspiration and meaning behind our designs.</p>
 
-      <div class="materials-grid" style="margin-top: var(--space-lg);">
-        <div class="material-card" style="cursor: pointer;" onclick="window.location.href='collections/libation.html'">
-          <h3 class="material-title">Libation</h3>
-          <p class="material-spec">"Pour One Out"</p>
-          <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--space-xs);">Celebrating the calabash gourd and the sacred ritual of gathering.</p>
-          <a href="collections/libation.html" class="partner-link" style="margin-top: var(--space-sm); display: inline-flex;">Learn the story →</a>
+      <div class="collections-gallery">
+        <div class="collection-item" onclick="window.location.href='collections/libation.html'">
+          <img src="/.netlify/images?url=/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Libation.png&w=2400&fm=webp&q=95" alt="Libation print collection" loading="lazy">
+          <div class="collection-overlay">
+            <h3 class="collection-name">Libation</h3>
+            <p class="collection-tagline">"Pour One Out"</p>
+            <p class="collection-desc">Celebrating the calabash gourd and the sacred ritual of gathering.</p>
+            <a href="collections/libation.html" class="collection-link">Learn the story →</a>
+          </div>
         </div>
 
-        <div class="material-card" style="cursor: pointer;" onclick="window.location.href='collections/money.html'">
-          <h3 class="material-title">Money</h3>
-          <p class="material-spec">"Make It Rain"</p>
-          <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--space-xs);">Honoring the cowrie shell — Africa's original currency.</p>
-          <a href="collections/money.html" class="partner-link" style="margin-top: var(--space-sm); display: inline-flex;">Learn the story →</a>
+        <div class="collection-item" onclick="window.location.href='collections/money.html'">
+          <img src="/.netlify/images?url=/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Money.png&w=2400&fm=webp&q=95" alt="Money print collection" loading="lazy">
+          <div class="collection-overlay">
+            <h3 class="collection-name">Money</h3>
+            <p class="collection-tagline">"Make It Rain"</p>
+            <p class="collection-desc">Honoring the cowrie shell — Africa's original currency.</p>
+            <a href="collections/money.html" class="collection-link">Learn the story →</a>
+          </div>
         </div>
 
-        <div class="material-card" style="cursor: pointer;" onclick="window.location.href='collections/sanitation.html'">
-          <h3 class="material-title">Sanitation</h3>
-          <p class="material-spec">"Clean Sweep"</p>
-          <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--space-xs);">Celebrating the invisible labor that keeps cities running.</p>
-          <a href="collections/sanitation.html" class="partner-link" style="margin-top: var(--space-sm); display: inline-flex;">Learn the story →</a>
+        <div class="collection-item" onclick="window.location.href='collections/sanitation.html'">
+          <img src="/.netlify/images?url=/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Sanitation.png&w=2400&fm=webp&q=95" alt="Sanitation print collection" loading="lazy">
+          <div class="collection-overlay">
+            <h3 class="collection-name">Sanitation</h3>
+            <p class="collection-tagline">"Clean Sweep"</p>
+            <p class="collection-desc">Celebrating the invisible labor that keeps cities running.</p>
+            <a href="collections/sanitation.html" class="collection-link">Learn the story →</a>
+          </div>
         </div>
 
-        <div class="material-card" style="cursor: pointer;" onclick="window.location.href='collections/transport.html'">
-          <h3 class="material-title">Transport</h3>
-          <p class="material-spec">"Keep Moving"</p>
-          <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--space-xs);">Inspired by the colorful VW Beetles of 1970s Lagos.</p>
-          <a href="collections/transport.html" class="partner-link" style="margin-top: var(--space-sm); display: inline-flex;">Learn the story →</a>
+        <div class="collection-item" onclick="window.location.href='collections/transport.html'">
+          <img src="/.netlify/images?url=/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Transportaion.png&w=2400&fm=webp&q=95" alt="Transport print collection" loading="lazy">
+          <div class="collection-overlay">
+            <h3 class="collection-name">Transport</h3>
+            <p class="collection-tagline">"Keep Moving"</p>
+            <p class="collection-desc">Inspired by the colorful VW Beetles of 1970s Lagos.</p>
+            <a href="collections/transport.html" class="collection-link">Learn the story →</a>
+          </div>
         </div>
       </div>
     </div>
