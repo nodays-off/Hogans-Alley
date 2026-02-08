@@ -1203,7 +1203,7 @@
       const firstFile = gallery[0].file;
       mainImg.src = img(firstFile);
       mainImg.srcset = imgSrcset(firstFile);
-      mainImg.sizes = '(max-width: 900px) 100vw, 60vw';
+      mainImg.sizes = '100vw';
       mainImg.loading = 'eager';
       mainImg.decoding = 'async';
       currentImageIndex = 0;
@@ -1221,7 +1221,7 @@
           const mainImg = document.getElementById('main-image');
           mainImg.src = img(file);
           mainImg.srcset = imgSrcset(file);
-          mainImg.sizes = '(max-width: 900px) 100vw, 60vw';
+          mainImg.sizes = '100vw';
           mainImg.loading = 'eager';
         });
       });
