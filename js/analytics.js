@@ -10,8 +10,8 @@
 (function() {
   'use strict';
 
-  // GA4 Measurement ID - REPLACE WITH YOUR ID
-  const GA4_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+  // GA4 Measurement ID
+  const GA4_MEASUREMENT_ID = 'G-6WNECYYYV5';
 
   // Google Ads Conversion ID - REPLACE WITH YOUR ID
   const GOOGLE_ADS_ID = 'AW-XXXXXXXXXX';
