@@ -727,12 +727,18 @@
     ============================================ */
     .collections-gallery {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-md);
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-sm);
       margin-top: var(--space-lg);
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1200px) {
+      .collections-gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
       .collections-gallery {
         grid-template-columns: 1fr;
       }
@@ -932,43 +938,6 @@
     </div>
   </section>
 
-  <!-- ARTIST -->
-  <section class="section section-dark">
-    <div class="section-split">
-      <div class="partner-images">
-        <img src="/.netlify/images?url=/Pictures/Pictures/Artist%20Print%20Creation%20Photo%20-%201.png&w=2400&fm=webp&q=95" alt="Chidi creating artwork">
-        <img src="/.netlify/images?url=/Pictures/Pictures/Artist%20Print%20Creation%20Photo%20-%202.png&w=2400&fm=webp&q=95" alt="Chidi artwork detail" loading="lazy">
-        <img src="/.netlify/images?url=/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Libation.png&w=2400&fm=webp&q=95" alt="Libation print detail" loading="lazy">
-      </div>
-      <div class="section-content">
-        <span class="subhead">The Artist</span>
-        <h2 class="partner-name">Joel "Chidi" Sydenham</h2>
-        <div class="partner-role">Visual Artist & Creative Partner — London, UK</div>
-        
-        <p>Chidi is a British-Nigerian visual artist and poet whose work explores the connections between all living things. His art is deeply influenced by his cultural experiences and his belief in an underlying unity between all things in existence.</p>
-        
-        <div class="partner-quote">
-          "The intention with everything I practice is to uplift people, build social bridges, and remind everyone that there is endless beauty within them."
-        </div>
-        
-        <p>We work closely with Chidi to develop the themes behind each print collection. His vision aligns perfectly with ours: celebrating interconnectedness, honoring cultural heritage, and creating work that uplifts. Our repeating patterns pay homage to traditional African wax prints while bringing them into a contemporary Canadian context.</p>
-        
-        <div class="partner-series">
-          <div class="series-label">Influences from Chidi's Work</div>
-          <div class="series-tags">
-            <span class="series-tag">Connected Series</span>
-            <span class="series-tag">Divine Feminine</span>
-            <span class="series-tag">Natural Mystic</span>
-          </div>
-        </div>
-        
-        <a href="https://chidi3s.com/" target="_blank" class="partner-link">
-          Explore Chidi's Art →
-        </a>
-      </div>
-    </div>
-  </section>
-
   <!-- PRINT COLLECTIONS -->
   <section class="section section-alt">
     <div class="section-center">
@@ -1020,6 +989,43 @@
     </div>
   </section>
 
+  <!-- ARTIST -->
+  <section class="section section-dark">
+    <div class="section-split">
+      <div class="partner-images">
+        <img src="/.netlify/images?url=/Pictures/Pictures/Artist%20Print%20Creation%20Photo%20-%201.png&w=2400&fm=webp&q=95" alt="Chidi creating artwork">
+        <img src="/.netlify/images?url=/Pictures/Pictures/Artist%20Print%20Creation%20Photo%20-%202.png&w=2400&fm=webp&q=95" alt="Chidi artwork detail" loading="lazy">
+        <img src="/.netlify/images?url=/Pictures/Pictures/Fabric%20Detail%20Shot%20-%20Libation.png&w=2400&fm=webp&q=95" alt="Libation print detail" loading="lazy">
+      </div>
+      <div class="section-content">
+        <span class="subhead">The Artist</span>
+        <h2 class="partner-name">Joel "Chidi" Sydenham</h2>
+        <div class="partner-role">Visual Artist & Creative Partner — London, UK</div>
+
+        <p>Chidi is a British-Nigerian visual artist and poet whose work explores the connections between all living things. His art is deeply influenced by his cultural experiences and his belief in an underlying unity between all things in existence.</p>
+
+        <div class="partner-quote">
+          "The intention with everything I practice is to uplift people, build social bridges, and remind everyone that there is endless beauty within them."
+        </div>
+
+        <p>We work closely with Chidi to develop the themes behind each print collection. His vision aligns perfectly with ours: celebrating interconnectedness, honoring cultural heritage, and creating work that uplifts. Our repeating patterns pay homage to traditional African wax prints while bringing them into a contemporary Canadian context.</p>
+
+        <div class="partner-series">
+          <div class="series-label">Influences from Chidi's Work</div>
+          <div class="series-tags">
+            <span class="series-tag">Connected Series</span>
+            <span class="series-tag">Divine Feminine</span>
+            <span class="series-tag">Natural Mystic</span>
+          </div>
+        </div>
+
+        <a href="https://chidi3s.com/" target="_blank" class="partner-link">
+          Explore Chidi's Art →
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- MAKER / SEAMSTRESS -->
   <section class="section">
     <div class="section-split">
@@ -1027,11 +1033,11 @@
         <span class="subhead">The Maker</span>
         <h2 class="partner-name">Gwen Lutz & Symmetry Patterns</h2>
         <div class="partner-role">Full-Service Pattern Studio — Vancouver, BC</div>
-        
+
         <p>Every Hogan's Alley jacket is expertly crafted by Gwen at Symmetry Patterns, a Vancouver-based pattern studio that has been our partner from day one. Her attention to detail and commitment to quality matches our own.</p>
-        
+
         <p>Symmetry Patterns isn't just a manufacturer — they're a true collaborator. Gwen has helped us refine our designs, test durability, and bring our vision to life with expert craftsmanship. Working with a local small business means we can maintain the highest quality standards while supporting our community.</p>
-        
+
         <ul class="partnership-list">
           <li>Expert pattern development and prototyping</li>
           <li>Rigorous durability testing for all-weather performance</li>
@@ -1039,7 +1045,7 @@
           <li>Premium construction with meticulous attention to detail</li>
           <li>Local Vancouver production — reducing carbon footprint</li>
         </ul>
-        
+
         <a href="https://www.symmetrypatterns.com/" target="_blank" class="partner-link">
           Visit Symmetry Patterns →
         </a>
