@@ -952,7 +952,7 @@
         const p = prints[key];
         return `
           <button class="swatch ${key === currentPrint ? 'active' : ''}" data-print="${key}" title="${p.name}">
-            <img src="${p.swatch}" alt="${p.name}" onerror="this.style.background='#ddd'">
+            <img src="${p.swatch}" alt="${p.name}" onerror="this.style.background='#ddd'" loading="lazy">
             <span class="swatch-check">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
                 <path d="M20 6L9 17l-5-5"/>
