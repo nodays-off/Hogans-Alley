@@ -208,6 +208,6 @@ export const handler = async (event) => {
 
   } catch (error) {
     console.error('[Inventory API] Unexpected error:', error);
-    return errorResponse(502, 'DATABASE_ERROR', 'An unexpected error occurred');
+    return errorResponse(502, 'DATABASE_ERROR', error.message || 'An unexpected error occurred');
   }
 };
