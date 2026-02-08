@@ -851,25 +851,26 @@
 
   <script>
     // =====================
-    // CLOUDINARY CDN + GITHUB IMAGE BASE URL
+    // CLOUDINARY CDN - Optimized image delivery
     // =====================
-    const USE_CLOUDINARY = true; // Cloudinary enabled for fast, optimized images
-    const CLOUDINARY_CLOUD = 'djj0e17gv'; // Cloudinary cloud name
+
+    const USE_CLOUDINARY = true;
+    const CLOUDINARY_CLOUD = 'djj0e17gv';
     const GITHUB_BASE = 'https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/';
 
-    // Helper to encode filenames with spaces
+    // Helper to create optimized image URLs
     function img(filename, options = {}) {
       const encoded = encodeURIComponent(filename);
 
       if (USE_CLOUDINARY && CLOUDINARY_CLOUD !== 'YOUR_CLOUD_NAME') {
-        // Cloudinary fetch URL with aggressive optimization
-        // f_auto = auto format (WebP/AVIF), q_auto:good = good quality, dpr_auto = device pixel ratio
+        // Cloudinary fetch with transformations
         const transforms = options.thumb
           ? 'w_400,h_400,c_fill,f_auto,q_auto:good,dpr_auto'
           : 'w_1400,f_auto,q_auto:good,dpr_auto';
         return `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/fetch/${transforms}/${GITHUB_BASE}${encoded}`;
       }
 
+      // Fallback to direct GitHub URL
       return GITHUB_BASE + encoded;
     }
 
@@ -895,10 +896,10 @@
           { src: img('V4 Granville Island - 1.png'), label: 'Vancouver' },
           { src: img('S1 Capitol Hill Coffee Run.png'), label: 'Seattle' },
           { src: img('Fabric Detail Shot - Libation.png'), label: 'Fabric' },
-          { src: img('DETAIL-1 Fleece Lining Interior - Libation.png'), label: 'Interior' },
-          { src: img('DETAIL-2 Hood with Drawcord System - Libation.png'), label: 'Hood' },
-          { src: img('DETAIL-3 Zipper and Storm Flap - Libation.png'), label: 'Zipper' },
-          { src: img('DETAIL-10 Inside Patch Pocket - Libation.png'), label: 'Pocket' }
+          { src: img('DETAIL-1 Fleece Lining Interior - Libation.jpg'), label: 'Interior' },
+          { src: img('DETAIL-2 Hood with Drawcord System - Libation.jpg'), label: 'Hood' },
+          { src: img('DETAIL-3 Zipper and Storm Flap - Libation.jpg'), label: 'Zipper' },
+          { src: img('DETAIL-10 Inside Patch Pocket - Libation.jpg'), label: 'Pocket' }
         ],
         swatch: thumb('Fabric Detail Shot - Libation.png')
       },
@@ -915,10 +916,10 @@
           { src: img('L2 Underground Platform.png'), label: 'London' },
           { src: img('S4 South Lake Union Tech Walk.png'), label: 'Seattle' },
           { src: img('Fabric Detail Shot - Money.png'), label: 'Fabric' },
-          { src: img('DETAIL-1 Fleece Lining Interior - Money.png'), label: 'Interior' },
-          { src: img('DETAIL-2 Hood with Drawcord System - Money.png'), label: 'Hood' },
-          { src: img('DETAIL-3 Zipper and Storm Flap - Money.png'), label: 'Zipper' },
-          { src: img('DETAIL-10 Inside Patch Pocket - Money.png'), label: 'Pocket' }
+          { src: img('DETAIL-1 Fleece Lining Interior - Money.jpg'), label: 'Interior' },
+          { src: img('DETAIL-2 Hood with Drawcord System - Money.jpg'), label: 'Hood' },
+          { src: img('DETAIL-3 Zipper and Storm Flap - Money.jpg'), label: 'Zipper' },
+          { src: img('DETAIL-10 Inside Patch Pocket - Money.jpg'), label: 'Pocket' }
         ],
         swatch: thumb('Fabric Detail Shot - Money.png')
       },
@@ -934,10 +935,10 @@
           { src: img('SAN-S1 Industrial SoDo District - 1.png'), label: 'Seattle' },
           { src: img('SAN-V1 Shipyard District Morning.png'), label: 'Vancouver' },
           { src: img('Fabric Detail Shot - Sanitation.png'), label: 'Fabric' },
-          { src: img('DETAIL-1 Fleece Lining Interior - Sanitation.png'), label: 'Interior' },
-          { src: img('DETAIL-2 Hood with Drawcord System - Sanitation.png'), label: 'Hood' },
-          { src: img('DETAIL-3 Zipper and Storm Flap - Sanitation.png'), label: 'Zipper' },
-          { src: img('DETAIL-10 Inside Patch Pocket - Sanitation.png'), label: 'Pocket' }
+          { src: img('DETAIL-1 Fleece Lining Interior - Sanitation.jpg'), label: 'Interior' },
+          { src: img('DETAIL-2 Hood with Drawcord System - Sanitation.jpg'), label: 'Hood' },
+          { src: img('DETAIL-3 Zipper and Storm Flap - Sanitation.jpg'), label: 'Zipper' },
+          { src: img('DETAIL-10 Inside Patch Pocket - Sanitation.jpg'), label: 'Pocket' }
         ],
         swatch: thumb('Fabric Detail Shot - Sanitation.png')
       },
@@ -953,10 +954,10 @@
           { src: img('S3 Ferry Commute.png'), label: 'Seattle' },
           { src: img('V1 Stanley Park Seawall.png'), label: 'Vancouver' },
           { src: img('Fabric Detail Shot - Transportaion.png'), label: 'Fabric' },
-          { src: img('DETAIL-1 Fleece Lining Interior - Transportation.png'), label: 'Interior' },
-          { src: img('DETAIL-2 Hood with Drawcord System - Transportation.png'), label: 'Hood' },
-          { src: img('DETAIL-3 Zipper and Storm Flap - Transportation.png'), label: 'Zipper' },
-          { src: img('DETAIL-10 Inside Patch Pocket - Transportation.png'), label: 'Pocket' }
+          { src: img('DETAIL-1 Fleece Lining Interior - Transportation.jpg'), label: 'Interior' },
+          { src: img('DETAIL-2 Hood with Drawcord System - Transportation.jpg'), label: 'Hood' },
+          { src: img('DETAIL-3 Zipper and Storm Flap - Transportation.jpg'), label: 'Zipper' },
+          { src: img('DETAIL-10 Inside Patch Pocket - Transportation.jpg'), label: 'Pocket' }
         ],
         swatch: thumb('Fabric Detail Shot - Transportaion.png')
       }
