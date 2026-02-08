@@ -8,14 +8,17 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-// Lazy-initialize Supabase client (env vars may not be available at module load)
+// Lazy-initialize Supabase client
 let _supabase;
 function getSupabase() {
   if (!_supabase) {
-    _supabase = createClient(
-      process.env.SUPABASE_URL,
-      process.env.SUPABASE_ANON_KEY
-    );
+    const url = process.env.SUPABASE_URL;
+    const key = process.env.SUPABASE_ANON_KEY;
+    if (!url || !key) {
+      const envKeys = Object.keys(process.env).filter(k => k.includes('SUPA') || k.includes('STRIPE')).join(', ');
+      throw new Error(`Missing env vars. SUPABASE_URL=${url ? 'set' : 'missing'}, SUPABASE_ANON_KEY=${key ? 'set' : 'missing'}. Related keys: ${envKeys || 'none'}`);
+    }
+    _supabase = createClient(url, key);
   }
   return _supabase;
 }
