@@ -1,0 +1,147 @@
+/* ============================================================================
+   Waitlist / Sold Out Styles
+   Premium back-in-stock notification form
+   ============================================================================ */
+
+.waitlist-form {
+  padding: var(--space-md);
+  background: var(--color-warm-white);
+  border: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.sold-out-message {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xs);
+}
+
+.waitlist-subtitle {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+  line-height: 1.5;
+}
+
+.waitlist-signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.waitlist-email-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  transition: border-color 0.2s ease;
+}
+
+.waitlist-email-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.waitlist-submit-btn {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--color-black);
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.waitlist-submit-btn:hover:not(:disabled) {
+  background: var(--color-accent);
+  color: var(--color-black);
+}
+
+.waitlist-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.waitlist-privacy {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+/* Success State */
+.waitlist-success {
+  padding: var(--space-md);
+  text-align: center;
+}
+
+.waitlist-success svg {
+  margin: 0 auto var(--space-sm);
+  color: var(--color-accent);
+}
+
+.waitlist-success p:first-of-type {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.waitlist-success-subtitle {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+/* Error State */
+.waitlist-error {
+  margin-top: var(--space-sm);
+  padding: var(--space-sm);
+  background: #fee;
+  border: 1px solid #fcc;
+  font-size: 0.875rem;
+  color: #c33;
+  text-align: center;
+}
+
+/* Size Button - Sold Out State */
+.size-button.sold-out {
+  background: transparent;
+  color: var(--color-text-muted);
+  border-color: var(--color-border);
+  text-decoration: line-through;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.size-button.sold-out:hover {
+  background: transparent;
+  color: var(--color-text-muted);
+  border-color: var(--color-border);
+}
+
+/* Responsive */
+@media (min-width: 600px) {
+  .waitlist-signup-form {
+    flex-direction: row;
+  }
+
+  .waitlist-email-input {
+    flex: 1;
+  }
+
+  .waitlist-submit-btn {
+    width: auto;
+    flex-shrink: 0;
+  }
+}
