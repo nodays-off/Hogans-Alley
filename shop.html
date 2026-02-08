@@ -12,9 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"></noscript>
 
-  <!-- Preconnect to Cloudinary CDN for faster image loading -->
-  <link rel="preconnect" href="https://res.cloudinary.com">
-  <link rel="dns-prefetch" href="https://res.cloudinary.com">
+  <!-- Preconnect to Netlify Image CDN for faster image loading -->
+  <link rel="preconnect" href="/.netlify/images">
+  <link rel="dns-prefetch" href="/.netlify/images">
 
   <!-- E-commerce Component Styles -->
   <link rel="stylesheet" href="/css/cart-drawer.css">
@@ -854,24 +854,23 @@
     // CLOUDINARY CDN - Optimized image delivery
     // =====================
 
-    const USE_CLOUDINARY = true;
-    const CLOUDINARY_CLOUD = 'djj0e17gv';
-    const GITHUB_BASE = 'https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/';
+    // =====================
+    // NETLIFY IMAGE CDN - Matches all other pages
+    // =====================
+    const IMG_WIDTHS = [400, 800, 1200, 2000, 2400];
+    const IMG_Q = 85;
 
-    // Helper to create optimized image URLs
+    // Helper to create optimized image URLs via Netlify Image CDN
     function img(filename, options = {}) {
       const encoded = encodeURIComponent(filename);
+      const w = options.thumb ? 400 : 1200;
+      return `/.netlify/images?url=/Pictures/Pictures/${encoded}&w=${w}&fm=webp&q=${IMG_Q}`;
+    }
 
-      if (USE_CLOUDINARY && CLOUDINARY_CLOUD !== 'YOUR_CLOUD_NAME') {
-        // Cloudinary fetch with transformations
-        const transforms = options.thumb
-          ? 'w_400,h_400,c_fill,f_auto,q_auto:good,dpr_auto'
-          : 'w_1400,f_auto,q_auto:good,dpr_auto';
-        return `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/fetch/${transforms}/${GITHUB_BASE}${encoded}`;
-      }
-
-      // Fallback to direct GitHub URL
-      return GITHUB_BASE + encoded;
+    // Generate srcset for responsive images
+    function imgSrcset(filename) {
+      const encoded = encodeURIComponent(filename);
+      return IMG_WIDTHS.map(w => `/.netlify/images?url=/Pictures/Pictures/${encoded}&w=${w}&fm=webp&q=${IMG_Q} ${w}w`).join(', ');
     }
 
     // Thumbnail with smaller dimensions
@@ -888,78 +887,72 @@
         tagline: '"Celebration & Abundance"',
         description: "Mid-thigh length waterproof parka featuring our signature Libation print — vibrant reds, yellows, and greens with calabash gourds and swirling organic patterns celebrating abundance and offering. Each jacket starts as an original painting before being transferred to technical waterproof fabric.",
         link: "/collections/libation",
-        // Libation = red/yellow/green calabash pattern
-        // L3 (Black woman), L1 (South Asian woman, premium London), V4 (Asian man), S1
         gallery: [
-          { src: img('L3 Borough Market Browse.png'), label: 'London' },
-          { src: img('L1 Southbank Morning Commute.png'), label: 'Southbank' },
-          { src: img('V4 Granville Island - 1.png'), label: 'Vancouver' },
-          { src: img('S1 Capitol Hill Coffee Run.png'), label: 'Seattle' },
-          { src: img('Fabric Detail Shot - Libation.png'), label: 'Fabric' },
-          { src: img('DETAIL-1 Fleece Lining Interior - Libation.jpg'), label: 'Interior' },
-          { src: img('DETAIL-2 Hood with Drawcord System - Libation.jpg'), label: 'Hood' },
-          { src: img('DETAIL-3 Zipper and Storm Flap - Libation.jpg'), label: 'Zipper' },
-          { src: img('DETAIL-10 Inside Patch Pocket - Libation.jpg'), label: 'Pocket' }
+          { file: 'L3 Borough Market Browse.png', label: 'London' },
+          { file: 'L1 Southbank Morning Commute.png', label: 'Southbank' },
+          { file: 'V4 Granville Island - 1.png', label: 'Vancouver' },
+          { file: 'S1 Capitol Hill Coffee Run.png', label: 'Seattle' },
+          { file: 'Fabric Detail Shot - Libation.png', label: 'Fabric' },
+          { file: 'DETAIL-1 Fleece Lining Interior - Libation.png', label: 'Interior' },
+          { file: 'DETAIL-2 Hood with Drawcord System - Libation.jpg', label: 'Hood' },
+          { file: 'DETAIL-3 Zipper and Storm Flap - Libation.jpg', label: 'Zipper' },
+          { file: 'DETAIL-10 Inside Patch Pocket - Libation.jpg', label: 'Pocket' }
         ],
-        swatch: thumb('Fabric Detail Shot - Libation.png')
+        swatchFile: 'Fabric Detail Shot - Libation.png'
       },
       money: {
         name: "Money",
         tagline: '"Currency & Exchange"',
         description: "Mid-thigh length waterproof parka featuring our Money print — royal blue, emerald green, and gold with cowrie shells, currency symbols, and geometric patterns exploring value and exchange. Each jacket starts as an original painting before being transferred to technical waterproof fabric.",
         link: "/collections/money",
-        // Money = blue/green/gold cowrie pattern
-        // V-HERO (women), L2 (white man), L5 (mixed race woman), S4 (South Asian man)
         gallery: [
-          { src: img('V-HERO-1 Vancouver Art Gallery Plaza - 1.png'), label: 'Hero' },
-          { src: img('VHERO2 Coal Harbour Seawall - 1.png'), label: 'Seawall' },
-          { src: img('L2 Underground Platform.png'), label: 'London' },
-          { src: img('S4 South Lake Union Tech Walk.png'), label: 'Seattle' },
-          { src: img('Fabric Detail Shot - Money.png'), label: 'Fabric' },
-          { src: img('DETAIL-1 Fleece Lining Interior - Money.jpg'), label: 'Interior' },
-          { src: img('DETAIL-2 Hood with Drawcord System - Money.jpg'), label: 'Hood' },
-          { src: img('DETAIL-3 Zipper and Storm Flap - Money.jpg'), label: 'Zipper' },
-          { src: img('DETAIL-10 Inside Patch Pocket - Money.jpg'), label: 'Pocket' }
+          { file: 'V-HERO-1 Vancouver Art Gallery Plaza - 1.png', label: 'Hero' },
+          { file: 'VHERO2 Coal Harbour Seawall - 1.png', label: 'Seawall' },
+          { file: 'L2 Underground Platform.png', label: 'London' },
+          { file: 'S4 South Lake Union Tech Walk.png', label: 'Seattle' },
+          { file: 'Fabric Detail Shot - Money.png', label: 'Fabric' },
+          { file: 'DETAIL-1 Fleece Lining Interior - Money.jpg', label: 'Interior' },
+          { file: 'DETAIL-2 Hood with Drawcord System - Money.jpg', label: 'Hood' },
+          { file: 'DETAIL-3 Zipper and Storm Flap - Money.jpg', label: 'Zipper' },
+          { file: 'DETAIL-10 Inside Patch Pocket - Money.jpg', label: 'Pocket' }
         ],
-        swatch: thumb('Fabric Detail Shot - Money.png')
+        swatchFile: 'Fabric Detail Shot - Money.png'
       },
       sanitation: {
         name: "Sanitation",
         tagline: '"Urban Infrastructure"',
         description: "Mid-thigh length waterproof parka featuring our Sanitation print — vibrant blues, reds, and greens with brushes, bins, and city maintenance imagery celebrating the unsung heroes who keep our cities running. Each jacket starts as an original painting before being transferred to technical waterproof fabric.",
         link: "/collections/sanitation",
-        // Gallery: SAN- prefixed shots, Detail, Lining
         gallery: [
-          { src: img('SAN-L1 Early Morning Street Sweep - 1.png'), label: 'London' },
-          { src: img('SAN-L2 Barbican Brutalist -1.png'), label: 'Barbican' },
-          { src: img('SAN-S1 Industrial SoDo District - 1.png'), label: 'Seattle' },
-          { src: img('SAN-V1 Shipyard District Morning.png'), label: 'Vancouver' },
-          { src: img('Fabric Detail Shot - Sanitation.png'), label: 'Fabric' },
-          { src: img('DETAIL-1 Fleece Lining Interior - Sanitation.jpg'), label: 'Interior' },
-          { src: img('DETAIL-2 Hood with Drawcord System - Sanitation.jpg'), label: 'Hood' },
-          { src: img('DETAIL-3 Zipper and Storm Flap - Sanitation.jpg'), label: 'Zipper' },
-          { src: img('DETAIL-10 Inside Patch Pocket - Sanitation.jpg'), label: 'Pocket' }
+          { file: 'SAN-L1 Early Morning Street Sweep - 1.png', label: 'London' },
+          { file: 'SAN-L2 Barbican Brutalist -1.png', label: 'Barbican' },
+          { file: 'SAN-S1 Industrial SoDo District - 1.png', label: 'Seattle' },
+          { file: 'SAN-V1 Shipyard District Morning.png', label: 'Vancouver' },
+          { file: 'Fabric Detail Shot - Sanitation.png', label: 'Fabric' },
+          { file: 'DETAIL-1 Fleece Lining Interior - Sanitation.jpg', label: 'Interior' },
+          { file: 'DETAIL-2 Hood with Drawcord System - Sanitation.jpg', label: 'Hood' },
+          { file: 'DETAIL-3 Zipper and Storm Flap - Sanitation.png', label: 'Zipper' },
+          { file: 'DETAIL-10 Inside Patch Pocket - Sanitation.jpg', label: 'Pocket' }
         ],
-        swatch: thumb('Fabric Detail Shot - Sanitation.png')
+        swatchFile: 'Fabric Detail Shot - Sanitation.png'
       },
       transport: {
         name: "Transport",
         tagline: '"Movement & Journey"',
         description: "Mid-thigh length waterproof parka featuring our Transport print — warm oranges, reds, and teals with vintage automobiles and road elements celebrating movement and journey. Each jacket starts as an original painting before being transferred to technical waterproof fabric.",
         link: "/collections/transport",
-        // Gallery: Lifestyle shots where jacket=Transport, Detail, Lining
         gallery: [
-          { src: img('L4 Pub Arrival — Two Friends.png'), label: 'London' },
-          { src: img('P1 Hawthorne Bridge Bike.png'), label: 'Portland' },
-          { src: img('S3 Ferry Commute.png'), label: 'Seattle' },
-          { src: img('V1 Stanley Park Seawall.png'), label: 'Vancouver' },
-          { src: img('Fabric Detail Shot - Transportaion.png'), label: 'Fabric' },
-          { src: img('DETAIL-1 Fleece Lining Interior - Transportation.jpg'), label: 'Interior' },
-          { src: img('DETAIL-2 Hood with Drawcord System - Transportation.jpg'), label: 'Hood' },
-          { src: img('DETAIL-3 Zipper and Storm Flap - Transportation.jpg'), label: 'Zipper' },
-          { src: img('DETAIL-10 Inside Patch Pocket - Transportation.jpg'), label: 'Pocket' }
+          { file: 'L4 Pub Arrival \u2014 Two Friends.png', label: 'London' },
+          { file: 'P1 Hawthorne Bridge Bike.png', label: 'Portland' },
+          { file: 'S3 Ferry Commute.png', label: 'Seattle' },
+          { file: 'V1 Stanley Park Seawall.png', label: 'Vancouver' },
+          { file: 'Fabric Detail Shot - Transportaion.png', label: 'Fabric' },
+          { file: 'DETAIL-1 Fleece Lining Interior - Transportation.png', label: 'Interior' },
+          { file: 'DETAIL-2 Hood with Drawcord System - Transportation.jpg', label: 'Hood' },
+          { file: 'DETAIL-3 Zipper and Storm Flap - Transportation.jpg', label: 'Zipper' },
+          { file: 'DETAIL-10 Inside Patch Pocket - Transportation.jpg', label: 'Pocket' }
         ],
-        swatch: thumb('Fabric Detail Shot - Transportaion.png')
+        swatchFile: 'Fabric Detail Shot - Transportaion.png'
       }
     };
     
@@ -1121,9 +1114,10 @@
       const container = document.getElementById('print-swatches');
       container.innerHTML = Object.keys(prints).map(key => {
         const p = prints[key];
+        const swatchUrl = thumb(p.swatchFile);
         return `
           <button class="swatch ${key === currentPrint ? 'active' : ''}" data-print="${key}" title="${p.name}">
-            <img src="${p.swatch}" alt="${p.name}" onerror="this.style.background='#ddd'" loading="lazy">
+            <img src="${swatchUrl}" alt="${p.name}" onerror="this.style.background='#ddd'" loading="lazy">
             <span class="swatch-check">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
                 <path d="M20 6L9 17l-5-5"/>
@@ -1180,31 +1174,41 @@
     function renderGallery(gallery) {
       const thumbsContainer = document.getElementById('thumbs');
 
-      thumbsContainer.innerHTML = gallery.map((img, i) => `
-        <button class="thumb ${i === 0 ? 'active' : ''}" data-index="${i}" data-src="${img.src}">
-          <img src="${img.src}" alt="${img.label}" onerror="this.style.background='#ddd'" loading="lazy" decoding="async">
-          ${img.label ? `<span class="thumb-label">${img.label}</span>` : ''}
-        </button>
-      `).join('');
+      thumbsContainer.innerHTML = gallery.map((item, i) => {
+        const thumbUrl = thumb(item.file);
+        const mainUrl = img(item.file);
+        return `
+          <button class="thumb ${i === 0 ? 'active' : ''}" data-index="${i}" data-file="${item.file}">
+            <img src="${thumbUrl}" alt="${item.label}" onerror="this.style.background='#ddd'" loading="lazy" decoding="async">
+            ${item.label ? `<span class="thumb-label">${item.label}</span>` : ''}
+          </button>
+        `;
+      }).join('');
 
-      // Set main image with high priority loading
+      // Set main image with high priority loading and srcset
       const mainImg = document.getElementById('main-image');
-      mainImg.src = gallery[0].src;
-      mainImg.loading = 'eager'; // Load main image immediately
+      const firstFile = gallery[0].file;
+      mainImg.src = img(firstFile);
+      mainImg.srcset = imgSrcset(firstFile);
+      mainImg.sizes = '(max-width: 900px) 100vw, 60vw';
+      mainImg.loading = 'eager';
       mainImg.decoding = 'async';
       currentImageIndex = 0;
 
       // Add click handlers
-      thumbsContainer.querySelectorAll('.thumb').forEach(thumb => {
-        thumb.addEventListener('click', () => {
-          const index = parseInt(thumb.dataset.index);
+      thumbsContainer.querySelectorAll('.thumb').forEach(thumbBtn => {
+        thumbBtn.addEventListener('click', () => {
+          const index = parseInt(thumbBtn.dataset.index);
+          const file = thumbBtn.dataset.file;
           currentImageIndex = index;
 
           document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-          thumb.classList.add('active');
+          thumbBtn.classList.add('active');
 
           const mainImg = document.getElementById('main-image');
-          mainImg.src = thumb.dataset.src;
+          mainImg.src = img(file);
+          mainImg.srcset = imgSrcset(file);
+          mainImg.sizes = '(max-width: 900px) 100vw, 60vw';
           mainImg.loading = 'eager';
         });
       });
@@ -1219,9 +1223,11 @@
 
       grid.innerHTML = otherPrints.map(p => {
         const data = prints[p];
+        const cardImg = img(data.gallery[0].file);
+        const cardSrcset = imgSrcset(data.gallery[0].file);
         return `
           <a href="#" class="also-like-card" onclick="selectPrint('${p}'); window.scrollTo(0,0); return false;">
-            <img src="${data.gallery[0].src}" alt="${data.name} Collection" onerror="this.style.background='#ddd'" loading="lazy">
+            <img src="${cardImg}" srcset="${cardSrcset}" sizes="(max-width: 600px) 50vw, 33vw" alt="${data.name} Collection" onerror="this.style.background='#ddd'" loading="lazy">
             <h4>${data.name}</h4>
             <p>$395 CAD</p>
           </a>
