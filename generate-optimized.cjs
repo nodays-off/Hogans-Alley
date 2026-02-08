@@ -5,7 +5,7 @@ const path = require('path');
 const SRC_DIR = path.join(__dirname, 'Pictures', 'Pictures');
 const OUT_DIR = path.join(__dirname, 'Pictures', 'optimized');
 const WIDTHS = [400, 800, 1200, 2000, 2400];
-const WEBP_QUALITY = 95;
+const WEBP_QUALITY = 100;
 const CONCURRENCY = 4;
 
 if (!fs.existsSync(OUT_DIR)) fs.mkdirSync(OUT_DIR, { recursive: true });
