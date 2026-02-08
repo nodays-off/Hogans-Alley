@@ -863,14 +863,14 @@
     // Helper to create optimized image URLs via Netlify Image CDN
     function img(filename, options = {}) {
       const encoded = encodeURIComponent(filename);
-      const w = options.thumb ? 400 : 2000;
-      return `/.netlify/images?url=/Pictures/Pictures/${encoded}&w=${w}&q=${IMG_Q}`;
+      const w = options.thumb ? 400 : 2400;
+      return `/.netlify/images?url=/Pictures/Pictures/${encoded}&w=${w}&fm=webp&q=${IMG_Q}`;
     }
 
     // Generate srcset for responsive images
     function imgSrcset(filename) {
       const encoded = encodeURIComponent(filename);
-      return IMG_WIDTHS.map(w => `/.netlify/images?url=/Pictures/Pictures/${encoded}&w=${w}&q=${IMG_Q} ${w}w`).join(', ');
+      return IMG_WIDTHS.map(w => `/.netlify/images?url=/Pictures/Pictures/${encoded}&w=${w}&fm=webp&q=${IMG_Q} ${w}w`).join(', ');
     }
 
     // Thumbnail with smaller dimensions
