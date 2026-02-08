@@ -849,16 +849,26 @@
     // =====================
     // CLOUDINARY CDN + GITHUB IMAGE BASE URL
     // =====================
-    const BASE = 'https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/';
+    const USE_CLOUDINARY = false; // Set to true to enable Cloudinary
+    const CLOUDINARY_CLOUD = 'YOUR_CLOUD_NAME'; // Replace with your Cloudinary cloud name
+    const GITHUB_BASE = 'https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/';
 
     // Helper to encode filenames with spaces
-    function img(filename) {
-      return BASE + encodeURIComponent(filename);
+    function img(filename, options = {}) {
+      const encoded = encodeURIComponent(filename);
+
+      if (USE_CLOUDINARY && CLOUDINARY_CLOUD !== 'YOUR_CLOUD_NAME') {
+        // Cloudinary fetch URL with auto format and quality
+        const transforms = options.thumb ? 'w_400,h_400,c_fill,f_auto,q_auto' : 'w_1200,f_auto,q_auto';
+        return `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/fetch/${transforms}/${GITHUB_BASE}${encoded}`;
+      }
+
+      return GITHUB_BASE + encoded;
     }
 
-    // Alias for thumbnails (same URL, browser handles sizing)
+    // Thumbnail with smaller dimensions
     function thumb(filename) {
-      return img(filename);
+      return img(filename, { thumb: true });
     }
     
     // =====================
@@ -955,7 +965,7 @@
     // =====================
     function init() {
       renderSwatches();
-      selectPrint('money');
+      selectPrint('money'); // This will fetch inventory asynchronously
       setupSizeButtons();
 
       // Set up initial add to cart handler
@@ -969,6 +979,11 @@
     // FETCH INVENTORY FOR PRINT
     // =====================
     async function fetchInventoryForPrint(print) {
+      // Check cache first
+      if (inventoryCache[print]) {
+        return inventoryCache[print];
+      }
+
       // Product slugs follow pattern: {print}-jacket
       const productId = `${print}-jacket`;
 
@@ -978,10 +993,17 @@
         return data;
       } catch (error) {
         console.error(`Failed to fetch inventory for ${print}:`, error);
-        // Return empty inventory on error
+        // Return default "available" state on error to not block user
         return {
-          inventory: {},
-          totalAvailable: 0
+          inventory: {
+            XS: { quantity: 1, status: 'in_stock' },
+            S: { quantity: 1, status: 'in_stock' },
+            M: { quantity: 1, status: 'in_stock' },
+            L: { quantity: 1, status: 'in_stock' },
+            XL: { quantity: 1, status: 'in_stock' },
+            XXL: { quantity: 1, status: 'in_stock' }
+          },
+          totalAvailable: 6
         };
       }
     }
@@ -1135,11 +1157,13 @@
       // Update "You may also like"
       updateAlsoLike(print);
 
-      // Fetch and update inventory
-      if (window.inventoryManager) {
-        const inventoryData = await fetchInventoryForPrint(print);
-        updateSizeButtonsWithInventory(inventoryData);
-      }
+      // Fetch and update inventory (deferred, non-blocking)
+      setTimeout(async () => {
+        if (window.inventoryManager) {
+          const inventoryData = await fetchInventoryForPrint(print);
+          updateSizeButtonsWithInventory(inventoryData);
+        }
+      }, 0);
     }
     
     // =====================
@@ -1232,14 +1256,14 @@
   </script>
 
   <!-- Analytics (GA4 + Google Ads) -->
-  <script src="/js/analytics.js"></script>
+  <script src="/js/analytics.js" defer></script>
 
   <!-- E-commerce Scripts -->
-  <script src="/js/cart.js"></script>
-  <script src="/js/cart-drawer.js"></script>
+  <script src="/js/cart.js" defer></script>
+  <script src="/js/cart-drawer.js" defer></script>
 
   <!-- Inventory Manager -->
-  <script src="/js/inventory.js"></script>
+  <script src="/js/inventory.js" defer></script>
 
   <!-- Waitlist Module -->
   <script type="module" src="/js/waitlist.js"></script>
