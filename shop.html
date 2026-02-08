@@ -1036,9 +1036,9 @@
         const quantity = sizeInventory ? sizeInventory.quantity : 0;
 
         if (quantity === 0) {
-          // Mark as sold out
+          // Mark as sold out but keep clickable for waitlist size selection
           btn.classList.add('sold-out');
-          btn.disabled = true;
+          btn.disabled = false;
         } else {
           // Available
           btn.classList.remove('sold-out');
@@ -1261,11 +1261,6 @@
     function setupSizeButtons() {
       document.querySelectorAll('.size-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-          // Don't allow selection of sold-out sizes
-          if (btn.classList.contains('sold-out')) {
-            return;
-          }
-
           currentSize = btn.dataset.size;
           document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
