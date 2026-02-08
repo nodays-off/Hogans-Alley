@@ -41,15 +41,16 @@ htmlFiles.forEach(file => {
   html = html.replace(/ imagesizes="[^"]*"/gi, '');
 
   // Step 2: Process <img> tags with Netlify image URLs
+  // Match both &fm=webp&q=N and &q=N (no fm) patterns
   html = html.replace(
-    /(<img\b[^>]*?)src="(\/\.netlify\/images\?url=[^"]*?)&w=\d+&fm=webp&q=\d+"([^>]*?>)/gi,
+    /(<img\b[^>]*?)src="(\/\.netlify\/images\?url=[^"]*?)&w=\d+(?:&fm=webp)?&q=\d+"([^>]*?>)/gi,
     (match, before, baseUrl, after) => {
       count++;
       const isHero = (before + after).includes('fetchpriority');
       const defaultW = isHero ? 2000 : 800;
 
-      const src = `${baseUrl}&w=${defaultW}&fm=webp&q=${Q}`;
-      const srcset = WIDTHS.map(w => `${baseUrl}&w=${w}&fm=webp&q=${Q} ${w}w`).join(', ');
+      const src = `${baseUrl}&w=${defaultW}&q=${Q}`;
+      const srcset = WIDTHS.map(w => `${baseUrl}&w=${w}&q=${Q} ${w}w`).join(', ');
       const sizes = isHero ? '100vw' : '(max-width: 768px) 100vw, 50vw';
 
       return `${before}src="${src}" srcset="${srcset}" sizes="${sizes}"${after}`;
@@ -58,20 +59,20 @@ htmlFiles.forEach(file => {
 
   // Step 3: Update <link rel="preload"> hero images
   html = html.replace(
-    /(<link\b[^>]*?href=")(\/\.netlify\/images\?url=[^"]*?)&w=\d+&fm=webp&q=\d+"([^>]*?>)/gi,
+    /(<link\b[^>]*?href=")(\/\.netlify\/images\?url=[^"]*?)&w=\d+(?:&fm=webp)?&q=\d+"([^>]*?>)/gi,
     (match, before, baseUrl, after) => {
       count++;
-      const srcset = WIDTHS.map(w => `${baseUrl}&w=${w}&fm=webp&q=${Q} ${w}w`).join(', ');
-      return `${before}${baseUrl}&w=2000&fm=webp&q=${Q}" imagesrcset="${srcset}" imagesizes="100vw"${after}`;
+      const srcset = WIDTHS.map(w => `${baseUrl}&w=${w}&q=${Q} ${w}w`).join(', ');
+      return `${before}${baseUrl}&w=2000&q=${Q}" imagesrcset="${srcset}" imagesizes="100vw"${after}`;
     }
   );
 
   // Step 4: Update data-product-image attributes
   html = html.replace(
-    /(data-product-image=")(\/\.netlify\/images\?url=[^"]*?)&w=\d+&fm=webp&q=\d+"/gi,
+    /(data-product-image=")(\/\.netlify\/images\?url=[^"]*?)&w=\d+(?:&fm=webp)?&q=\d+"/gi,
     (match, before, baseUrl) => {
       count++;
-      return `${before}${baseUrl}&w=800&fm=webp&q=${Q}"`;
+      return `${before}${baseUrl}&w=800&q=${Q}"`;
     }
   );
 
