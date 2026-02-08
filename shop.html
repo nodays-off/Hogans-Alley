@@ -851,29 +851,42 @@
 
   <script>
     // =====================
-    // CLOUDINARY CDN - Optimized image delivery
-    // =====================
-
-    // =====================
-    // NETLIFY IMAGE CDN - Matches all other pages
+    // STATIC OPTIMIZED IMAGES - Pre-generated WebP
     // =====================
     const IMG_WIDTHS = [400, 800, 1200, 2000, 2400];
-    const IMG_Q = 95;
 
-    // Helper to create optimized image URLs via Netlify Image CDN
+    // Max available width for images smaller than 2400px
+    const IMG_MAX = {
+      'Fabric Detail Shot - Libation.png': 864,
+      'Fabric Detail Shot - Money.png': 1184,
+      'Fabric Detail Shot - Sanitation.png': 1184,
+      'Fabric Detail Shot - Transportaion.png': 1184,
+      'DETAIL-1 Fleece Lining Interior - Libation.png': 1024,
+      'DETAIL-1 Fleece Lining Interior - Transportation.png': 1024,
+      'DETAIL-3 Zipper and Storm Flap - Sanitation.png': 928
+    };
+
+    function imgPath(basename, width) {
+      return `/Pictures/optimized/${encodeURIComponent(basename + '-' + width + 'w.webp')}`;
+    }
+
     function img(filename, options = {}) {
-      const encoded = encodeURIComponent(filename);
-      const w = options.thumb ? 400 : 2400;
-      return `/.netlify/images?url=/Pictures/Pictures/${encoded}&w=${w}&fm=webp&q=${IMG_Q}`;
+      const baseName = filename.replace(/\.(png|jpg|jpeg)$/i, '');
+      const maxW = IMG_MAX[filename];
+      if (options.thumb) return imgPath(baseName, 400);
+      if (maxW) return imgPath(baseName, maxW <= 800 ? 800 : maxW);
+      return imgPath(baseName, 2400);
     }
 
-    // Generate srcset for responsive images
     function imgSrcset(filename) {
-      const encoded = encodeURIComponent(filename);
-      return IMG_WIDTHS.map(w => `/.netlify/images?url=/Pictures/Pictures/${encoded}&w=${w}&fm=webp&q=${IMG_Q} ${w}w`).join(', ');
+      const baseName = filename.replace(/\.(png|jpg|jpeg)$/i, '');
+      const maxW = IMG_MAX[filename];
+      let widths = maxW
+        ? IMG_WIDTHS.filter(w => w <= maxW)
+        : IMG_WIDTHS;
+      return widths.map(w => `${imgPath(baseName, w)} ${w}w`).join(', ');
     }
 
-    // Thumbnail with smaller dimensions
     function thumb(filename) {
       return img(filename, { thumb: true });
     }
