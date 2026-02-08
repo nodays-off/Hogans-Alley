@@ -3,7 +3,7 @@ const path = require('path');
 
 const ROOT = __dirname;
 const WIDTHS = [400, 800, 1200, 2000, 2400];
-const Q = 90;
+const Q = 95;
 
 const htmlFiles = [
   'index.html', 'story.html', 'lookbook.html', 'shop.html',

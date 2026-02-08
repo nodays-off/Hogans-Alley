@@ -858,12 +858,12 @@
     // NETLIFY IMAGE CDN - Matches all other pages
     // =====================
     const IMG_WIDTHS = [400, 800, 1200, 2000, 2400];
-    const IMG_Q = 90;
+    const IMG_Q = 95;
 
     // Helper to create optimized image URLs via Netlify Image CDN
     function img(filename, options = {}) {
       const encoded = encodeURIComponent(filename);
-      const w = options.thumb ? 400 : 1200;
+      const w = options.thumb ? 400 : 2000;
       return `/.netlify/images?url=/Pictures/Pictures/${encoded}&w=${w}&fm=webp&q=${IMG_Q}`;
     }
 
