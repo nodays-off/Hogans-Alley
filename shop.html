@@ -7,10 +7,14 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"></noscript>
 
-  <!-- Preconnect to Statically CDN for faster image loading -->
-  <link rel="preconnect" href="https://cdn.statically.io">
+  <!-- Preconnect to Cloudinary CDN for faster image loading -->
+  <link rel="preconnect" href="https://res.cloudinary.com">
+  <link rel="dns-prefetch" href="https://res.cloudinary.com">
 
   <!-- E-commerce Component Styles -->
   <link rel="stylesheet" href="/css/cart-drawer.css">
@@ -849,8 +853,8 @@
     // =====================
     // CLOUDINARY CDN + GITHUB IMAGE BASE URL
     // =====================
-    const USE_CLOUDINARY = false; // Set to true to enable Cloudinary
-    const CLOUDINARY_CLOUD = 'YOUR_CLOUD_NAME'; // Replace with your Cloudinary cloud name
+    const USE_CLOUDINARY = true; // Cloudinary enabled for optimized images
+    const CLOUDINARY_CLOUD = 'djj0e17gv'; // Cloudinary cloud name
     const GITHUB_BASE = 'https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/';
 
     // Helper to encode filenames with spaces
@@ -858,8 +862,11 @@
       const encoded = encodeURIComponent(filename);
 
       if (USE_CLOUDINARY && CLOUDINARY_CLOUD !== 'YOUR_CLOUD_NAME') {
-        // Cloudinary fetch URL with auto format and quality
-        const transforms = options.thumb ? 'w_400,h_400,c_fill,f_auto,q_auto' : 'w_1200,f_auto,q_auto';
+        // Cloudinary fetch URL with aggressive optimization
+        // f_auto = auto format (WebP/AVIF), q_auto:good = good quality, dpr_auto = device pixel ratio
+        const transforms = options.thumb
+          ? 'w_400,h_400,c_fill,f_auto,q_auto:good,dpr_auto'
+          : 'w_1400,f_auto,q_auto:good,dpr_auto';
         return `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/fetch/${transforms}/${GITHUB_BASE}${encoded}`;
       }
 
@@ -1174,13 +1181,16 @@
 
       thumbsContainer.innerHTML = gallery.map((img, i) => `
         <button class="thumb ${i === 0 ? 'active' : ''}" data-index="${i}" data-src="${img.src}">
-          <img src="${img.src}" alt="${img.label}" onerror="this.style.background='#ddd'" loading="lazy">
+          <img src="${img.src}" alt="${img.label}" onerror="this.style.background='#ddd'" loading="lazy" decoding="async">
           ${img.label ? `<span class="thumb-label">${img.label}</span>` : ''}
         </button>
       `).join('');
 
-      // Set main image
-      document.getElementById('main-image').src = gallery[0].src;
+      // Set main image with high priority loading
+      const mainImg = document.getElementById('main-image');
+      mainImg.src = gallery[0].src;
+      mainImg.loading = 'eager'; // Load main image immediately
+      mainImg.decoding = 'async';
       currentImageIndex = 0;
 
       // Add click handlers
@@ -1192,7 +1202,9 @@
           document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
           thumb.classList.add('active');
 
-          document.getElementById('main-image').src = thumb.dataset.src;
+          const mainImg = document.getElementById('main-image');
+          mainImg.src = thumb.dataset.src;
+          mainImg.loading = 'eager';
         });
       });
     }
