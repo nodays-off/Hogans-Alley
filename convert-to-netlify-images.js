@@ -31,22 +31,18 @@ htmlFiles.forEach(file => {
   let content = fs.readFileSync(file, 'utf8');
   let originalContent = content;
 
-  // Pattern to match statically.io CDN images
-  // https://cdn.statically.io/gh/nodays-off/Hogans-Alley/master/Pictures/Pictures/FILENAME.png
-  const staticallyCDNPattern = /https:\/\/cdn\.statically\.io\/gh\/nodays-off\/Hogans-Alley\/master\/Pictures\/Pictures\/([^"'>\s]+)/g;
+  // Pattern to match existing Netlify CDN images with old parameters
+  // /.netlify/images?url=/Pictures/Pictures/FILENAME&w=1200&fm=webp&q=85
+  const netlifyPattern = /\/.netlify\/images\?url=(\/Pictures\/Pictures\/[^&]+)&w=\d+&fm=webp&q=\d+/g;
 
-  // Replace with Netlify Image CDN format
-  content = content.replace(staticallyCDNPattern, (match, encodedFilename) => {
-    // Decode URL encoding (e.g., %20 -> space)
-    const filename = decodeURIComponent(encodedFilename);
+  // Replace with updated quality settings
+  content = content.replace(netlifyPattern, (match, imagePath) => {
+    // Use 2400px for high-res/retina displays and premium quality
+    const width = 2400;
+    const quality = 95;
 
-    // Determine optimal width based on context (we'll use 1200 for hero, 800 for others)
-    // For now, use 1200 for all to maintain quality, Netlify will scale down as needed
-    const width = 1200;
-    const quality = 85;
-
-    // Construct Netlify Image CDN URL
-    const netlifyURL = `/.netlify/images?url=/Pictures/Pictures/${encodeURIComponent(filename)}&w=${width}&fm=webp&q=${quality}`;
+    // Construct updated Netlify Image CDN URL
+    const netlifyURL = `/.netlify/images?url=${imagePath}&w=${width}&fm=webp&q=${quality}`;
 
     totalConverted++;
     return netlifyURL;
