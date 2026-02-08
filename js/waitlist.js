@@ -18,24 +18,25 @@ export class WaitlistManager {
     container.innerHTML = `
       <div class="waitlist-form">
         <p class="sold-out-message">Sold Out</p>
-        <p class="waitlist-subtitle">Be the first to know when this size is back in stock</p>
+        <div class="waitlist-divider"></div>
+        <p class="waitlist-subtitle">Be the first to know when this size is back</p>
         <form class="waitlist-signup-form" data-product-id="${productId}" data-size="${size}">
           <input
             type="email"
             name="email"
-            placeholder="Enter your email"
+            placeholder="your@email.com"
             required
             class="waitlist-email-input"
+            autocomplete="email"
           />
           <button type="submit" class="waitlist-submit-btn">
             Notify Me
           </button>
         </form>
-        <p class="waitlist-privacy">We'll only email you when this item is back in stock. No spam.</p>
+        <p class="waitlist-privacy">One email when restocked. No spam, ever.</p>
       </div>
     `;
 
-    // Attach event listener
     const form = container.querySelector('.waitlist-signup-form');
     form.addEventListener('submit', (e) => this.handleSubmit(e));
   }
@@ -54,34 +55,25 @@ export class WaitlistManager {
     const productId = form.dataset.productId;
     const size = form.dataset.size;
 
-    // Disable form during submission
     submitBtn.disabled = true;
     submitBtn.textContent = 'Joining...';
 
     try {
       const response = await fetch(this.apiEndpoint, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          productId,
-          size,
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, productId, size }),
       });
 
       const data = await response.json();
 
       if (response.ok && data.success) {
-        // Success! Show confirmation
         this.showSuccess(form, data.alreadySignedUp);
       } else {
         throw new Error(data.error || 'Failed to join waitlist');
       }
-
     } catch (error) {
-      console.error('Waitlist signup error:', error);
+      console.error('[Waitlist] Signup error:', error);
       this.showError(form, error.message);
     } finally {
       submitBtn.disabled = false;
@@ -93,17 +85,20 @@ export class WaitlistManager {
    * Show success message
    */
   showSuccess(form, alreadySignedUp = false) {
-    const message = alreadySignedUp
-      ? 'You\'re already on the list!'
-      : 'You\'re on the list!';
+    const title = alreadySignedUp
+      ? "You're already on the list"
+      : "You're on the list";
 
-    form.innerHTML = `
+    const wrapper = form.closest('.waitlist-form');
+    wrapper.innerHTML = `
       <div class="waitlist-success">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-        <p>${message}</p>
-        <p class="waitlist-success-subtitle">We'll email you when this size is back in stock.</p>
+        <div class="waitlist-success-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <p class="waitlist-success-title">${title}</p>
+        <p class="waitlist-success-subtitle">We'll let you know the moment this size is back in stock.</p>
       </div>
     `;
   }
@@ -112,18 +107,14 @@ export class WaitlistManager {
    * Show error message
    */
   showError(form, message) {
-    const errorDiv = document.createElement('div');
-    errorDiv.className = 'waitlist-error';
-    errorDiv.textContent = message;
-
-    // Remove existing errors
     const existingError = form.querySelector('.waitlist-error');
     if (existingError) existingError.remove();
 
-    // Add new error
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'waitlist-error';
+    errorDiv.textContent = message;
     form.appendChild(errorDiv);
 
-    // Remove error after 5 seconds
     setTimeout(() => errorDiv.remove(), 5000);
   }
 }
