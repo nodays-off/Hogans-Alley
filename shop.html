@@ -1247,7 +1247,7 @@
         const cardSrcset = imgSrcset(data.gallery[0].file);
         return `
           <a href="#" class="also-like-card" onclick="selectPrint('${p}'); window.scrollTo(0,0); return false;">
-            <img src="${cardImg}" srcset="${cardSrcset}" sizes="(max-width: 600px) 50vw, 33vw" alt="${data.name} Collection" onerror="this.style.background='#ddd'" loading="lazy">
+            <img src="${cardImg}" srcset="${cardSrcset}" sizes="100vw" alt="${data.name} Collection" onerror="this.style.background='#ddd'" loading="lazy">
             <h4>${data.name}</h4>
             <p>$395 CAD</p>
           </a>
