@@ -1201,7 +1201,10 @@
         document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
         thumb.classList.add('active');
         const mainImg = document.querySelector('.gallery-main img');
-        mainImg.src = thumb.querySelector('img').src;
+        const thumbImg = thumb.querySelector('img');
+        mainImg.src = thumbImg.src;
+        mainImg.srcset = thumbImg.srcset;
+        mainImg.alt = thumbImg.alt;
       });
     });
   </script>
