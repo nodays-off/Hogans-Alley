@@ -576,3 +576,22 @@
     display: none !important;
   }
 }
+
+/* Skip to Content — Accessibility */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 9999;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-black, #0A0A0A);
+  color: var(--color-white, #FAFAF9);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.skip-to-content:focus {
+  left: 0;
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hogansalleyclothing.com/sitemap.xml
