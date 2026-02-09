@@ -146,7 +146,7 @@
     }
     .product-layout {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: var(--space-lg);
     }
     @media (min-width: 900px) {
@@ -160,6 +160,7 @@
     .gallery {
       display: flex;
       gap: 1rem;
+      min-width: 0;
     }
     .gallery-thumbs {
       display: flex;
