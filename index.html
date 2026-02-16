@@ -505,72 +505,22 @@
     }
 
     /* ============================================
-       360° PRODUCT VIEWER
+       360° PRODUCT VIDEO
     ============================================ */
-    .viewer360-wrapper {
+    .product-video-wrapper {
       position: relative;
       width: 100%;
-      aspect-ratio: 1/1;
-      background: var(--color-warm-white);
+      aspect-ratio: 16/9;
+      background: #1a1a1a;
       overflow: hidden;
-      cursor: grab;
     }
-    .viewer360-wrapper.grabbing {
-      cursor: grabbing;
-    }
-    .viewer360-canvas {
+    .product-video-wrapper video {
       width: 100%;
       height: 100%;
-      object-fit: contain !important;
-      object-position: center center !important;
-      min-height: 0 !important;
-      user-select: none;
-      -webkit-user-drag: none;
+      object-fit: cover;
+      object-position: center top;
     }
-    .viewer360-hint {
-      position: absolute;
-      bottom: var(--space-md);
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: var(--font-mono);
-      font-size: 0.625rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--color-text-muted);
-      pointer-events: none;
-      transition: opacity 0.4s ease;
-    }
-    .viewer360-hint.hidden {
-      opacity: 0;
-    }
-    .viewer360-hint svg {
-      width: 20px;
-      height: 20px;
-      animation: swipe 2s ease-in-out infinite;
-    }
-    @keyframes swipe {
-      0%, 100% { transform: translateX(-6px); }
-      50% { transform: translateX(6px); }
-    }
-    .viewer360-wrapper.viewer360-wrapper {
-      min-height: 0;
-    }
-    .viewer360-badge {
-      position: absolute;
-      top: var(--space-sm);
-      left: var(--space-sm);
-      font-family: var(--font-mono);
-      font-size: 0.5625rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--color-white);
-      background: var(--color-black);
-      padding: 0.35rem 0.6rem;
-    }
-    
+
     .tech-specs {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1227,14 +1177,11 @@
       </div>
       
       <div class="section-image">
-        <!-- 360° INTERACTIVE PRODUCT VIEWER -->
-        <div id="viewer360" class="viewer360-wrapper">
-          <img class="viewer360-canvas" src="/Pictures/360-money-web/frame-000.webp" alt="Money Rain Parka - 360° view" loading="lazy" decoding="async">
-          <span class="viewer360-badge">360°</span>
-          <div class="viewer360-hint">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M5 12l3-3M5 12l3 3M19 12l-3-3M19 12l-3 3"/></svg>
-            Drag to rotate
-          </div>
+        <!-- 360° PRODUCT VIDEO -->
+        <div class="product-video-wrapper">
+          <video autoplay muted loop playsinline poster="/Pictures/360-money-poster.webp">
+            <source src="/Pictures/360-money-video.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </div>
@@ -1559,8 +1506,6 @@
     });
   </script>
 
-  <!-- 360° Product Viewer -->
-  <script src="/js/viewer360.js"></script>
 
   <!-- Analytics (GA4 + Google Ads) -->
   <script src="/js/analytics.js"></script>
