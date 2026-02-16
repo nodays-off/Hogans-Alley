@@ -505,20 +505,54 @@
     }
 
     /* ============================================
-       360° PRODUCT VIDEO
+       INTERACTIVE DETAIL SHOWCASE
     ============================================ */
-    .product-video-wrapper {
+    .detail-showcase {
       position: relative;
       width: 100%;
-      aspect-ratio: 16/9;
-      background: #1a1a1a;
+      height: 100%;
       overflow: hidden;
     }
-    .product-video-wrapper video {
-      width: 100%;
-      height: 100%;
+    .detail-showcase img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center top;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .detail-showcase img.active {
+      opacity: 1;
+    }
+    .detail-showcase-label {
+      position: absolute;
+      bottom: var(--space-md);
+      left: var(--space-md);
+      font-family: var(--font-mono);
+      font-size: 0.5625rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-white);
+      background: rgba(0,0,0,0.7);
+      padding: 0.4rem 0.7rem;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .detail-showcase-label.active {
+      opacity: 1;
+    }
+    .tech-spec {
+      cursor: pointer;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .tech-spec:hover,
+    .tech-spec.active {
+      border-color: var(--color-accent);
+      background: rgba(255,255,255,0.05);
+    }
+    .tech-spec.active .tech-spec-icon {
+      background: var(--color-accent);
+      color: var(--color-black);
     }
 
     .tech-specs {
@@ -1145,7 +1179,7 @@
         <p>Every jacket starts as an original painting, then gets transferred to technical waterproof fabric. We test fits over hoodies. We yank the hood in high wind. We check pockets with cold fingers at bus stops. Then we cover everything in pattern so you don't disappear into the weather.</p>
         
         <div class="tech-specs">
-          <div class="tech-spec">
+          <div class="tech-spec active" data-feature="shell">
             <div class="tech-spec-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
@@ -1154,7 +1188,7 @@
             <h4>Waterproof Shell</h4>
             <p>Taped seams, storm flap, adjustable hood</p>
           </div>
-          <div class="tech-spec">
+          <div class="tech-spec" data-feature="comfort">
             <div class="tech-spec-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <circle cx="12" cy="12" r="10"/>
@@ -1164,7 +1198,7 @@
             <h4>All-Day Comfort</h4>
             <p>Breathable lining, roomy fit over layers</p>
           </div>
-          <div class="tech-spec">
+          <div class="tech-spec" data-feature="visibility">
             <div class="tech-spec-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M12 3v18M5.5 6.5l13 11M5.5 17.5l13-11"/>
@@ -1177,11 +1211,19 @@
       </div>
       
       <div class="section-image">
-        <!-- 360° PRODUCT VIDEO -->
-        <div class="product-video-wrapper">
-          <video autoplay muted loop playsinline poster="/Pictures/360-money-poster.webp">
-            <source src="/Pictures/360-money-video.mp4" type="video/mp4">
-          </video>
+        <div class="detail-showcase" id="detail-showcase">
+          <img src="/Pictures/optimized/DETAIL-3%20Zipper%20and%20Storm%20Flap%20-%20Money-2400w.webp"
+               srcset="/Pictures/optimized/DETAIL-3%20Zipper%20and%20Storm%20Flap%20-%20Money-400w.webp 400w, /Pictures/optimized/DETAIL-3%20Zipper%20and%20Storm%20Flap%20-%20Money-800w.webp 800w, /Pictures/optimized/DETAIL-3%20Zipper%20and%20Storm%20Flap%20-%20Money-1200w.webp 1200w, /Pictures/optimized/DETAIL-3%20Zipper%20and%20Storm%20Flap%20-%20Money-2000w.webp 2000w, /Pictures/optimized/DETAIL-3%20Zipper%20and%20Storm%20Flap%20-%20Money-2400w.webp 2400w"
+               sizes="(min-width: 900px) 50vw, 100vw" alt="YKK zipper with storm flap detail" loading="lazy" decoding="async" class="active" data-detail="shell">
+          <img src="/Pictures/optimized/DETAIL-10%20Inside%20Patch%20Pocket%20-%20Money-2400w.webp"
+               srcset="/Pictures/optimized/DETAIL-10%20Inside%20Patch%20Pocket%20-%20Money-400w.webp 400w, /Pictures/optimized/DETAIL-10%20Inside%20Patch%20Pocket%20-%20Money-800w.webp 800w, /Pictures/optimized/DETAIL-10%20Inside%20Patch%20Pocket%20-%20Money-1200w.webp 1200w, /Pictures/optimized/DETAIL-10%20Inside%20Patch%20Pocket%20-%20Money-2000w.webp 2000w, /Pictures/optimized/DETAIL-10%20Inside%20Patch%20Pocket%20-%20Money-2400w.webp 2400w"
+               sizes="(min-width: 900px) 50vw, 100vw" alt="Interior lining with patch pocket" loading="lazy" decoding="async" data-detail="comfort">
+          <img src="/Pictures/optimized/V-HERO-1%20Vancouver%20Art%20Gallery%20Plaza%20-%201-2400w.webp"
+               srcset="/Pictures/optimized/V-HERO-1%20Vancouver%20Art%20Gallery%20Plaza%20-%201-400w.webp 400w, /Pictures/optimized/V-HERO-1%20Vancouver%20Art%20Gallery%20Plaza%20-%201-800w.webp 800w, /Pictures/optimized/V-HERO-1%20Vancouver%20Art%20Gallery%20Plaza%20-%201-1200w.webp 1200w, /Pictures/optimized/V-HERO-1%20Vancouver%20Art%20Gallery%20Plaza%20-%201-2000w.webp 2000w, /Pictures/optimized/V-HERO-1%20Vancouver%20Art%20Gallery%20Plaza%20-%201-2400w.webp 2400w"
+               sizes="(min-width: 900px) 50vw, 100vw" alt="Money print parka in urban setting" loading="lazy" decoding="async" data-detail="visibility">
+          <span class="detail-showcase-label active" data-label="shell">Storm flap & YKK zipper</span>
+          <span class="detail-showcase-label" data-label="comfort">Fleece-lined interior pocket</span>
+          <span class="detail-showcase-label" data-label="visibility">Bold print, grey city</span>
         </div>
       </div>
     </div>
@@ -1506,6 +1548,30 @@
     });
   </script>
 
+
+  <!-- Detail Showcase Interaction -->
+  <script>
+    (function() {
+      const specs = document.querySelectorAll('.tech-spec[data-feature]');
+      const showcase = document.getElementById('detail-showcase');
+      if (!showcase || !specs.length) return;
+
+      function activate(feature) {
+        specs.forEach(s => s.classList.toggle('active', s.dataset.feature === feature));
+        showcase.querySelectorAll('img[data-detail]').forEach(img =>
+          img.classList.toggle('active', img.dataset.detail === feature)
+        );
+        showcase.querySelectorAll('.detail-showcase-label').forEach(lbl =>
+          lbl.classList.toggle('active', lbl.dataset.label === feature)
+        );
+      }
+
+      specs.forEach(spec => {
+        spec.addEventListener('mouseenter', () => activate(spec.dataset.feature));
+        spec.addEventListener('click', () => activate(spec.dataset.feature));
+      });
+    })();
+  </script>
 
   <!-- Analytics (GA4 + Google Ads) -->
   <script src="/js/analytics.js"></script>
