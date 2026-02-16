@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hogan's Alley — Premium Rainwear for Grey Cities</title>
+  <title>Hogan's Alley - Premium Rainwear for Grey Cities</title>
   <meta name="description" content="Premium waterproof rain parkas featuring original African-inspired artwork. Handmade in Vancouver for London, Seattle, and every grey city in between.">
   <link rel="canonical" href="https://hogansalleyclothing.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Hogan's Alley">
-  <meta property="og:title" content="Hogan's Alley — Premium Rainwear for Grey Cities">
+  <meta property="og:title" content="Hogan's Alley - Premium Rainwear for Grey Cities">
   <meta property="og:description" content="Premium waterproof rain parkas featuring original African-inspired artwork. Handmade in Vancouver for London, Seattle, and every grey city in between.">
   <meta property="og:url" content="https://hogansalleyclothing.com/">
   <meta property="og:image" content="https://hogansalleyclothing.com/Pictures/optimized/VHERO2%20Coal%20Harbour%20Seawall%20-%201-1200w.webp">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="800">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Hogan's Alley — Premium Rainwear for Grey Cities">
+  <meta name="twitter:title" content="Hogan's Alley - Premium Rainwear for Grey Cities">
   <meta name="twitter:description" content="Premium waterproof rain parkas featuring original African-inspired artwork. Handmade in Vancouver for London, Seattle, and every grey city in between.">
   <meta name="twitter:image" content="https://hogansalleyclothing.com/Pictures/optimized/VHERO2%20Coal%20Harbour%20Seawall%20-%201-1200w.webp">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -39,7 +39,7 @@
 
   <style>
     /* ============================================
-       CSS VARIABLES — PREMIUM PALETTE
+       CSS VARIABLES - PREMIUM PALETTE
     ============================================ */
     :root {
       /* Colors */
@@ -133,7 +133,7 @@
     }
     
     /* ============================================
-       NAVIGATION — PREMIUM
+       NAVIGATION - PREMIUM
     ============================================ */
     .nav {
       position: sticky;
@@ -237,7 +237,7 @@
     }
     
     /* ============================================
-       BUTTONS — PREMIUM (BLACK, NOT YELLOW)
+       BUTTONS - PREMIUM (BLACK, NOT YELLOW)
     ============================================ */
     .btn {
       display: inline-block;
@@ -273,7 +273,7 @@
     }
     
     /* ============================================
-       HERO — FULL BLEED CINEMATIC
+       HERO - FULL BLEED CINEMATIC
     ============================================ */
     .hero {
       position: relative;
@@ -362,7 +362,7 @@
     }
     
     /* ============================================
-       SECTION — WHY WE EXIST
+       SECTION - WHY WE EXIST
     ============================================ */
     .section {
       padding: var(--space-2xl) var(--space-lg);
@@ -434,7 +434,7 @@
     }
     
     /* ============================================
-       SECTION — BUILT FOR THIS (TECHNICAL)
+       SECTION - BUILT FOR THIS (TECHNICAL)
     ============================================ */
     .section-technical {
       background: var(--color-black);
@@ -459,36 +459,36 @@
       gap: var(--space-xs);
       margin-top: var(--space-lg);
     }
-    
+
     @media (max-width: 900px) {
       .raindrop-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
-    
+
     @media (max-width: 500px) {
       .raindrop-grid {
         grid-template-columns: 1fr;
       }
     }
-    
+
     .raindrop-item {
       position: relative;
       aspect-ratio: 4/3;
       overflow: hidden;
     }
-    
+
     .raindrop-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.4s ease;
     }
-    
+
     .raindrop-item:hover img {
       transform: scale(1.05);
     }
-    
+
     .raindrop-label {
       position: absolute;
       bottom: 0;
@@ -502,6 +502,73 @@
       text-transform: uppercase;
       text-align: center;
       color: var(--color-white);
+    }
+
+    /* ============================================
+       360° PRODUCT VIEWER
+    ============================================ */
+    .viewer360-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: var(--color-warm-white);
+      overflow: hidden;
+      cursor: grab;
+    }
+    .viewer360-wrapper.grabbing {
+      cursor: grabbing;
+    }
+    .viewer360-canvas {
+      width: 100%;
+      height: 100%;
+      object-fit: contain !important;
+      object-position: center center !important;
+      min-height: 0 !important;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .viewer360-hint {
+      position: absolute;
+      bottom: var(--space-md);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .viewer360-hint.hidden {
+      opacity: 0;
+    }
+    .viewer360-hint svg {
+      width: 20px;
+      height: 20px;
+      animation: swipe 2s ease-in-out infinite;
+    }
+    @keyframes swipe {
+      0%, 100% { transform: translateX(-6px); }
+      50% { transform: translateX(6px); }
+    }
+    .viewer360-wrapper.viewer360-wrapper {
+      min-height: 0;
+    }
+    .viewer360-badge {
+      position: absolute;
+      top: var(--space-sm);
+      left: var(--space-sm);
+      font-family: var(--font-mono);
+      font-size: 0.5625rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-white);
+      background: var(--color-black);
+      padding: 0.35rem 0.6rem;
     }
     
     .tech-specs {
@@ -547,6 +614,81 @@
       color: rgba(255,255,255,0.6);
     }
     
+    /* ============================================
+       SUSTAINABILITY SECTION
+    ============================================ */
+    .section-sustainability {
+      background: var(--color-warm-white);
+    }
+
+    .sustainability-header {
+      max-width: 700px;
+      margin-bottom: var(--space-lg);
+    }
+
+    .sustainability-header h2 {
+      margin: var(--space-sm) 0 var(--space-md);
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .stats-row { grid-template-columns: 1fr; }
+    }
+
+    .stat-card {
+      padding: var(--space-md);
+      border: 1px solid var(--color-border);
+      background: var(--color-white);
+    }
+
+    .stat-number {
+      font-family: var(--font-headline);
+      font-size: clamp(3rem, 8vw, 4.5rem);
+      font-weight: 500;
+      color: var(--color-accent);
+      line-height: 1;
+      margin-bottom: var(--space-xs);
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .stat-desc {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      margin-top: var(--space-xs);
+    }
+
+    .sustainability-materials {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-top: var(--space-lg);
+    }
+
+    .material-badge {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--color-black);
+      color: var(--color-white);
+      padding: 0.6rem 1.25rem;
+    }
+
     /* ============================================
        COLLECTIONS PREVIEW
     ============================================ */
@@ -604,7 +746,7 @@
     }
     
     /* ============================================
-       PRODUCT PAGE — GALLERY WITH DETAIL ZOOM
+       PRODUCT PAGE - GALLERY WITH DETAIL ZOOM
     ============================================ */
     .product-section {
       max-width: 1400px;
@@ -773,7 +915,82 @@
     .detail-row dd {
       font-weight: 500;
     }
-    
+
+    .divider {
+      border-top: 1px solid var(--color-border);
+      margin: var(--space-md) 0;
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .accordion-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-sm) 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .accordion-icon {
+      font-size: 1.25rem;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .accordion-inner {
+      padding-bottom: var(--space-md);
+      font-size: 0.8125rem;
+      line-height: 1.7;
+      color: var(--color-text-muted);
+    }
+
+    .accordion-inner ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .accordion-inner li {
+      padding: 0.25rem 0;
+    }
+
+    .accordion-inner li::before {
+      content: "- ";
+      color: var(--color-accent);
+    }
+
+    .size-chart {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.75rem;
+      text-align: center;
+    }
+
+    .size-chart th,
+    .size-chart td {
+      padding: 0.4rem 0.25rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .size-chart th {
+      font-weight: 500;
+      color: var(--color-black);
+    }
+
     /* ============================================
        FOOTER
     ============================================ */
@@ -871,7 +1088,7 @@
     
     .section-divider::before,
     .section-divider::after {
-      content: '—';
+      content: '-';
       margin: 0 var(--space-sm);
     }
     
@@ -924,7 +1141,7 @@
     </div>
   </nav>
 
-  <!-- HERO — COAL HARBOUR VANCOUVER -->
+  <!-- HERO - COAL HARBOUR VANCOUVER -->
   <section class="hero" id="main-content">
     <div class="hero-media">
       <img src="/Pictures/optimized/VHERO2%20Coal%20Harbour%20Seawall%20-%201-2400w.webp" srcset="/Pictures/optimized/VHERO2%20Coal%20Harbour%20Seawall%20-%201-400w.webp 400w, /Pictures/optimized/VHERO2%20Coal%20Harbour%20Seawall%20-%201-800w.webp 800w, /Pictures/optimized/VHERO2%20Coal%20Harbour%20Seawall%20-%201-1200w.webp 1200w, /Pictures/optimized/VHERO2%20Coal%20Harbour%20Seawall%20-%201-2000w.webp 2000w, /Pictures/optimized/VHERO2%20Coal%20Harbour%20Seawall%20-%201-2400w.webp 2400w" sizes="100vw" alt="Model walking on Coal Harbour seawall wearing Hogan's Alley jacket, Vancouver skyline and North Shore mountains in background" fetchpriority="high">
@@ -941,23 +1158,23 @@
     </div>
   </section>
 
-  <!-- WHY WE EXIST — WITH VANCOUVER ART GALLERY IMAGE -->
+  <!-- WHY WE EXIST - WITH VANCOUVER ART GALLERY IMAGE -->
   <section class="section">
     <div class="section-split">
       <div class="section-content">
         <span class="subhead">Why We Exist</span>
         <h2>Why is everyone dressed like the sky?</h2>
         <p>Most rain jackets are designed to disappear. Black, navy, grey, maybe one safe yellow. That works for hiking gear.</p>
-        <p>City rain is different. We ride buses, skate in drizzle, walk dogs in sideways rain, stand under leaky bus shelters — and we still want to feel like ourselves.</p>
+        <p>City rain is different. We ride buses, skate in drizzle, walk dogs in sideways rain, stand under leaky bus shelters - and we still want to feel like ourselves.</p>
         <div class="feature-list">
           <div class="feature-item">
-            <strong>Built for real rain</strong> — Waterproof shells, taped seams, hardware that doesn't quit.
+            <strong>Built for real rain</strong> - Waterproof shells, taped seams, hardware that doesn't quit.
           </div>
           <div class="feature-item">
-            <strong>Made to be seen</strong> — High-contrast artwork, not just logos slapped on a blank shell.
+            <strong>Made to be seen</strong> - High-contrast artwork, not just logos slapped on a blank shell.
           </div>
           <div class="feature-item">
-            <strong>For grey cities</strong> — Designed for places where the sky forgets how to be blue.
+            <strong>For grey cities</strong> - Designed for places where the sky forgets how to be blue.
           </div>
         </div>
       </div>
@@ -969,7 +1186,7 @@
 
   <div class="section-divider">Technical</div>
 
-  <!-- BUILT FOR THIS — TECHNICAL SECTION WITH RAINDROP DETAILS -->
+  <!-- BUILT FOR THIS - TECHNICAL SECTION WITH RAINDROP DETAILS -->
   <section class="section section-technical">
     <div class="section-split">
       <div class="section-content">
@@ -1010,26 +1227,58 @@
       </div>
       
       <div class="section-image">
-        <!-- RAINDROP DETAIL SHOTS -->
-        <div class="raindrop-grid">
-          <div class="raindrop-item">
-            <img src="/Pictures/optimized/Fabric%20Detail%20Shot%20-%20Libation-800w.webp" srcset="/Pictures/optimized/Fabric%20Detail%20Shot%20-%20Libation-400w.webp 400w, /Pictures/optimized/Fabric%20Detail%20Shot%20-%20Libation-800w.webp 800w" sizes="100vw" alt="Libation print with water beads showing waterproof fabric" loading="lazy" decoding="async">
-            <span class="raindrop-label">Libation</span>
-          </div>
-          <div class="raindrop-item">
-            <img src="/Pictures/optimized/Fabric%20Detail%20Shot%20-%20Money-800w.webp" srcset="/Pictures/optimized/Fabric%20Detail%20Shot%20-%20Money-400w.webp 400w, /Pictures/optimized/Fabric%20Detail%20Shot%20-%20Money-800w.webp 800w" sizes="100vw" alt="Money print with water beads showing waterproof fabric" loading="lazy" decoding="async">
-            <span class="raindrop-label">Money</span>
-          </div>
-          <div class="raindrop-item">
-            <img src="/Pictures/optimized/Fabric%20Detail%20Shot%20-%20Sanitation-800w.webp" srcset="/Pictures/optimized/Fabric%20Detail%20Shot%20-%20Sanitation-400w.webp 400w, /Pictures/optimized/Fabric%20Detail%20Shot%20-%20Sanitation-800w.webp 800w" sizes="100vw" alt="Sanitation print with water beads showing waterproof fabric" loading="lazy" decoding="async">
-            <span class="raindrop-label">Sanitation</span>
-          </div>
-          <div class="raindrop-item">
-            <img src="/Pictures/optimized/Fabric%20Detail%20Shot%20-%20Transportaion-800w.webp" srcset="/Pictures/optimized/Fabric%20Detail%20Shot%20-%20Transportaion-400w.webp 400w, /Pictures/optimized/Fabric%20Detail%20Shot%20-%20Transportaion-800w.webp 800w" sizes="100vw" alt="Transport print with water beads showing waterproof fabric" loading="lazy" decoding="async">
-            <span class="raindrop-label">Transport</span>
+        <!-- 360° INTERACTIVE PRODUCT VIEWER -->
+        <div id="viewer360" class="viewer360-wrapper">
+          <img class="viewer360-canvas" src="/Pictures/360-money-web/frame-000.webp" alt="Money Rain Parka - 360° view" loading="lazy" decoding="async">
+          <span class="viewer360-badge">360°</span>
+          <div class="viewer360-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M5 12l3-3M5 12l3 3M19 12l-3-3M19 12l-3 3"/></svg>
+            Drag to rotate
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <div class="section-divider">Sustainability</div>
+
+  <!-- SUSTAINABILITY - RECYCLED MATERIALS -->
+  <section class="section section-sustainability">
+    <div class="section-center" style="max-width: 1400px; margin: 0 auto;">
+      <div class="sustainability-header">
+        <span class="subhead">Made to Last, Made to Matter</span>
+        <h2>Art inspired by city life. Made from what it leaves behind.</h2>
+        <p>Every Hogan's Alley jacket is made from recycled PET plastic - the same material in water bottles and food containers. Instead of ending up in landfills and waterways, that plastic becomes the fabric you wear.</p>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-number">~27</div>
+          <div class="stat-label">Plastic Bottles</div>
+          <div class="stat-desc">Diverted from landfills and waterways per jacket</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">187</div>
+          <div class="stat-label">Jackets Made</div>
+          <div class="stat-desc">And counting - each one handcrafted in Vancouver, in limited runs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">~5,049</div>
+          <div class="stat-label">Bottles Saved</div>
+          <div class="stat-desc">Total plastic diverted from polluting our environment</div>
+        </div>
+      </div>
+
+      <div class="sustainability-materials">
+        <span class="material-badge">Shell: 88% Recycled Polyester</span>
+        <span class="material-badge">Lining: ~97% Recycled</span>
+        <span class="material-badge">OEKO-TEX Certified</span>
+        <span class="material-badge">Local Supply Chain - Delta, BC</span>
+        <span class="material-badge">Handmade in Vancouver</span>
+      </div>
+
+      <p style="margin-top: var(--space-lg);">Our fabrics come from KenDor Textiles in Delta, BC - keeping our supply chain local and our footprint low. The recycled polyester performs just as well as virgin material: water-resistant, breathable, and built to last.</p>
+      <a href="story.html" style="display: inline-flex; align-items: center; gap: var(--space-xs); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); text-decoration: none; margin-top: var(--space-md); transition: gap 0.2s ease;">Read Our Full Story →</a>
     </div>
   </section>
 
@@ -1131,32 +1380,125 @@
       <div class="product-info">
         <span class="product-collection">Money Collection</span>
         <h1>Money Rain Parka</h1>
-        <p class="product-description">Mid-thigh length waterproof parka featuring our signature Money print — bold blues, greens, and golds with calabash gourds, cowrie shells, and geometric patterns. Each jacket starts as an original painting before being transferred to technical waterproof fabric.</p>
-        
-        <dl class="product-details">
-          <div class="detail-row">
-            <dt>Fit</dt>
-            <dd>Relaxed, mid-thigh length</dd>
-          </div>
-          <div class="detail-row">
-            <dt>Material</dt>
-            <dd>Waterproof polyester shell</dd>
-          </div>
-          <div class="detail-row">
-            <dt>Features</dt>
-            <dd>Taped seams, storm flap, adjustable hood</dd>
-          </div>
-          <div class="detail-row">
-            <dt>Sizes</dt>
-            <dd>XS – XXL</dd>
-          </div>
-        </dl>
-        
-        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">Add to Cart</a>
-        
+        <p class="product-description">Mid-thigh length waterproof parka featuring our signature Money print - bold blues, greens, and golds with calabash gourds, cowrie shells, and geometric patterns. Each jacket starts as an original painting before being transferred to technical waterproof fabric.</p>
+
+        <a href="shop.html" class="btn btn-primary" style="width: 100%; text-align: center;">Shop Now</a>
+
         <p style="margin-top: var(--space-md); font-size: 0.75rem; color: var(--color-text-muted);">
           Free shipping across Canada. 30-day returns.
         </p>
+
+        <div class="divider"></div>
+
+        <!-- ACCORDION DETAILS -->
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="this.parentElement.classList.toggle('open'); const c = this.nextElementSibling; c.style.maxHeight = c.style.maxHeight ? null : c.scrollHeight + 'px'; this.querySelector('.accordion-icon').textContent = c.style.maxHeight ? '-' : '+';">
+              <span>Construction Details</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul>
+                  <li>Fully taped seams prevent water penetration</li>
+                  <li>Adjustable hood with 45" drawcord and toggle</li>
+                  <li>Storm flap covers center front YKK zipper</li>
+                  <li>Deep front pockets with fleece lining</li>
+                  <li>Adjustable hem drawcord for custom fit</li>
+                  <li>Set-in sleeves with fitted cuffs</li>
+                  <li>Mid-thigh length (34" on size M)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="this.parentElement.classList.toggle('open'); const c = this.nextElementSibling; c.style.maxHeight = c.style.maxHeight ? null : c.scrollHeight + 'px'; this.querySelector('.accordion-icon').textContent = c.style.maxHeight ? '-' : '+';">
+              <span>Materials & Sustainability</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul>
+                  <li><strong>Shell:</strong> 88% Recycled Polyester, 12% Spandex (110gsm)</li>
+                  <li><strong>Lining:</strong> 100% Recycled Polyester fleece-back softshell (320gsm)</li>
+                  <li><strong>Finish:</strong> DWR (Durable Water Repellent) - PFAS-free</li>
+                  <li><strong>Certified:</strong> OEKO-TEX Standard 100, FSC</li>
+                  <li><strong>Source:</strong> KenDor Textiles, Delta, BC</li>
+                  <li><strong>Made:</strong> Cut and sewn in Vancouver, BC</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="this.parentElement.classList.toggle('open'); const c = this.nextElementSibling; c.style.maxHeight = c.style.maxHeight ? null : c.scrollHeight + 'px'; this.querySelector('.accordion-icon').textContent = c.style.maxHeight ? '-' : '+';">
+              <span>Sizing & Fit</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <p style="margin-bottom: 1rem;">Relaxed fit, designed to layer over hoodies and sweaters. Model is 5'9" / 175cm wearing size M.</p>
+                <table class="size-chart">
+                  <tr>
+                    <th></th>
+                    <th>XS</th>
+                    <th>S</th>
+                    <th>M</th>
+                    <th>L</th>
+                    <th>XL</th>
+                    <th>XXL</th>
+                  </tr>
+                  <tr>
+                    <td><strong>Chest</strong></td>
+                    <td>44"</td>
+                    <td>46"</td>
+                    <td>48"</td>
+                    <td>50"</td>
+                    <td>52"</td>
+                    <td>54"</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Length</strong></td>
+                    <td>32"</td>
+                    <td>33"</td>
+                    <td>34"</td>
+                    <td>35"</td>
+                    <td>36"</td>
+                    <td>37"</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Sleeve</strong></td>
+                    <td>25"</td>
+                    <td>25.25"</td>
+                    <td>25.5"</td>
+                    <td>25.75"</td>
+                    <td>26"</td>
+                    <td>26.25"</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="this.parentElement.classList.toggle('open'); const c = this.nextElementSibling; c.style.maxHeight = c.style.maxHeight ? null : c.scrollHeight + 'px'; this.querySelector('.accordion-icon').textContent = c.style.maxHeight ? '-' : '+';">
+              <span>Care Instructions</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul>
+                  <li>Machine wash cold, gentle cycle</li>
+                  <li>Use mild detergent - no fabric softener</li>
+                  <li>Tumble dry low to reactivate DWR finish</li>
+                  <li>Do not iron directly on print</li>
+                  <li>Do not dry clean</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1216,6 +1558,9 @@
       });
     });
   </script>
+
+  <!-- 360° Product Viewer -->
+  <script src="/js/viewer360.js"></script>
 
   <!-- Analytics (GA4 + Google Ads) -->
   <script src="/js/analytics.js"></script>
