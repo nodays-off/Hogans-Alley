@@ -557,8 +557,8 @@
 
     .tech-specs {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--space-md);
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-sm);
       margin-top: var(--space-lg);
     }
     
@@ -597,7 +597,14 @@
       font-size: 0.875rem;
       color: rgba(255,255,255,0.6);
     }
-    
+
+    @media (max-width: 900px) {
+      .tech-specs { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 500px) {
+      .tech-specs { grid-template-columns: 1fr; }
+    }
+
     /* ============================================
        SUSTAINABILITY SECTION
     ============================================ */
@@ -1176,7 +1183,7 @@
       <div class="section-content">
         <span class="subhead">Built for This</span>
         <h2>Designed in the rain, for the rain.</h2>
-        <p>Every jacket starts as an original painting, then gets transferred to technical waterproof fabric. We test fits over hoodies. We yank the hood in high wind. We check pockets with cold fingers at bus stops. Then we cover everything in pattern so you don't disappear into the weather.</p>
+        <p>Every jacket begins as an original painting — then it becomes outerwear engineered for Vancouver's worst days. We test fits over hoodies. We stress hoods in crosswind. We check pockets with cold hands at bus stops. Then we wrap everything in art, so you stand out when the city wants you to disappear.</p>
         
         <div class="tech-specs">
           <div class="tech-spec active" data-feature="shell">
@@ -1186,26 +1193,54 @@
               </svg>
             </div>
             <h4>Waterproof Shell</h4>
-            <p>Taped seams, storm flap, adjustable hood</p>
+            <p>YKK zipper. Sealed storm flap. Fully taped seams.</p>
           </div>
-          <div class="tech-spec" data-feature="comfort">
+          <div class="tech-spec" data-feature="hood">
+            <div class="tech-spec-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2a7 7 0 0 0-7 7c0 3 2 5.5 4 7.5L12 22l3-5.5c2-2 4-4.5 4-7.5a7 7 0 0 0-7-7z"/>
+              </svg>
+            </div>
+            <h4>Adjustable Hood</h4>
+            <p>Three-point drawcord. Structured brim. Full peripheral vision.</p>
+          </div>
+          <div class="tech-spec" data-feature="lining">
+            <div class="tech-spec-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 3h18v18H3zM3 9h18M3 15h18"/>
+              </svg>
+            </div>
+            <h4>Fleece-Lined Interior</h4>
+            <p>Brushed fleece from collar to hem. Contrast stripe lining.</p>
+          </div>
+          <div class="tech-spec" data-feature="cuff">
             <div class="tech-spec-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v6l4 2"/>
+                <path d="M8 12h8M12 8v8"/>
               </svg>
             </div>
-            <h4>All-Day Comfort</h4>
-            <p>Breathable lining, roomy fit over layers</p>
+            <h4>Finished Details</h4>
+            <p>Elasticized cuffs. Clean hems. Precision stitching.</p>
           </div>
-          <div class="tech-spec" data-feature="visibility">
+          <div class="tech-spec" data-feature="artwork">
             <div class="tech-spec-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M12 3v18M5.5 6.5l13 11M5.5 17.5l13-11"/>
+                <path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/>
+                <path d="M12 22V12M2 7l10 5 10-5"/>
               </svg>
             </div>
-            <h4>High Visibility</h4>
-            <p>Bold patterns that pop against grey</p>
+            <h4>Original Artwork</h4>
+            <p>Each print starts as a hand-painted original. Limited editions only.</p>
+          </div>
+          <div class="tech-spec" data-feature="provenance">
+            <div class="tech-spec-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 21V3h18v18H3zM7 7h4v4H7zM7 14h10M7 17h7"/>
+              </svg>
+            </div>
+            <h4>Made in Vancouver</h4>
+            <p>Small-batch local production. Individually inspected.</p>
           </div>
         </div>
       </div>
@@ -1215,15 +1250,27 @@
           <img src="/Pictures/optimized/DETAIL-3%20Zipper%20and%20Storm%20Flap%20-%20Money-2400w.webp"
                srcset="/Pictures/optimized/DETAIL-3%20Zipper%20and%20Storm%20Flap%20-%20Money-400w.webp 400w, /Pictures/optimized/DETAIL-3%20Zipper%20and%20Storm%20Flap%20-%20Money-800w.webp 800w, /Pictures/optimized/DETAIL-3%20Zipper%20and%20Storm%20Flap%20-%20Money-1200w.webp 1200w, /Pictures/optimized/DETAIL-3%20Zipper%20and%20Storm%20Flap%20-%20Money-2000w.webp 2000w, /Pictures/optimized/DETAIL-3%20Zipper%20and%20Storm%20Flap%20-%20Money-2400w.webp 2400w"
                sizes="(min-width: 900px) 50vw, 100vw" alt="YKK zipper with storm flap detail" loading="lazy" decoding="async" class="active" data-detail="shell">
-          <img src="/Pictures/optimized/DETAIL-10%20Inside%20Patch%20Pocket%20-%20Money-2400w.webp"
-               srcset="/Pictures/optimized/DETAIL-10%20Inside%20Patch%20Pocket%20-%20Money-400w.webp 400w, /Pictures/optimized/DETAIL-10%20Inside%20Patch%20Pocket%20-%20Money-800w.webp 800w, /Pictures/optimized/DETAIL-10%20Inside%20Patch%20Pocket%20-%20Money-1200w.webp 1200w, /Pictures/optimized/DETAIL-10%20Inside%20Patch%20Pocket%20-%20Money-2000w.webp 2000w, /Pictures/optimized/DETAIL-10%20Inside%20Patch%20Pocket%20-%20Money-2400w.webp 2400w"
-               sizes="(min-width: 900px) 50vw, 100vw" alt="Interior lining with patch pocket" loading="lazy" decoding="async" data-detail="comfort">
-          <img src="/Pictures/optimized/V-HERO-1%20Vancouver%20Art%20Gallery%20Plaza%20-%201-2400w.webp"
-               srcset="/Pictures/optimized/V-HERO-1%20Vancouver%20Art%20Gallery%20Plaza%20-%201-400w.webp 400w, /Pictures/optimized/V-HERO-1%20Vancouver%20Art%20Gallery%20Plaza%20-%201-800w.webp 800w, /Pictures/optimized/V-HERO-1%20Vancouver%20Art%20Gallery%20Plaza%20-%201-1200w.webp 1200w, /Pictures/optimized/V-HERO-1%20Vancouver%20Art%20Gallery%20Plaza%20-%201-2000w.webp 2000w, /Pictures/optimized/V-HERO-1%20Vancouver%20Art%20Gallery%20Plaza%20-%201-2400w.webp 2400w"
-               sizes="(min-width: 900px) 50vw, 100vw" alt="Money print parka in urban setting" loading="lazy" decoding="async" data-detail="visibility">
-          <span class="detail-showcase-label active" data-label="shell">Storm flap & YKK zipper</span>
-          <span class="detail-showcase-label" data-label="comfort">Fleece-lined interior pocket</span>
-          <span class="detail-showcase-label" data-label="visibility">Bold print, grey city</span>
+          <img src="/Pictures/optimized/DETAIL-2%20Hood%20with%20Drawcord%20System%20-%20Money-2400w.webp"
+               srcset="/Pictures/optimized/DETAIL-2%20Hood%20with%20Drawcord%20System%20-%20Money-400w.webp 400w, /Pictures/optimized/DETAIL-2%20Hood%20with%20Drawcord%20System%20-%20Money-800w.webp 800w, /Pictures/optimized/DETAIL-2%20Hood%20with%20Drawcord%20System%20-%20Money-1200w.webp 1200w, /Pictures/optimized/DETAIL-2%20Hood%20with%20Drawcord%20System%20-%20Money-2000w.webp 2000w, /Pictures/optimized/DETAIL-2%20Hood%20with%20Drawcord%20System%20-%20Money-2400w.webp 2400w"
+               sizes="(min-width: 900px) 50vw, 100vw" alt="Hood with three-point drawcord system" loading="lazy" decoding="async" data-detail="hood">
+          <img src="/Pictures/optimized/DETAIL-1%20Fleece%20Lining%20Interior%20-%20Money-2400w.webp"
+               srcset="/Pictures/optimized/DETAIL-1%20Fleece%20Lining%20Interior%20-%20Money-400w.webp 400w, /Pictures/optimized/DETAIL-1%20Fleece%20Lining%20Interior%20-%20Money-800w.webp 800w, /Pictures/optimized/DETAIL-1%20Fleece%20Lining%20Interior%20-%20Money-1200w.webp 1200w, /Pictures/optimized/DETAIL-1%20Fleece%20Lining%20Interior%20-%20Money-2000w.webp 2000w, /Pictures/optimized/DETAIL-1%20Fleece%20Lining%20Interior%20-%20Money-2400w.webp 2400w"
+               sizes="(min-width: 900px) 50vw, 100vw" alt="Brushed fleece lining interior with contrast stripes" loading="lazy" decoding="async" data-detail="lining">
+          <img src="/Pictures/optimized/DETAIL-6%20Cuff%20Detail%20-%20Money-2400w.webp"
+               srcset="/Pictures/optimized/DETAIL-6%20Cuff%20Detail%20-%20Money-400w.webp 400w, /Pictures/optimized/DETAIL-6%20Cuff%20Detail%20-%20Money-800w.webp 800w, /Pictures/optimized/DETAIL-6%20Cuff%20Detail%20-%20Money-1200w.webp 1200w, /Pictures/optimized/DETAIL-6%20Cuff%20Detail%20-%20Money-2000w.webp 2000w, /Pictures/optimized/DETAIL-6%20Cuff%20Detail%20-%20Money-2400w.webp 2400w"
+               sizes="(min-width: 900px) 50vw, 100vw" alt="Elasticized cuff with precision stitching" loading="lazy" decoding="async" data-detail="cuff">
+          <img src="/Pictures/optimized/Artist%20Print%20Creation%20Photo%20-%201-1344w.webp"
+               srcset="/Pictures/optimized/Artist%20Print%20Creation%20Photo%20-%201-400w.webp 400w, /Pictures/optimized/Artist%20Print%20Creation%20Photo%20-%201-800w.webp 800w, /Pictures/optimized/Artist%20Print%20Creation%20Photo%20-%201-1200w.webp 1200w, /Pictures/optimized/Artist%20Print%20Creation%20Photo%20-%201-1344w.webp 1344w"
+               sizes="(min-width: 900px) 50vw, 100vw" alt="Original hand-painted artwork for print creation" loading="lazy" decoding="async" data-detail="artwork">
+          <img src="/Pictures/optimized/DETAIL-8%20Made%20in%20Vancouver%20Label%20-%20Money-2400w.webp"
+               srcset="/Pictures/optimized/DETAIL-8%20Made%20in%20Vancouver%20Label%20-%20Money-400w.webp 400w, /Pictures/optimized/DETAIL-8%20Made%20in%20Vancouver%20Label%20-%20Money-800w.webp 800w, /Pictures/optimized/DETAIL-8%20Made%20in%20Vancouver%20Label%20-%20Money-1200w.webp 1200w, /Pictures/optimized/DETAIL-8%20Made%20in%20Vancouver%20Label%20-%20Money-2000w.webp 2000w, /Pictures/optimized/DETAIL-8%20Made%20in%20Vancouver%20Label%20-%20Money-2400w.webp 2400w"
+               sizes="(min-width: 900px) 50vw, 100vw" alt="Made in Vancouver label" loading="lazy" decoding="async" data-detail="provenance">
+          <span class="detail-showcase-label active" data-label="shell">YKK zipper & sealed storm flap</span>
+          <span class="detail-showcase-label" data-label="hood">Three-point drawcord system</span>
+          <span class="detail-showcase-label" data-label="lining">Brushed fleece, collar to hem</span>
+          <span class="detail-showcase-label" data-label="cuff">Elasticized cuffs, clean hems</span>
+          <span class="detail-showcase-label" data-label="artwork">Hand-painted original to print</span>
+          <span class="detail-showcase-label" data-label="provenance">Small-batch, locally made</span>
         </div>
       </div>
     </div>
