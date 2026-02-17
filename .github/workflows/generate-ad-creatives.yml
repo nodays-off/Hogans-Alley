@@ -1,0 +1,33 @@
+name: Generate Google Ads Creatives
+
+on:
+  workflow_dispatch:  # Manual trigger only
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Pillow
+        run: pip install Pillow
+
+      - name: Run creative generator
+        run: python marketing/generate-ad-creatives.py
+
+      - name: Commit generated creatives
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add marketing/ad-creatives/
+          git diff --staged --quiet || git commit -m "Generate Google Ads creative assets [automated]"
+          git push
