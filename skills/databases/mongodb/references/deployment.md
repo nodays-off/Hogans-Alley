@@ -440,7 +440,7 @@ sh.moveChunk("myDatabase.users", { userId: "12345" }, "shard2")
 // 3. Create database user
 // 4. Get connection string
 
-const uri = "mongodb+srv://username:password@cluster.mongodb.net/database?retryWrites=true&w=majority";
+const uri = "mongodb+srv://<username>:<password>@cluster.mongodb.net/database?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
 ```
 

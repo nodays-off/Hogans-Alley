@@ -126,20 +126,20 @@ db.dropUser("username")
 
 ```javascript
 // Basic authentication
-mongodb://username:password@localhost:27017/database
+mongodb://<username>:<password>@localhost:27017/database
 
 // With options
-mongodb://username:password@localhost:27017/database?authSource=admin
+mongodb://<username>:<password>@localhost:27017/database?authSource=admin
 
 // Replica set with authentication
-mongodb://username:password@host1:27017,host2:27017,host3:27017/database?replicaSet=myReplicaSet&authSource=admin
+mongodb://<username>:<password>@host1:27017,host2:27017,host3:27017/database?replicaSet=myReplicaSet&authSource=admin
 
 // MongoDB Atlas
-mongodb+srv://username:password@cluster.mongodb.net/database?retryWrites=true&w=majority
+mongodb+srv://<username>:<password>@cluster.mongodb.net/database?retryWrites=true&w=majority
 
 // Connection in Node.js
 const { MongoClient } = require('mongodb');
-const uri = "mongodb://username:password@localhost:27017/database?authSource=admin";
+const uri = "mongodb://<username>:<password>@localhost:27017/database?authSource=admin";
 const client = new MongoClient(uri);
 ```
 
@@ -377,7 +377,7 @@ mongosh --tls \
   --host mongodb.example.com
 
 # Connection string with TLS
-mongodb://username:password@host:27017/database?tls=true&tlsCAFile=/path/to/ca.pem
+mongodb://<username>:<password>@host:27017/database?tls=true&tlsCAFile=/path/to/ca.pem
 ```
 
 ### Client-Side Field Level Encryption (CSFLE)
@@ -520,7 +520,7 @@ sudo firewall-cmd --reload
 // 2. Configure route tables
 // 3. Connect using private IP
 
-mongodb://username:password@10.0.1.5:27017/database
+mongodb://<username>:<password>@10.0.1.5:27017/database
 ```
 
 ### SSH Tunnel
@@ -645,7 +645,7 @@ db.createUser({
 })
 
 // ❌ Wrong: Hardcoded credentials
-const uri = "mongodb://admin:password123@localhost:27017/db";
+const uri = "mongodb://<username>:<password>@localhost:27017/db";
 
 // ✓ Right: Environment variables
 const uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@localhost:27017/db`;
