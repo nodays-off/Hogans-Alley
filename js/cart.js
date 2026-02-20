@@ -478,7 +478,7 @@ class CartManager {
 
   /**
    * Gets formatted subtotal string with currency
-   * @returns {string} Formatted price string (e.g., "$395 CAD")
+   * @returns {string} Formatted price string (e.g., "$300 CAD")
    */
   getFormattedSubtotal() {
     const subtotal = this.getSubtotal();

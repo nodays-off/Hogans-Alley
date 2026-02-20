@@ -77,7 +77,7 @@
     state.productId = elements.productSection.dataset.productId;
     state.productName = elements.productSection.dataset.productName;
     state.productCollection = elements.productSection.dataset.productCollection;
-    state.productPrice = parseFloat(elements.productSection.dataset.productPrice) || 395;
+    state.productPrice = parseFloat(elements.productSection.dataset.productPrice) || 300;
     state.productImage = elements.productSection.dataset.productImage || '';
 
     if (!state.productId) {
