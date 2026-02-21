@@ -1,0 +1,21 @@
+[project]
+name = "hogans-alley-google-ads-mcp"
+version = "0.1.0"
+description = "Google Ads MCP Server for Hogan's Alley campaign management"
+requires-python = ">=3.12"
+dependencies = [
+    "google-ads==29.0.0",
+    "fastmcp>=2.14.3",
+    "google-auth-oauthlib>=1.2.3",
+    "google-auth>=2.0.0",
+    "pyyaml>=6.0.3",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+hogans-ads-mcp = "hogans_ads_mcp.server:main"
+hogans-ads-auth = "hogans_ads_mcp.auth:main"
+
+[build-system]
+requires = ["setuptools>=75.0"]
+build-backend = "setuptools.build_meta"

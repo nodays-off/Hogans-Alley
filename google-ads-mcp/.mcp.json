@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "hogans-google-ads": {
+      "command": "python",
+      "args": ["-m", "hogans_ads_mcp.server"],
+      "cwd": "google-ads-mcp",
+      "env": {
+        "GOOGLE_ADS_CREDENTIALS": "google-ads-mcp/google-ads.yaml"
+      },
+      "timeout": 30000
+    }
+  }
+}

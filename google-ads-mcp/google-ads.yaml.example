@@ -1,0 +1,19 @@
+# Google Ads API credentials for Hogan's Alley
+# Copy this file to google-ads.yaml and fill in your values
+#
+# To obtain these credentials:
+# 1. Go to https://console.cloud.google.com/
+# 2. Create a project or select existing one
+# 3. Enable the Google Ads API
+# 4. Create OAuth 2.0 credentials (Desktop application)
+# 5. Run: python -m hogans_ads_mcp.auth to get your refresh token
+# 6. Get your developer token from Google Ads UI > Tools > API Center
+
+client_id: "<YOUR_CLIENT_ID>"
+client_secret: "<YOUR_CLIENT_SECRET>"
+refresh_token: "<YOUR_REFRESH_TOKEN>"
+developer_token: "<YOUR_DEVELOPER_TOKEN>"
+login_customer_id: "<YOUR_MANAGER_ACCOUNT_ID>"
+
+# Optional: Set to true for test accounts
+# use_proto_plus: true

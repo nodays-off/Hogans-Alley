@@ -33,3 +33,13 @@ Thumbs.db
 
 # Scripts with credentials
 scripts/
+
+# Google Ads credentials
+google-ads.yaml
+google-ads-mcp/google-ads.yaml
+client_secret*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
